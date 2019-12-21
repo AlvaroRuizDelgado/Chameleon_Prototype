@@ -1,32 +1,13 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
 
-int main()
+#include "Game.h"
+
+int main(int, char const**)
 {
-	std::cout << "Hello chameleon";
+	std::cout << "Hello chameleon\n\n";
 
-	sf::RenderWindow window(sf::VideoMode(640, 480), "Chameleon");
-
-	while (window.isOpen())
-	{
-		sf::Event event;
-
-		while (window.pollEvent(event))
-		{
-			switch (event.type)
-			{
-				case sf::Event::Closed:
-					window.close();
-					break;
-			}
-		}
-
-		// update
-		window.clear();
-
-		// draw
-		window.display();
-	}
+	Game game;
+	game.run();
 
 	return EXIT_SUCCESS;
 }

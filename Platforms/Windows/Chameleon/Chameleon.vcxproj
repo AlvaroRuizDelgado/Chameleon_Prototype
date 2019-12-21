@@ -19,7 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Code\Chameleon.cpp" />
+    <ClCompile Include="..\..\..\Code\Game.cpp" />
+    <ClCompile Include="..\..\..\Code\GameDraw.cpp" />
+    <ClCompile Include="..\..\..\Code\GameInput.cpp" />
+    <ClCompile Include="..\..\..\Code\GameUpdate.cpp" />
     <ClCompile Include="..\..\..\Code\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Code\Chameleon.h" />
+    <ClInclude Include="..\..\..\Code\Game.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
