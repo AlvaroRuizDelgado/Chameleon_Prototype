@@ -3,12 +3,10 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#include "Background.h"
+
 class Game
 {
-public:
-	Game();
-	void run();
-
 private:
 	static constexpr int FPS{ 60 };
 
@@ -19,14 +17,22 @@ private:
 	State m_state{ State::PLAYING };
 
 	sf::RenderWindow m_window;
-	sf::Color m_bgColor{ sf::Color(77, 133, 63) };
+	//sf::Color m_bgColor{ sf::Color(77, 133, 63) };
 
 	sf::Time m_gameTimeTotal{ sf::Time::Zero };
 
 	int m_score{ 0 };
 
-	// GAME LOOP
+	Background background;
+
+public:
+	Game();
+	void run();
+
+private:
 	void input();
 	void update(float dtAsSeconds);
 	void draw();
+
+	void initializeGame();
 };

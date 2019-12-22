@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Code\Background.cpp" />
     <ClCompile Include="..\..\..\Code\Chameleon.cpp" />
     <ClCompile Include="..\..\..\Code\Game.cpp" />
     <ClCompile Include="..\..\..\Code\GameDraw.cpp" />
@@ -27,6 +28,7 @@
     <ClCompile Include="..\..\..\Code\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Code\Background.h" />
     <ClInclude Include="..\..\..\Code\Chameleon.h" />
     <ClInclude Include="..\..\..\Code\Game.h" />
   </ItemGroup>

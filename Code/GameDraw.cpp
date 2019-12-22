@@ -4,7 +4,8 @@ void Game::draw()
 {
 	if (State::PLAYING == m_state)
 	{
-		m_window.clear(m_bgColor);
+		background.draw(m_window, sf::RenderStates::Default);
+		m_window.clear(background.getCurrentColor());
 	}
 
 	m_window.display();

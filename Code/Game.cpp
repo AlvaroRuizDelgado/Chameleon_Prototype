@@ -10,6 +10,9 @@ void Game::run()
 {
 	sf::Clock clock;
 
+	// TEMPORARY
+	initializeGame();
+
 	while (m_window.isOpen())
 	{
 		sf::Time dt = clock.restart();
@@ -19,4 +22,9 @@ void Game::run()
 		update(dt.asSeconds());
 		draw();
 	}
+}
+
+void Game::initializeGame()
+{
+	background.initialize();
 }
