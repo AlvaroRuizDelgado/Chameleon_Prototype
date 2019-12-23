@@ -8,17 +8,16 @@
 class Background : public sf::Drawable
 {
 private:
-	static constexpr float INITIAL_CHANGE_PER_SEC{ 0.005f };
-	//static constexpr sf::Color INITIAL_COLOR = sf::Color(77, 133, 63);
+	static constexpr float INITIAL_CHANGE_PER_SEC{ 0.4f };
+	static constexpr float INITIAL_COLOR[3]{ 77.f / 255.f, 133.f / 255.f, 63.f / 255.f };
 
-	sf::Color m_currentColor; // { sf::Color(77, 133, 63) };
-	float m_fineColor[3];
-	//sf::Color m_targetColor{ sf::Color(77, 133, 63) };
+	sf::Color m_rgbColor;
+	float m_currentColor[3];
 	float m_targetColor[3];
 	float m_changePerSec;
 
 private:
-	void setTargetColor();
+	void newTargetColor();
 
 public:
 	Background();
