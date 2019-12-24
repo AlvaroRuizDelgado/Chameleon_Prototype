@@ -25,12 +25,14 @@
     <ClCompile Include="..\..\..\Code\GameDraw.cpp" />
     <ClCompile Include="..\..\..\Code\GameInput.cpp" />
     <ClCompile Include="..\..\..\Code\GameUpdate.cpp" />
+    <ClCompile Include="..\..\..\Code\Hud.cpp" />
     <ClCompile Include="..\..\..\Code\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\Background.h" />
     <ClInclude Include="..\..\..\Code\Chameleon.h" />
     <ClInclude Include="..\..\..\Code\Game.h" />
+    <ClInclude Include="..\..\..\Code\Hud.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

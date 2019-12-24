@@ -4,7 +4,7 @@
 
 int main(int, char const**)
 {
-	std::cout << "Hello chameleon\n\n";
+	std::cout << "Chameleon greets you.\n\n";
 
 	Game game;
 	game.run();

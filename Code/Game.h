@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "Background.h"
+#include "Chameleon.h"
+#include "Hud.h"
 
 class Game
 {
@@ -23,7 +25,9 @@ private:
 
 	int m_score{ 0 };
 
-	Background background;
+	Background m_background;
+	Hud m_hud;
+	Chameleon m_chameleon;
 
 public:
 	Game();

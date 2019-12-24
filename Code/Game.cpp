@@ -26,5 +26,7 @@ void Game::run()
 
 void Game::initializeGame()
 {
-	background.initialize();
+	m_background.initialize();
+	m_hud.initialize();
+	m_chameleon.initialize();
 }

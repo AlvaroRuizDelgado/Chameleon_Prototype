@@ -4,6 +4,8 @@ void Game::update(float dtAsSeconds)
 {
 	if (State::PLAYING == m_state)
 	{
-		background.update(dtAsSeconds);
+		m_background.update(dtAsSeconds);
+		m_chameleon.update(dtAsSeconds);
+		m_hud.update(dtAsSeconds);
 	}
 }

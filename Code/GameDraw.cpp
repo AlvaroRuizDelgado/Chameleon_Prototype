@@ -4,8 +4,10 @@ void Game::draw()
 {
 	if (State::PLAYING == m_state)
 	{
-		background.draw(m_window, sf::RenderStates::Default);
-		m_window.clear(background.getCurrentColor());
+		m_window.clear(m_background.getCurrentColor());
+		m_background.draw(m_window, sf::RenderStates::Default);
+		m_chameleon.draw(m_window, sf::RenderStates::Default);
+		m_hud.draw(m_window, sf::RenderStates::Default);
 	}
 
 	m_window.display();
