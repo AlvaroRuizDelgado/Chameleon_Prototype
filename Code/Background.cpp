@@ -22,6 +22,12 @@ void Background::initialize()
 		<< m_currentColor[2] << std::endl;
 
 	newTargetColor();
+
+	// Display color (DEBUG)
+	m_targetColorDisplay.setSize(sf::Vector2f(120.f, 50.f));
+	m_targetColorDisplay.setOutlineColor(sf::Color::White);
+	m_targetColorDisplay.setOutlineThickness(1);
+	m_targetColorDisplay.setPosition(sf::Vector2f(10.f, 20.f));
 }
 
 
@@ -61,9 +67,7 @@ void Background::update(float dtAsSeconds)
 	}
 
 	// Update RGB information
-	m_rgbColor.r = static_cast<unsigned int>(m_currentColor[0] * 255.0f);
-	m_rgbColor.g = static_cast<unsigned int>(m_currentColor[1] * 255.0f);
-	m_rgbColor.b = static_cast<unsigned int>(m_currentColor[2] * 255.0f);
+	m_rgbCurrentColor = floatToRgb(m_currentColor);
 
 	// Write to log
 	std::cout << "- Target  : "
@@ -75,16 +79,16 @@ void Background::update(float dtAsSeconds)
 		<< m_currentColor[1] << " "
 		<< m_currentColor[2] << std::endl;
 	std::cout << "- RGB     : "
-		<< unsigned(m_rgbColor.r) << "      "
-		<< unsigned(m_rgbColor.g) << "      "
-		<< unsigned(m_rgbColor.b) << std::endl;
+		<< unsigned(m_rgbCurrentColor.r) << "      "
+		<< unsigned(m_rgbCurrentColor.g) << "      "
+		<< unsigned(m_rgbCurrentColor.b) << std::endl;
 }
 
 // WILL HAVE A SPRITE THAT WILL BE TINTED BY THE CURRENT COLOR
 void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     //    states.transform *= getTransform();
-    //target.draw(sprite_, states);
+	target.draw(m_targetColorDisplay, states);
 }
 
 void Background::newTargetColor()
@@ -98,13 +102,22 @@ void Background::newTargetColor()
 	m_targetColor[1] = uni(rng);
 	m_targetColor[2] = uni(rng);
 
-	std::cout << "Target RGB: "
+	m_rgbTargetColor = floatToRgb(m_targetColor);
+
+	std::cout << "Target color: "
 		<< m_targetColor[0] << " "
 		<< m_targetColor[1] << " "
 		<< m_targetColor[2] << std::endl;
+	m_targetColorDisplay.setFillColor(m_rgbTargetColor);
 }
 
-sf::Color Background::getCurrentColor()
+sf::Color Background::floatToRgb(float color[]) const
 {
-	return m_rgbColor;
+	sf::Color rgbColor;
+
+	rgbColor.r = static_cast<unsigned int>(color[0] * 255.f);
+	rgbColor.g = static_cast<unsigned int>(color[1] * 255.f);
+	rgbColor.b = static_cast<unsigned int>(color[2] * 255.f);
+
+	return rgbColor;
 }
