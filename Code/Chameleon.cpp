@@ -1,5 +1,7 @@
 #include "Chameleon.h"
 
+#include <iostream>
+
 Chameleon::Chameleon()
 {
 
@@ -7,6 +9,7 @@ Chameleon::Chameleon()
 
 void Chameleon::initialize()
 {
+    m_color = sf::Color::Green;
     for (int i = 0; i < NUM_LAYERS; ++i)
     {
         m_spriteLayer[i].setOutlineColor(sf::Color::White);
@@ -15,11 +18,11 @@ void Chameleon::initialize()
     }
     m_spriteLayer[0].setRadius(150.f);
     m_spriteLayer[0].setPosition(sf::Vector2f(100.f, 60.f));
-    m_spriteLayer[0].setFillColor(sf::Color::Red);
+    m_spriteLayer[0].setFillColor(m_color);
 
     m_spriteLayer[1].setRadius(50.f);
     m_spriteLayer[1].setPosition(sf::Vector2f(150.f, 100.f));
-    m_spriteLayer[1].setFillColor(sf::Color::Green);
+    m_spriteLayer[1].setFillColor(sf::Color::Red);
 
     m_spriteLayer[2].setRadius(20.f);
     m_spriteLayer[2].setPosition(sf::Vector2f(180.f, 130.f));

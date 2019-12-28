@@ -1,5 +1,7 @@
 #include "Hud.h"
 
+#include <iostream>
+
 Hud::Hud()
 {
 

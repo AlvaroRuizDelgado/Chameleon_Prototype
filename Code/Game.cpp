@@ -1,5 +1,7 @@
 #include "Game.h"
 
+#include <iostream>
+
 Game::Game()
 {
 	m_window.create(sf::VideoMode(640, 480), "Chameleon");

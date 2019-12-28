@@ -1,7 +1,5 @@
 #pragma once
 
-#include <iostream>
-
 #include <SFML/Graphics.hpp>
 
 class Hud : public sf::Drawable

@@ -1,5 +1,8 @@
 #include "Background.h"
 
+#include <random>
+#include <iostream>
+
 Background::Background() :
 	m_currentColor{ 0.f },
 	m_targetColor{ 0.f }

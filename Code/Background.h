@@ -1,8 +1,5 @@
 #pragma once
 
-#include <random>
-#include <iostream>
-
 #include <SFML/Graphics.hpp>
 
 class Background : public sf::Drawable

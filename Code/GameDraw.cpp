@@ -1,5 +1,7 @@
 #include "Game.h"
 
+#include <iostream>
+
 void Game::draw()
 {
 	if (State::PLAYING == m_state)
