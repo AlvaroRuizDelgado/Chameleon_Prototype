@@ -19,18 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Code\Actor.cpp" />
     <ClCompile Include="..\..\..\Code\Background.cpp" />
     <ClCompile Include="..\..\..\Code\Chameleon.cpp" />
+    <ClCompile Include="..\..\..\Code\Component.cpp" />
     <ClCompile Include="..\..\..\Code\Game.cpp" />
-    <ClCompile Include="..\..\..\Code\GameDraw.cpp" />
-    <ClCompile Include="..\..\..\Code\GameInput.cpp" />
-    <ClCompile Include="..\..\..\Code\GameUpdate.cpp" />
     <ClCompile Include="..\..\..\Code\Hud.cpp" />
     <ClCompile Include="..\..\..\Code\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Code\Actor.h" />
     <ClInclude Include="..\..\..\Code\Background.h" />
     <ClInclude Include="..\..\..\Code\Chameleon.h" />
+    <ClInclude Include="..\..\..\Code\Component.h" />
     <ClInclude Include="..\..\..\Code\Game.h" />
     <ClInclude Include="..\..\..\Code\Hud.h" />
   </ItemGroup>

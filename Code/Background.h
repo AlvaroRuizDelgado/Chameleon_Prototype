@@ -1,8 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Actor.h"
 
-class Background : public sf::Drawable
+class Background : public Actor, public sf::Drawable
 {
 private:
 	static constexpr float INITIAL_CHANGE_PER_SEC{ 0.4f };
@@ -17,15 +18,15 @@ private:
 	sf::RectangleShape m_targetColorDisplay;
 
 private:
-	void newTargetColor();
-	sf::Color floatToRgb(float color[]) const;
+	void NewTargetColor();
+	sf::Color FloatToRgb(float color[]) const;
 
 public:
-	Background();
-	void initialize();
-	void update(float dtAsSeconds);
+	Background(class Game* game);
+	void Initialize();
+	void UpdateActor(float dtAsSeconds) override;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	sf::Color getCurrentColor() { return m_rgbCurrentColor; };
-	sf::Color getTargetColor() { return m_rgbTargetColor; };
+	sf::Color GetCurrentColor() { return m_rgbCurrentColor; };
+	sf::Color GetTargetColor() { return m_rgbTargetColor; };
 };

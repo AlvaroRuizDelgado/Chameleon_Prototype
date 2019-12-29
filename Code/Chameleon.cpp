@@ -1,13 +1,13 @@
 #include "Chameleon.h"
-
+#include "Game.h"
 #include <iostream>
 
-Chameleon::Chameleon()
+Chameleon::Chameleon(Game* game) :
+    Actor(game)
 {
-
 }
 
-void Chameleon::initialize()
+void Chameleon::Initialize()
 {
     m_color = sf::Color::Green;
     for (int i = 0; i < NUM_LAYERS; ++i)
@@ -29,9 +29,9 @@ void Chameleon::initialize()
     m_spriteLayer[2].setFillColor(sf::Color::Blue);
 }
 
-void Chameleon::update(float dtAsSeconds)
+void Chameleon::UpdateActor(float dtAsSeconds)
 {
-
+    Actor::UpdateActor(dtAsSeconds);
 }
 
 void Chameleon::draw(sf::RenderTarget& target, sf::RenderStates states) const

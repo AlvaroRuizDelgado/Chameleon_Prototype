@@ -1,8 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Actor.h"
 
-class Chameleon : public sf::Drawable
+class Chameleon : public Actor, public sf::Drawable
 {
 private:
 	static constexpr int NUM_LAYERS{ 3 };
@@ -14,11 +15,12 @@ private:
 	sf::Color m_color;
 
 public:
-	Chameleon();
-	void initialize();
-	void update(float dtAsSeconds);
+	Chameleon(class Game* game);
+	void Initialize();
+	void UpdateActor(float dtAsSeconds) override;
+	/*void update(float dtAsSeconds);*/
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	void setColor(sf::Color);
-	sf::Color getColor() { return m_color; };
+	void SetColor(sf::Color);
+	sf::Color GetColor() { return m_color; };
 };

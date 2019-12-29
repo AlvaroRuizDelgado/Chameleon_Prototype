@@ -1,17 +1,17 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Actor.h"
 
-class Hud : public sf::Drawable
+class Hud : public Actor, public sf::Drawable
 {
 public:
-	Hud();
-	void initialize();
-	void update(float dtAsSeconds);
+	Hud(class Game* game);
+	void Initialize();
+	void UpdateActor(float dtAsSeconds) override;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
 	sf::RectangleShape m_staminaBar;
 	float m_stamina;
-
 };

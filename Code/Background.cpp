@@ -2,16 +2,18 @@
 
 #include <random>
 #include <iostream>
+#include "Game.h"
 
-Background::Background() :
-	m_currentColor{ 0.f },
-	m_targetColor{ 0.f }
+Background::Background(Game* game) :
+	Actor(game)
+	, m_currentColor{ 0.f }
+	, m_targetColor{ 0.f }
 {
 	//m_currentColor = { 0.f };
 	//m_targetColor = { 0.f };
 }
 
-void Background::initialize()
+void Background::Initialize()
 {
 	// Rate of color change, to be increased over time
 	m_changePerSec = INITIAL_CHANGE_PER_SEC;
@@ -24,7 +26,7 @@ void Background::initialize()
 		<< m_currentColor[1] << " "
 		<< m_currentColor[2] << std::endl;
 
-	newTargetColor();
+	NewTargetColor();
 
 	// Display color (DEBUG)
 	m_targetColorDisplay.setSize(sf::Vector2f(120.f, 50.f));
@@ -34,8 +36,9 @@ void Background::initialize()
 }
 
 
-void Background::update(float dtAsSeconds)
+void Background::UpdateActor(float dtAsSeconds)
 {
+	Actor::UpdateActor(dtAsSeconds);
 	// Update color
 	float changeBudget = m_changePerSec * dtAsSeconds;	// How much the color can change in this particular frame
 	float colorDiff[3]{ 0.f };
@@ -52,7 +55,7 @@ void Background::update(float dtAsSeconds)
 	if (0 == totalDiff)
 	{
 		std::cout << "************** Target achieved *****************\n";
-		newTargetColor();
+		NewTargetColor();
 	}
 	else
 	{
@@ -70,7 +73,7 @@ void Background::update(float dtAsSeconds)
 	}
 
 	// Update RGB information
-	m_rgbCurrentColor = floatToRgb(m_currentColor);
+	m_rgbCurrentColor = FloatToRgb(m_currentColor);
 
 	// Write to log
 	std::cout << "- Target  : "
@@ -94,7 +97,7 @@ void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(m_targetColorDisplay, states);
 }
 
-void Background::newTargetColor()
+void Background::NewTargetColor()
 {
 	std::random_device rd;     // only used once to initialise (seed) engine
 	std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
@@ -105,7 +108,7 @@ void Background::newTargetColor()
 	m_targetColor[1] = uni(rng);
 	m_targetColor[2] = uni(rng);
 
-	m_rgbTargetColor = floatToRgb(m_targetColor);
+	m_rgbTargetColor = FloatToRgb(m_targetColor);
 
 	std::cout << "Target color: "
 		<< m_targetColor[0] << " "
@@ -114,7 +117,7 @@ void Background::newTargetColor()
 	m_targetColorDisplay.setFillColor(m_rgbTargetColor);
 }
 
-sf::Color Background::floatToRgb(float color[]) const
+sf::Color Background::FloatToRgb(float color[]) const
 {
 	sf::Color rgbColor;
 
