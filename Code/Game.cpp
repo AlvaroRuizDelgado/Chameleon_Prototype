@@ -1,7 +1,10 @@
 #include "Game.h"
-#include "Actor.h"
+
 #include <iostream>
 #include <algorithm>
+
+#include "Actor.h"
+#include "Random.h"
 
 Game::Game() :
 	m_isRunning{ true }
@@ -103,12 +106,6 @@ void Game::Update(float dtAsSeconds)
 	}
 
 	// Old style updates
-	if (State::PLAYING == m_state)
-	{
-		/*m_background.update(dtAsSeconds);*/
-		//m_chameleon.update(dtAsSeconds);
-		//m_hud.update(dtAsSeconds);
-	}
 	sf::Color colorDiff = m_background.GetCurrentColor() - m_chameleon.GetColor();
 	int totalColorDiff = abs(colorDiff.r) + abs(colorDiff.g) + abs(colorDiff.b);
 	if (totalColorDiff > 100)
@@ -119,7 +116,6 @@ void Game::Update(float dtAsSeconds)
 
 void Game::Draw()
 {
-
 	// Old style draws
 	if (State::PLAYING == m_state)
 	{
@@ -140,6 +136,7 @@ void Game::Shutdown()
 
 void Game::LoadData()
 {
+	Random::Init();
 	m_background.Initialize();
 	m_hud.Initialize();
 	m_chameleon.Initialize();

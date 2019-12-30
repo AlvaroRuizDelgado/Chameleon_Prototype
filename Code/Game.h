@@ -32,7 +32,7 @@ private:
 
 	int m_score{ 0 };
 
-	// Probably should delete these from here
+	// Game objects
 	Background m_background;
 	Hud m_hud;
 	Chameleon m_chameleon;

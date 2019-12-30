@@ -3,14 +3,13 @@
 #include <random>
 #include <iostream>
 #include "Game.h"
+#include "Random.h"
 
 Background::Background(Game* game) :
 	Actor(game)
 	, m_currentColor{ 0.f }
 	, m_targetColor{ 0.f }
 {
-	//m_currentColor = { 0.f };
-	//m_targetColor = { 0.f };
 }
 
 void Background::Initialize()
@@ -99,14 +98,9 @@ void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 void Background::NewTargetColor()
 {
-	std::random_device rd;     // only used once to initialise (seed) engine
-	std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
-	//std::uniform_int_distribution<unsigned int> uni(0, 255); // guaranteed unbiased
-	std::uniform_real_distribution<float> uni(0, 1); // guaranteed unbiased
-
-	m_targetColor[0] = uni(rng);
-	m_targetColor[1] = uni(rng);
-	m_targetColor[2] = uni(rng);
+	m_targetColor[0] = Random::GetFloat();
+	m_targetColor[1] = Random::GetFloat();
+	m_targetColor[2] = Random::GetFloat();
 
 	m_rgbTargetColor = FloatToRgb(m_targetColor);
 

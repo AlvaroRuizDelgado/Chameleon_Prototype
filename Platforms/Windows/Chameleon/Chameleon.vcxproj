@@ -26,6 +26,7 @@
     <ClCompile Include="..\..\..\Code\Game.cpp" />
     <ClCompile Include="..\..\..\Code\Hud.cpp" />
     <ClCompile Include="..\..\..\Code\main.cpp" />
+    <ClCompile Include="..\..\..\Code\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\Actor.h" />
@@ -34,6 +35,7 @@
     <ClInclude Include="..\..\..\Code\Component.h" />
     <ClInclude Include="..\..\..\Code\Game.h" />
     <ClInclude Include="..\..\..\Code\Hud.h" />
+    <ClInclude Include="..\..\..\Code\Random.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
