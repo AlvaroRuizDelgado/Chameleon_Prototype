@@ -107,11 +107,30 @@ void Game::Update(float dtAsSeconds)
 		delete actor;
 	}
 
-	// Old style updates
-	sf::Color colorDiff = m_background.GetCurrentColor() - m_chameleon.GetColor();
-    std::cout << "Color diff values: "
-            << colorDiff.r << " " << colorDiff.g << " " << colorDiff.b << std::endl;
-	int totalColorDiff = abs(colorDiff.r) + abs(colorDiff.g) + abs(colorDiff.b);
+	// Color check
+    int colorDiff[3] = { 0, 0, 0 };
+    colorDiff[0] = static_cast<int>(m_background.GetCurrentColor().r - m_chameleon.GetColor().r);
+    colorDiff[1] = static_cast<int>(m_background.GetCurrentColor().g - m_chameleon.GetColor().g);
+    colorDiff[2] = static_cast<int>(m_background.GetCurrentColor().b - m_chameleon.GetColor().b);
+    
+    // DEBUG
+    std::cout << "* Bg RGB  : "
+        << unsigned(m_background.GetCurrentColor().r) << "      "
+        << unsigned(m_background.GetCurrentColor().g) << "      "
+        << unsigned(m_background.GetCurrentColor().b) << std::endl;
+    std::cout << "* Cammy   : "
+        << unsigned(m_chameleon.GetColor().r) << "      "
+        << unsigned(m_chameleon.GetColor().g) << "      "
+        << unsigned(m_chameleon.GetColor().b) << std::endl;
+    std::cout << "* Diff    : "
+        << (colorDiff[0]) << "      "
+        << (colorDiff[1]) << "      "
+        << (colorDiff[2]) << std::endl;
+    
+	int totalColorDiff = abs(colorDiff[0]) + abs(colorDiff[1]) + abs(colorDiff[2]);
+    
+    // DEBUG
+    std::cout << "* Total diff : " << totalColorDiff << std::endl;
 	if (totalColorDiff > 100)
 	{
 		std::cout << "Very very different!!\n";

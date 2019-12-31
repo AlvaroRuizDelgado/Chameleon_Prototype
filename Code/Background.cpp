@@ -74,7 +74,7 @@ void Background::UpdateActor(float dtAsSeconds)
 	// Update RGB information
 	m_rgbCurrentColor = FloatToRgb(m_currentColor);
 
-	// Write to log
+	// DEBUG
 	std::cout << "- Target  : "
 		<< m_targetColor[0] << " "
 		<< m_targetColor[1] << " "
@@ -83,7 +83,7 @@ void Background::UpdateActor(float dtAsSeconds)
 		<< m_currentColor[0] << " "
 		<< m_currentColor[1] << " "
 		<< m_currentColor[2] << std::endl;
-	std::cout << "- RGB     : "
+	std::cout << "- Bg RGB  : "
 		<< unsigned(m_rgbCurrentColor.r) << "      "
 		<< unsigned(m_rgbCurrentColor.g) << "      "
 		<< unsigned(m_rgbCurrentColor.b) << std::endl;
