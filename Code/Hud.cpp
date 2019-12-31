@@ -17,9 +17,3 @@ void Hud::UpdateActor(float dtAsSeconds)
 {
     Actor::UpdateActor(dtAsSeconds);
 }
-
-void Hud::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    //    states.transform *= getTransform();
-    //target.draw(m_targetColorDisplay, states);
-}

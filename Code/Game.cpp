@@ -145,16 +145,14 @@ void Game::Draw()
     // Old style draws
     if (State::PLAYING == m_state)
     {
-        m_window.clear(m_background.GetCurrentColor());
-        m_background.draw(m_window, sf::RenderStates::Default);
+//        m_window.clear(m_background.GetCurrentColor());
+//        m_background.draw(m_window, sf::RenderStates::Default);
         m_chameleon.draw(m_window, sf::RenderStates::Default);
-        m_hud.draw(m_window, sf::RenderStates::Default);
     }
     
     // Vector style
     for (auto drawable : m_drawComponents)
     {
-        std::cout << "Drawing!\n";
         drawable->draw(m_window, sf::RenderStates::Default);
     }
 
