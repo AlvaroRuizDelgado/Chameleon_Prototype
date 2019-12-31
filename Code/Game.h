@@ -49,6 +49,9 @@ public:
     
     void AddDrawable(class DrawComponent* drawable);
     void RemoveDrawable(class DrawComponent* drawable);
+    
+    // Getters / setters
+    sf::Color GetTargetColor() const { return m_background.GetTargetColor(); };
 
 private:
 	void Input();

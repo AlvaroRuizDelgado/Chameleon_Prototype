@@ -16,7 +16,6 @@ private:
 	sf::Color m_rgbTargetColor;
 	float m_changePerSec;
 
-    RectComponent* m_targetColorDisplay;
     RectComponent* m_bgColor;
 
 private:
@@ -32,6 +31,6 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     // Getters / setters
-	sf::Color GetCurrentColor() { return m_rgbCurrentColor; };
-	sf::Color GetTargetColor() { return m_rgbTargetColor; };
+	sf::Color GetCurrentColor() const { return m_rgbCurrentColor; };
+	sf::Color GetTargetColor() const { return m_rgbTargetColor; };
 };

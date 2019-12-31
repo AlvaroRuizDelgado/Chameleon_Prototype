@@ -12,14 +12,10 @@ Background::Background(Game* game) :
 {
     // Background color draws before anything
     m_bgColor = new RectComponent(this, 10);
-    
-    // Display target color can draw after all --> should be HUD
-    m_targetColorDisplay = new RectComponent(this, 100);
 }
 
 Background::~Background()
 {
-    delete m_targetColorDisplay;
     delete m_bgColor;
 }
 
@@ -38,18 +34,11 @@ void Background::Initialize()
 
 	NewTargetColor();
     
-    
     // Background color component
     m_rgbCurrentColor = FloatToRgb(m_currentColor);
     m_bgColor->SetSize(642.f, 482.f);
     m_bgColor->SetPosition(-1.f, -1.f);
     m_bgColor->SetColor(m_rgbCurrentColor);
-    
-    // Display target color
-    m_rgbTargetColor = FloatToRgb(m_targetColor);
-    m_targetColorDisplay->SetSize(120.f, 50.f);
-    m_targetColorDisplay->SetPosition(10.f, 20.f);
-    m_targetColorDisplay->SetColor(m_rgbTargetColor);
 }
 
 
@@ -121,7 +110,6 @@ void Background::NewTargetColor()
 	m_targetColor[2] = Random::GetFloat();
 
 	m_rgbTargetColor = FloatToRgb(m_targetColor);
-    m_targetColorDisplay->SetColor(m_rgbTargetColor);
     
     // DEBUG
     std::cout << "Target color: "
