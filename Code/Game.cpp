@@ -65,6 +65,8 @@ void Game::Input()
 		case sf::Event::Closed:
 			m_window.close();
 			break;
+        default:
+            break;
 		}
 		if (State::PLAYING == m_state)
 		{
@@ -107,6 +109,8 @@ void Game::Update(float dtAsSeconds)
 
 	// Old style updates
 	sf::Color colorDiff = m_background.GetCurrentColor() - m_chameleon.GetColor();
+    std::cout << "Color diff values: "
+            << colorDiff.r << " " << colorDiff.g << " " << colorDiff.b << std::endl;
 	int totalColorDiff = abs(colorDiff.r) + abs(colorDiff.g) + abs(colorDiff.b);
 	if (totalColorDiff > 100)
 	{

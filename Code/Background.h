@@ -7,7 +7,7 @@ class Background : public Actor, public sf::Drawable
 {
 private:
 	static constexpr float INITIAL_CHANGE_PER_SEC{ 0.4f };
-	static constexpr float INITIAL_COLOR[3]{ 77.f / 255.f, 133.f / 255.f, 63.f / 255.f };
+	const float INITIAL_COLOR[3]{ 77.f / 255.f, 133.f / 255.f, 63.f / 255.f };
 
 	float m_currentColor[3];
 	sf::Color m_rgbCurrentColor;

@@ -18,7 +18,7 @@ void Background::Initialize()
 	m_changePerSec = INITIAL_CHANGE_PER_SEC;
 
 	// Initial color
-	memcpy(m_currentColor, INITIAL_COLOR, sizeof(INITIAL_COLOR));
+    memcpy(m_currentColor, INITIAL_COLOR, sizeof(INITIAL_COLOR));
 
 	std::cout << "Fine RGB: "
 		<< m_currentColor[0] << " "
