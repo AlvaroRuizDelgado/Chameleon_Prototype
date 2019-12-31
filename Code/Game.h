@@ -27,6 +27,7 @@ private:
 	bool m_updatingActors;
 	std::vector<class Actor*> m_actors;
 	std::vector<class Actor*> m_pendingActors;
+    std::vector<class DrawComponent*> m_drawComponents;
 
 	sf::Time m_gameTimeTotal{ sf::Time::Zero };
 
@@ -45,6 +46,9 @@ public:
 
 	void AddActor(class Actor* actor);
 	void RemoveActor(class Actor* actor);
+    
+    void AddDrawable(class DrawComponent* drawable);
+    void RemoveDrawable(class DrawComponent* drawable);
 
 private:
 	void Input();

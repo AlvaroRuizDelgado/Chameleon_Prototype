@@ -8,9 +8,10 @@ public:
 
 	void Update(float dtAsSeconds);
 
-	int GetUpdateOrder() { return m_updateOrder; };
+    // Getters / setters
+	int GetUpdateOrder() const { return m_updateOrder; };
 
-private:
+protected:
 	// Owning actor
 	class Actor* m_owner;
 	int m_updateOrder;

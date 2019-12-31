@@ -5,6 +5,7 @@
 
 #include "Actor.h"
 #include "Random.h"
+#include "DrawComponent.h"
 
 Game::Game() :
 	m_isRunning{ true }
@@ -139,14 +140,23 @@ void Game::Update(float dtAsSeconds)
 
 void Game::Draw()
 {
-	// Old style draws
-	if (State::PLAYING == m_state)
-	{
-		m_window.clear(m_background.GetCurrentColor());
-		m_background.draw(m_window, sf::RenderStates::Default);
-		m_chameleon.draw(m_window, sf::RenderStates::Default);
-		m_hud.draw(m_window, sf::RenderStates::Default);
-	}
+    m_window.clear(sf::Color::Green);
+    
+    // Old style draws
+    if (State::PLAYING == m_state)
+    {
+        m_window.clear(m_background.GetCurrentColor());
+        m_background.draw(m_window, sf::RenderStates::Default);
+        m_chameleon.draw(m_window, sf::RenderStates::Default);
+        m_hud.draw(m_window, sf::RenderStates::Default);
+    }
+    
+    // Vector style
+    for (auto drawable : m_drawComponents)
+    {
+        std::cout << "Drawing!\n";
+        drawable->draw(m_window, sf::RenderStates::Default);
+    }
 
 	m_window.display();
 }
@@ -198,4 +208,27 @@ void Game::RemoveActor(Actor* actor)
 		std::iter_swap(iter, m_actors.end() - 1);
 		m_actors.pop_back();
 	}
+}
+
+void Game::AddDrawable(DrawComponent* drawable)
+{
+    // Find the insertion point in the sorted vector
+    int drawPriority = drawable->GetDrawPriority();
+    auto iter = m_drawComponents.begin();
+    for (; iter != m_drawComponents.end(); ++iter)
+    {
+        if (drawPriority < (*iter)->GetDrawPriority())
+        {
+            break;
+        }
+    }
+    // Insert element before position of iter
+    m_drawComponents.insert(iter, drawable);
+}
+
+void Game::RemoveDrawable(DrawComponent* drawable)
+{
+    // (We can't swap because it ruins ordering)
+    auto iter = std::find(m_drawComponents.begin(), m_drawComponents.end(), drawable);
+    m_drawComponents.erase(iter);
 }

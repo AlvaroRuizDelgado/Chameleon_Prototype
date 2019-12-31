@@ -10,6 +10,10 @@ Background::Background(Game* game) :
 	, m_currentColor{ 0.f }
 	, m_targetColor{ 0.f }
 {
+    m_targetDisplay = new RectComponent(this, 100);
+    m_targetDisplay->SetSize(120.f, 50.f);
+    m_targetDisplay->SetPosition(10.f, 20.f);
+    m_targetDisplay->SetColor(sf::Color::Green);
 }
 
 void Background::Initialize()
@@ -31,7 +35,7 @@ void Background::Initialize()
 	m_targetColorDisplay.setSize(sf::Vector2f(120.f, 50.f));
 	m_targetColorDisplay.setOutlineColor(sf::Color::White);
 	m_targetColorDisplay.setOutlineThickness(1);
-	m_targetColorDisplay.setPosition(sf::Vector2f(10.f, 20.f));
+	m_targetColorDisplay.setPosition(sf::Vector2f(10.f, 200.f));
 }
 
 
@@ -109,6 +113,7 @@ void Background::NewTargetColor()
 		<< m_targetColor[1] << " "
 		<< m_targetColor[2] << std::endl;
 	m_targetColorDisplay.setFillColor(m_rgbTargetColor);
+    m_targetDisplay->SetColor(m_rgbTargetColor);
 }
 
 sf::Color Background::FloatToRgb(float color[]) const

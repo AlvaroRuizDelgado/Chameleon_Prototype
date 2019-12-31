@@ -18,9 +18,9 @@ public:
 	Chameleon(class Game* game);
 	void Initialize();
 	void UpdateActor(float dtAsSeconds) override;
-	/*void update(float dtAsSeconds);*/
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
+    // Getters / setters
 	void SetColor(sf::Color);
 	sf::Color GetColor() { return m_color; };
 };

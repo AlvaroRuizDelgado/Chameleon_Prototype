@@ -21,6 +21,8 @@
 		38658FCC23BB54EC004EA7B1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FC323BB54EC004EA7B1 /* main.cpp */; };
 		38658FCD23BB54EC004EA7B1 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FC523BB54EC004EA7B1 /* Game.cpp */; };
 		38658FCF23BB576E004EA7B1 /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38658FCE23BB575C004EA7B1 /* Resources */; };
+		38658FD223BB6D8C004EA7B1 /* DrawComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FD023BB6D8C004EA7B1 /* DrawComponent.cpp */; };
+		38658FD523BB81E1004EA7B1 /* RectComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FD323BB81E1004EA7B1 /* RectComponent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,6 +70,10 @@
 		38658FC423BB54EC004EA7B1 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		38658FC523BB54EC004EA7B1 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		38658FCE23BB575C004EA7B1 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = ../../../Resources; sourceTree = "<group>"; };
+		38658FD023BB6D8C004EA7B1 /* DrawComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DrawComponent.cpp; sourceTree = "<group>"; };
+		38658FD123BB6D8C004EA7B1 /* DrawComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawComponent.h; sourceTree = "<group>"; };
+		38658FD323BB81E1004EA7B1 /* RectComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RectComponent.cpp; sourceTree = "<group>"; };
+		38658FD423BB81E1004EA7B1 /* RectComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RectComponent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,20 +134,24 @@
 			isa = PBXGroup;
 			children = (
 				38658FC323BB54EC004EA7B1 /* main.cpp */,
-				38658FBF23BB54EC004EA7B1 /* Game.h */,
-				38658FC523BB54EC004EA7B1 /* Game.cpp */,
-				38658FB723BB54EC004EA7B1 /* Background.h */,
-				38658FC023BB54EC004EA7B1 /* Background.cpp */,
-				38658FB923BB54EC004EA7B1 /* Chameleon.h */,
-				38658FBD23BB54EC004EA7B1 /* Chameleon.cpp */,
-				38658FC423BB54EC004EA7B1 /* Random.h */,
-				38658FBA23BB54EC004EA7B1 /* Random.cpp */,
-				38658FC123BB54EC004EA7B1 /* Component.h */,
-				38658FBB23BB54EC004EA7B1 /* Component.cpp */,
 				38658FBC23BB54EC004EA7B1 /* Actor.cpp */,
 				38658FBE23BB54EC004EA7B1 /* Actor.h */,
-				38658FB823BB54EC004EA7B1 /* Hud.h */,
+				38658FC023BB54EC004EA7B1 /* Background.cpp */,
+				38658FB723BB54EC004EA7B1 /* Background.h */,
+				38658FBD23BB54EC004EA7B1 /* Chameleon.cpp */,
+				38658FB923BB54EC004EA7B1 /* Chameleon.h */,
+				38658FBB23BB54EC004EA7B1 /* Component.cpp */,
+				38658FC123BB54EC004EA7B1 /* Component.h */,
+				38658FD023BB6D8C004EA7B1 /* DrawComponent.cpp */,
+				38658FD123BB6D8C004EA7B1 /* DrawComponent.h */,
+				38658FC523BB54EC004EA7B1 /* Game.cpp */,
+				38658FBF23BB54EC004EA7B1 /* Game.h */,
 				38658FC223BB54EC004EA7B1 /* Hud.cpp */,
+				38658FB823BB54EC004EA7B1 /* Hud.h */,
+				38658FBA23BB54EC004EA7B1 /* Random.cpp */,
+				38658FC423BB54EC004EA7B1 /* Random.h */,
+				38658FD323BB81E1004EA7B1 /* RectComponent.cpp */,
+				38658FD423BB81E1004EA7B1 /* RectComponent.h */,
 			);
 			name = Code;
 			path = ../../../Code;
@@ -206,6 +216,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				38658FC823BB54EC004EA7B1 /* Actor.cpp in Sources */,
+				38658FD523BB81E1004EA7B1 /* RectComponent.cpp in Sources */,
+				38658FD223BB6D8C004EA7B1 /* DrawComponent.cpp in Sources */,
 				38658FC623BB54EC004EA7B1 /* Random.cpp in Sources */,
 				38658FCA23BB54EC004EA7B1 /* Background.cpp in Sources */,
 				38658FCD23BB54EC004EA7B1 /* Game.cpp in Sources */,
@@ -332,6 +344,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				HEADER_SEARCH_PATHS = "\"${SRCROOT}/../../External Libraries/Mac/SFML-2.5.1-macos-clang/include\"";
 				LIBRARY_SEARCH_PATHS = "\"${SRCROOT}/../../External Libraries/Mac/SFML-2.5.1-macos-clang/lib\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -342,6 +355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				HEADER_SEARCH_PATHS = "\"${SRCROOT}/../../External Libraries/Mac/SFML-2.5.1-macos-clang/include\"";
 				LIBRARY_SEARCH_PATHS = "\"${SRCROOT}/../../External Libraries/Mac/SFML-2.5.1-macos-clang/lib\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
