@@ -10,6 +10,13 @@ Background::Background(Game* game) :
 	, m_currentColor{ 0.f }
 	, m_targetColor{ 0.f }
 {
+    // Background color draws before anything
+    m_bgColor = new RectComponent(this, 10);
+}
+
+Background::~Background()
+{
+    delete m_bgColor;
 }
 
 void Background::Initialize()
@@ -26,12 +33,12 @@ void Background::Initialize()
 		<< m_currentColor[2] << std::endl;
 
 	NewTargetColor();
-
-	// Display color (DEBUG)
-	m_targetColorDisplay.setSize(sf::Vector2f(120.f, 50.f));
-	m_targetColorDisplay.setOutlineColor(sf::Color::White);
-	m_targetColorDisplay.setOutlineThickness(1);
-	m_targetColorDisplay.setPosition(sf::Vector2f(10.f, 20.f));
+    
+    // Background color component
+    m_rgbCurrentColor = FloatToRgb(m_currentColor);
+    m_bgColor->SetSize(642.f, 482.f);
+    m_bgColor->SetPosition(-1.f, -1.f);
+    m_bgColor->SetColor(m_rgbCurrentColor);
 }
 
 
@@ -39,7 +46,8 @@ void Background::UpdateActor(float dtAsSeconds)
 {
 	Actor::UpdateActor(dtAsSeconds);
 	// Update color
-	float changeBudget = m_changePerSec * dtAsSeconds;	// How much the color can change in this particular frame
+    // How much the color can change in this particular frame
+    float changeBudget = m_changePerSec * dtAsSeconds;
 	float colorDiff[3]{ 0.f };
 	float totalDiff{ 0.f };
 	for (int i = 0; i < 3; ++i)
@@ -73,6 +81,7 @@ void Background::UpdateActor(float dtAsSeconds)
 
 	// Update RGB information
 	m_rgbCurrentColor = FloatToRgb(m_currentColor);
+    m_bgColor->SetColor(m_rgbCurrentColor);
 
 	// DEBUG
 	std::cout << "- Target  : "
@@ -92,8 +101,6 @@ void Background::UpdateActor(float dtAsSeconds)
 // WILL HAVE A SPRITE THAT WILL BE TINTED BY THE CURRENT COLOR
 void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    //    states.transform *= getTransform();
-	target.draw(m_targetColorDisplay, states);
 }
 
 void Background::NewTargetColor()
@@ -103,12 +110,12 @@ void Background::NewTargetColor()
 	m_targetColor[2] = Random::GetFloat();
 
 	m_rgbTargetColor = FloatToRgb(m_targetColor);
-
-	std::cout << "Target color: "
-		<< m_targetColor[0] << " "
-		<< m_targetColor[1] << " "
-		<< m_targetColor[2] << std::endl;
-	m_targetColorDisplay.setFillColor(m_rgbTargetColor);
+    
+    // DEBUG
+    std::cout << "Target color: "
+        << m_targetColor[0] << " "
+        << m_targetColor[1] << " "
+        << m_targetColor[2] << std::endl;
 }
 
 sf::Color Background::FloatToRgb(float color[]) const

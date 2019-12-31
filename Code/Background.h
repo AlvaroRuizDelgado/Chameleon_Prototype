@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Actor.h"
+#include "RectComponent.h"
 
 class Background : public Actor, public sf::Drawable
 {
@@ -15,7 +16,7 @@ private:
 	sf::Color m_rgbTargetColor;
 	float m_changePerSec;
 
-	sf::RectangleShape m_targetColorDisplay;
+    RectComponent* m_bgColor;
 
 private:
 	void NewTargetColor();
@@ -23,10 +24,13 @@ private:
 
 public:
 	Background(class Game* game);
+    ~Background();
+    
 	void Initialize();
 	void UpdateActor(float dtAsSeconds) override;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	sf::Color GetCurrentColor() { return m_rgbCurrentColor; };
-	sf::Color GetTargetColor() { return m_rgbTargetColor; };
+    // Getters / setters
+	sf::Color GetCurrentColor() const { return m_rgbCurrentColor; };
+	sf::Color GetTargetColor() const { return m_rgbTargetColor; };
 };

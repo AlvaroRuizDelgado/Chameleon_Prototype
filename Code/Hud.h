@@ -2,16 +2,20 @@
 
 #include <SFML/Graphics.hpp>
 #include "Actor.h"
+#include "RectComponent.h"
 
-class Hud : public Actor, public sf::Drawable
+class Hud : public Actor
 {
 public:
 	Hud(class Game* game);
+    ~Hud();
+    
 	void Initialize();
 	void UpdateActor(float dtAsSeconds) override;
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
 	sf::RectangleShape m_staminaBar;
 	float m_stamina;
+    
+    RectComponent* m_targetColorDisplay;
 };
