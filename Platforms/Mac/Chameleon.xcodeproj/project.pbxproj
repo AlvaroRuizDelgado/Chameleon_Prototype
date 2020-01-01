@@ -23,6 +23,7 @@
 		38658FCF23BB576E004EA7B1 /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 38658FCE23BB575C004EA7B1 /* Resources */; };
 		38658FD223BB6D8C004EA7B1 /* DrawComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FD023BB6D8C004EA7B1 /* DrawComponent.cpp */; };
 		38658FD523BB81E1004EA7B1 /* RectComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FD323BB81E1004EA7B1 /* RectComponent.cpp */; };
+		38658FDA23BC6054004EA7B1 /* Resolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FD923BC6054004EA7B1 /* Resolution.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +75,8 @@
 		38658FD123BB6D8C004EA7B1 /* DrawComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawComponent.h; sourceTree = "<group>"; };
 		38658FD323BB81E1004EA7B1 /* RectComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RectComponent.cpp; sourceTree = "<group>"; };
 		38658FD423BB81E1004EA7B1 /* RectComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RectComponent.h; sourceTree = "<group>"; };
+		38658FD723BC43A3004EA7B1 /* Resolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resolution.h; sourceTree = "<group>"; };
+		38658FD923BC6054004EA7B1 /* Resolution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Resolution.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,8 @@
 				38658FC423BB54EC004EA7B1 /* Random.h */,
 				38658FD323BB81E1004EA7B1 /* RectComponent.cpp */,
 				38658FD423BB81E1004EA7B1 /* RectComponent.h */,
+				38658FD923BC6054004EA7B1 /* Resolution.cpp */,
+				38658FD723BC43A3004EA7B1 /* Resolution.h */,
 			);
 			name = Code;
 			path = ../../../Code;
@@ -224,6 +229,7 @@
 				38658FCB23BB54EC004EA7B1 /* Hud.cpp in Sources */,
 				38658FCC23BB54EC004EA7B1 /* main.cpp in Sources */,
 				38658FC923BB54EC004EA7B1 /* Chameleon.cpp in Sources */,
+				38658FDA23BC6054004EA7B1 /* Resolution.cpp in Sources */,
 				38658FC723BB54EC004EA7B1 /* Component.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

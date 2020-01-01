@@ -4,7 +4,7 @@
 #include "Actor.h"
 #include "RectComponent.h"
 
-class Background : public Actor, public sf::Drawable
+class Background : public Actor
 {
 private:
 	static constexpr float INITIAL_CHANGE_PER_SEC{ 0.4f };
@@ -28,8 +28,7 @@ public:
     
 	void Initialize();
 	void UpdateActor(float dtAsSeconds) override;
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
+    
     // Getters / setters
 	sf::Color GetCurrentColor() const { return m_rgbCurrentColor; };
 	sf::Color GetTargetColor() const { return m_rgbTargetColor; };

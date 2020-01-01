@@ -17,6 +17,8 @@ public:
     void SetColor(sf::Color newColor);
 //    void SetColor(unsigned int newColor[]);
     sf::Color GetColor() const { return m_rectangle.getFillColor(); };
+    void EnableOutline() { m_rectangle.setOutlineThickness(1.f); };
+    void DisableOutline() { m_rectangle.setOutlineThickness(0.f); };
     
 private:
     sf::RectangleShape m_rectangle;

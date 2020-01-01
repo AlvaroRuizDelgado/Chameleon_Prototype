@@ -6,7 +6,7 @@ RectComponent::RectComponent(Actor* owner, int drawPriority) :
     DrawComponent(owner, drawPriority)
 {
     m_rectangle.setOutlineColor(sf::Color::White);
-    m_rectangle.setOutlineThickness(1.f);
+    this->EnableOutline();
     
     m_owner->GetGame()->AddDrawable(this);
 }

@@ -1,6 +1,9 @@
 #include "Chameleon.h"
-#include "Game.h"
+
 #include <iostream>
+
+#include "Game.h"
+#include "Resolution.h"
 
 Chameleon::Chameleon(Game* game) :
     Actor(game)
@@ -23,16 +26,16 @@ void Chameleon::Initialize()
 {
     m_color = sf::Color::Green;
     
-    m_rectLayer[0]->SetSize(200.f, 200.f);
-    m_rectLayer[0]->SetPosition(150.f, 100.f);
+    m_rectLayer[0]->SetPosition(0.35*Resolution::Width(), 0.2*Resolution::Height());
+    m_rectLayer[0]->SetSize(0.3*Resolution::Width(), 0.3*Resolution::Height());
     m_rectLayer[0]->SetColor(m_color);
-
-    m_rectLayer[1]->SetSize(100.f, 100.f);
-    m_rectLayer[1]->SetPosition(180.f, 130.f);
+    
+    m_rectLayer[1]->SetPosition(0.40*Resolution::Width(), 0.25*Resolution::Height());
+    m_rectLayer[1]->SetSize(0.15*Resolution::Width(), 0.15*Resolution::Height());
     m_rectLayer[1]->SetColor(sf::Color::Red);
-
-    m_rectLayer[2]->SetSize(40.f, 40.f);
-    m_rectLayer[2]->SetPosition(200.f, 150.f);
+    
+    m_rectLayer[2]->SetPosition(0.43*Resolution::Width(), 0.28*Resolution::Height());
+    m_rectLayer[2]->SetSize(0.06*Resolution::Width(), 0.06*Resolution::Height());
     m_rectLayer[2]->SetColor(sf::Color::Blue);
 }
 

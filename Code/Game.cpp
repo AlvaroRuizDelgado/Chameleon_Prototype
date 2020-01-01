@@ -4,22 +4,28 @@
 #include <algorithm>
 
 #include "Actor.h"
-#include "Random.h"
 #include "DrawComponent.h"
+#include "Random.h"
+#include "Resolution.h"
 
 Game::Game() :
 	m_isRunning{ true }
+//    , m_resolution(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
+    , m_resolution(1080, 1920)
 	, m_updatingActors{ false }
 	, m_state{ State::PLAYING }
 	, m_chameleon(this)
 	, m_background(this)
 	, m_hud(this)
 {
+    std::cout << "Resolution: "
+        << Resolution::Width() << " x " << Resolution::Height() << std::endl;
 }
 
 bool Game::Initialize()
 {
-	m_window.create(sf::VideoMode(640, 480), "Chameleon");
+    m_window.create(sf::VideoMode(Resolution::Width(), Resolution::Height()),
+                    "Chameleon");
 	m_window.setFramerateLimit(FPS);
 	return true;
 }

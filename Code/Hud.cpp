@@ -1,7 +1,9 @@
 #include "Hud.h"
 
 #include <iostream>
+
 #include "Game.h"
+#include "Resolution.h"
 
 Hud::Hud(Game* game) :
     Actor(game)
@@ -18,8 +20,8 @@ Hud::~Hud()
 void Hud::Initialize()
 {
     // Display target color
-    m_targetColorDisplay->SetSize(120.f, 50.f);
-    m_targetColorDisplay->SetPosition(10.f, 20.f);
+    m_targetColorDisplay->SetPosition(0.05*Resolution::Width(), 0.03*Resolution::Height());
+    m_targetColorDisplay->SetSize(0.1*Resolution::Width(), 0.05*Resolution::Height());
     m_targetColorDisplay->SetColor(GetGame()->GetTargetColor());
 }
 

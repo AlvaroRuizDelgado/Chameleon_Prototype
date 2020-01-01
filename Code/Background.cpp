@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Game.h"
 #include "Random.h"
+#include "Resolution.h"
 
 Background::Background(Game* game) :
 	Actor(game)
@@ -12,6 +13,9 @@ Background::Background(Game* game) :
 {
     // Background color draws before anything
     m_bgColor = new RectComponent(this, 10);
+    m_bgColor->DisableOutline();
+    m_bgColor->SetPosition(0.f, 0.f);
+    m_bgColor->SetSize(Resolution::Width(), Resolution::Height());
 }
 
 Background::~Background()
@@ -36,8 +40,6 @@ void Background::Initialize()
     
     // Background color component
     m_rgbCurrentColor = FloatToRgb(m_currentColor);
-    m_bgColor->SetSize(642.f, 482.f);
-    m_bgColor->SetPosition(-1.f, -1.f);
     m_bgColor->SetColor(m_rgbCurrentColor);
 }
 
@@ -96,11 +98,6 @@ void Background::UpdateActor(float dtAsSeconds)
 		<< unsigned(m_rgbCurrentColor.r) << "      "
 		<< unsigned(m_rgbCurrentColor.g) << "      "
 		<< unsigned(m_rgbCurrentColor.b) << std::endl;
-}
-
-// WILL HAVE A SPRITE THAT WILL BE TINTED BY THE CURRENT COLOR
-void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
 }
 
 void Background::NewTargetColor()

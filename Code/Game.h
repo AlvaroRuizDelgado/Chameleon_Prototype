@@ -5,6 +5,7 @@
 #include "Background.h"
 #include "Chameleon.h"
 #include "Hud.h"
+#include "Resolution.h"
 
 class Game
 {
@@ -20,6 +21,7 @@ private:
 	};
 	State m_state;
 
+    Resolution m_resolution;
 	sf::RenderWindow m_window;
 	//sf::Color m_bgColor{ sf::Color(77, 133, 63) };
 
