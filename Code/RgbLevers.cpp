@@ -27,12 +27,14 @@ RgbLevers::~RgbLevers()
     }
 }
 
-void RgbLevers::Initialize()
+void RgbLevers::Initialize(sf::Font& font)
 {
+    // Levers background
     m_background->SetPosition(0.05*Resolution::Width(), 0.7*Resolution::Height());
     m_background->SetSize(0.4*Resolution::Width(), 0.2*Resolution::Height());
     m_background->SetColor(sf::Color::Red);
     
+    // Levers
     float redY = 0.72;
     for (int i = 0; i < 3; ++i)
     {
@@ -42,7 +44,32 @@ void RgbLevers::Initialize()
                                 0);
     }
     this->SetColor(sf::Color(INITIAL_COLOR[0], INITIAL_COLOR[1], INITIAL_COLOR[2]));
+    
+//    // Text
+//    for (int i = 0; i < 4; ++i)
+//    {
+//        m_colorsText[i].setFont(font);
+//        m_colorsText[i].setCharacterSize(Resolution::Height()/100);
+//        m_colorsText[i].setFillColor(sf::Color::White);
+//        m_colorsText[i].setOutlineColor(sf::Color::Black);
+//        m_colorsText[i].setOutlineThickness(1);
+//        m_colorsText[i].setPosition(0.1*Resolution::Width(), (redY+i*0.04)*Resolution::Height());
+//    }
+//    m_colorsText[0].setString(L"R");
+//    m_colorsText[1].setString(L"G");
+//    m_colorsText[2].setString(L"B");
+//    m_colorsText[3].setString(L"Hexadecimal: ");
+    
 }
+
+//void FpsCounter::update(float dtAsSeconds)
+//{
+//    int fps = static_cast<int>(1/dtAsSeconds);
+//    std::stringstream ss;
+//    ss << "FPS = " << fps;
+//    fpsText_.setString(ss.str());
+//}
+
 
 void RgbLevers::UpdateActor(float dtAsSeconds)
 {

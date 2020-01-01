@@ -25,6 +25,7 @@ private:
     Resolution m_resolution;
 	sf::RenderWindow m_window;
 	//sf::Color m_bgColor{ sf::Color(77, 133, 63) };
+    sf::Font m_font;
 
 	bool m_isRunning;
 	bool m_updatingActors;

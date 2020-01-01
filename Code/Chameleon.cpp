@@ -25,7 +25,6 @@ Chameleon::~Chameleon()
 
 void Chameleon::Initialize()
 {
-//    m_color = sf::Color::Green;
     this->SetColor(sf::Color::Green);
     
     m_rectLayer[0]->SetPosition(0.35*Resolution::Width(), 0.2*Resolution::Height());
@@ -43,10 +42,12 @@ void Chameleon::Initialize()
 void Chameleon::SetColor(sf::Color newColor)
 {
     m_color = newColor;
-    m_rectLayer[0]->SetColor(m_color);
 };
 
 void Chameleon::UpdateActor(float dtAsSeconds)
 {
     Actor::UpdateActor(dtAsSeconds);
+    
+    // I NEED A CALL TO A FUNCTION THAT MORPHS THE COLORS LIKE BACKGROUND
+    m_rectLayer[0]->SetColor(m_color);
 }

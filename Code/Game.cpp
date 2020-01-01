@@ -138,14 +138,14 @@ void Game::Update(float dtAsSeconds)
 //        << (colorDiff[1]) << "      "
 //        << (colorDiff[2]) << std::endl;
     
+    // Chameleon will be noticed if too different from background
 	int totalColorDiff = abs(colorDiff[0]) + abs(colorDiff[1]) + abs(colorDiff[2]);
-    
     // DEBUG
 //    std::cout << "* Total diff : " << totalColorDiff << std::endl;
-//	if (totalColorDiff > 100)
-//	{
+	if (totalColorDiff > 100)
+	{
 //		std::cout << "Very very different!!\n";
-//	}
+	}
 }
 
 void Game::Draw()
@@ -168,11 +168,12 @@ void Game::Shutdown()
 
 void Game::LoadData()
 {
+    assert(m_font.loadFromFile("Resources/fonts/KosugiMaru-Regular.ttf"));
 	Random::Init();
 	m_background.Initialize();
 	m_hud.Initialize();
 	m_chameleon.Initialize();
-    m_rgbLevers.Initialize();
+    m_rgbLevers.Initialize(m_font);
 }
 
 void Game::UnloadData()
