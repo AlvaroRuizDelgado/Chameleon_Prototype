@@ -11,7 +11,6 @@ public:
     ~DrawComponent();
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-//    virtual void Draw(SDL_Renderer* renderer);
 //    virtual void SetTexture(SDL_Texture* texture);
     
     // Getters / setters

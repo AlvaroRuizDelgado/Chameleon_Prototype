@@ -36,6 +36,7 @@ void RgbLevers::Initialize()
     float redY = 0.72;
     for (int i = 0; i < 3; ++i)
     {
+        // Initialize( Position  /  Size  /  Initial value of the lever
         m_levers[i]->Initialize(0.1*Resolution::Width(), (redY+i*0.04)*Resolution::Height(),
                                 0.32*Resolution::Width(), 0.02*Resolution::Height(),
                                 0);
