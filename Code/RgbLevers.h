@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Actor.h"
+#include <SFML/Graphics.hpp>
 
 class RgbLevers : public Actor
 {
@@ -11,7 +12,13 @@ public:
     void Initialize();
     void UpdateActor(float dtAsSeconds) override;
     
+    // Getters / setters
+    sf::Color GetColor();
+    void SetColor(sf::Color newColor);
+    
 private:
+    const int INITIAL_COLOR[3] { 76, 200, 91 };
+    
     class Lever* m_levers[3];
     class RectComponent* m_background;
 };

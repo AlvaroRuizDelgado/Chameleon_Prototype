@@ -25,11 +25,11 @@ Chameleon::~Chameleon()
 
 void Chameleon::Initialize()
 {
-    m_color = sf::Color::Green;
+//    m_color = sf::Color::Green;
+    this->SetColor(sf::Color::Green);
     
     m_rectLayer[0]->SetPosition(0.35*Resolution::Width(), 0.2*Resolution::Height());
     m_rectLayer[0]->SetSize(0.3*Resolution::Width(), 0.25*Resolution::Height());
-    m_rectLayer[0]->SetColor(m_color);
     
     m_rectLayer[1]->SetPosition(0.40*Resolution::Width(), 0.25*Resolution::Height());
     m_rectLayer[1]->SetSize(0.15*Resolution::Width(), 0.10*Resolution::Height());
@@ -39,6 +39,12 @@ void Chameleon::Initialize()
     m_rectLayer[2]->SetSize(0.06*Resolution::Width(), 0.04*Resolution::Height());
     m_rectLayer[2]->SetColor(sf::Color::Blue);
 }
+
+void Chameleon::SetColor(sf::Color newColor)
+{
+    m_color = newColor;
+    m_rectLayer[0]->SetColor(m_color);
+};
 
 void Chameleon::UpdateActor(float dtAsSeconds)
 {

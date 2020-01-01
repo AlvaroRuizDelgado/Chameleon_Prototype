@@ -115,6 +115,9 @@ void Game::Update(float dtAsSeconds)
 		delete actor;
 	}
 
+    // Update color
+    m_chameleon.SetColor(m_rgbLevers.GetColor());
+    
 	// Color check
     int colorDiff[3] = { 0, 0, 0 };
     colorDiff[0] = static_cast<int>(m_background.GetCurrentColor().r - m_chameleon.GetColor().r);

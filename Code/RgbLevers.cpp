@@ -41,9 +41,22 @@ void RgbLevers::Initialize()
                                 0.32*Resolution::Width(), 0.02*Resolution::Height(),
                                 0);
     }
+    this->SetColor(sf::Color(INITIAL_COLOR[0], INITIAL_COLOR[1], INITIAL_COLOR[2]));
 }
 
 void RgbLevers::UpdateActor(float dtAsSeconds)
 {
     Actor::UpdateActor(dtAsSeconds);
+}
+
+sf::Color RgbLevers::GetColor()
+{
+    return sf::Color(m_levers[0]->GetValue(), m_levers[1]->GetValue(), m_levers[2]->GetValue());
+}
+
+void RgbLevers::SetColor(sf::Color newColor)
+{
+    m_levers[0]->SetValue(newColor.r);
+    m_levers[1]->SetValue(newColor.g);
+    m_levers[2]->SetValue(newColor.b);
 }
