@@ -17,6 +17,7 @@ Game::Game() :
 	, m_chameleon(this)
 	, m_background(this)
 	, m_hud(this)
+    , m_rgbLevers(this)
 {
     std::cout << "Resolution: "
         << Resolution::Width() << " x " << Resolution::Height() << std::endl;
@@ -90,14 +91,14 @@ void Game::Update(float dtAsSeconds)
 		actor->Update(dtAsSeconds);
 	}
 	m_updatingActors = false;
-
+    
 	// Move any pending actors to m_actors
 	for (auto pending : m_pendingActors)
 	{
 		m_actors.emplace_back(pending);
 	}
 	m_pendingActors.clear();
-
+    
 	// Add any dead actors to a temp vector
 	std::vector<Actor*> deadActors;
 	for (auto actor : m_actors)
@@ -107,7 +108,7 @@ void Game::Update(float dtAsSeconds)
 			deadActors.emplace_back(actor);
 		}
 	}
-
+    
 	// Delete dead actors (which removes them from m_actors)
 	for (auto actor : deadActors)
 	{
@@ -121,27 +122,27 @@ void Game::Update(float dtAsSeconds)
     colorDiff[2] = static_cast<int>(m_background.GetCurrentColor().b - m_chameleon.GetColor().b);
     
     // DEBUG
-    std::cout << "* Bg RGB  : "
-        << unsigned(m_background.GetCurrentColor().r) << "      "
-        << unsigned(m_background.GetCurrentColor().g) << "      "
-        << unsigned(m_background.GetCurrentColor().b) << std::endl;
-    std::cout << "* Cammy   : "
-        << unsigned(m_chameleon.GetColor().r) << "      "
-        << unsigned(m_chameleon.GetColor().g) << "      "
-        << unsigned(m_chameleon.GetColor().b) << std::endl;
-    std::cout << "* Diff    : "
-        << (colorDiff[0]) << "      "
-        << (colorDiff[1]) << "      "
-        << (colorDiff[2]) << std::endl;
+//    std::cout << "* Bg RGB  : "
+//        << unsigned(m_background.GetCurrentColor().r) << "      "
+//        << unsigned(m_background.GetCurrentColor().g) << "      "
+//        << unsigned(m_background.GetCurrentColor().b) << std::endl;
+//    std::cout << "* Cammy   : "
+//        << unsigned(m_chameleon.GetColor().r) << "      "
+//        << unsigned(m_chameleon.GetColor().g) << "      "
+//        << unsigned(m_chameleon.GetColor().b) << std::endl;
+//    std::cout << "* Diff    : "
+//        << (colorDiff[0]) << "      "
+//        << (colorDiff[1]) << "      "
+//        << (colorDiff[2]) << std::endl;
     
 	int totalColorDiff = abs(colorDiff[0]) + abs(colorDiff[1]) + abs(colorDiff[2]);
     
     // DEBUG
-    std::cout << "* Total diff : " << totalColorDiff << std::endl;
-	if (totalColorDiff > 100)
-	{
-		std::cout << "Very very different!!\n";
-	}
+//    std::cout << "* Total diff : " << totalColorDiff << std::endl;
+//	if (totalColorDiff > 100)
+//	{
+//		std::cout << "Very very different!!\n";
+//	}
 }
 
 void Game::Draw()
@@ -168,6 +169,7 @@ void Game::LoadData()
 	m_background.Initialize();
 	m_hud.Initialize();
 	m_chameleon.Initialize();
+    m_rgbLevers.Initialize();
 }
 
 void Game::UnloadData()

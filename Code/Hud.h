@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Actor.h"
-#include "RectComponent.h"
 
 class Hud : public Actor
 {
@@ -17,5 +16,5 @@ private:
 	sf::RectangleShape m_staminaBar;
 	float m_stamina;
     
-    RectComponent* m_targetColorDisplay;
+    class RectComponent* m_targetColorDisplay;
 };

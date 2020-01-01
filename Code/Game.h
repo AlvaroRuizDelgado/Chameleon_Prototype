@@ -6,6 +6,7 @@
 #include "Chameleon.h"
 #include "Hud.h"
 #include "Resolution.h"
+#include "RgbLevers.h"
 
 class Game
 {
@@ -39,6 +40,7 @@ private:
 	Background m_background;
 	Hud m_hud;
 	Chameleon m_chameleon;
+    RgbLevers m_rgbLevers;
 
 public:
 	Game();

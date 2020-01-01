@@ -17,8 +17,11 @@ public:
     void SetColor(sf::Color newColor);
 //    void SetColor(unsigned int newColor[]);
     sf::Color GetColor() const { return m_rectangle.getFillColor(); };
-    void EnableOutline() { m_rectangle.setOutlineThickness(1.f); };
-    void DisableOutline() { m_rectangle.setOutlineThickness(0.f); };
+    void SetOutlineThickness(float thickness) { m_rectangle.setOutlineThickness(thickness); };
+    float GetX() { return m_rectangle.getPosition().x; };
+    float GetY() { return m_rectangle.getPosition().y; };
+    float GetWidth() { return m_rectangle.getSize().x; };
+    float GetHeight() { return m_rectangle.getSize().y; };
     
 private:
     sf::RectangleShape m_rectangle;
