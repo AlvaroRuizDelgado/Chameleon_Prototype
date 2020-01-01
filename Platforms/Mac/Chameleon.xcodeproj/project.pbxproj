@@ -24,6 +24,7 @@
 		38658FD223BB6D8C004EA7B1 /* DrawComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FD023BB6D8C004EA7B1 /* DrawComponent.cpp */; };
 		38658FD523BB81E1004EA7B1 /* RectComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FD323BB81E1004EA7B1 /* RectComponent.cpp */; };
 		38658FDA23BC6054004EA7B1 /* Resolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FD923BC6054004EA7B1 /* Resolution.cpp */; };
+		38658FDD23BC76B0004EA7B1 /* CircleComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FDB23BC76AF004EA7B1 /* CircleComponent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +78,8 @@
 		38658FD423BB81E1004EA7B1 /* RectComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RectComponent.h; sourceTree = "<group>"; };
 		38658FD723BC43A3004EA7B1 /* Resolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resolution.h; sourceTree = "<group>"; };
 		38658FD923BC6054004EA7B1 /* Resolution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Resolution.cpp; sourceTree = "<group>"; };
+		38658FDB23BC76AF004EA7B1 /* CircleComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CircleComponent.cpp; sourceTree = "<group>"; };
+		38658FDC23BC76B0004EA7B1 /* CircleComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleComponent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 				38658FB723BB54EC004EA7B1 /* Background.h */,
 				38658FBD23BB54EC004EA7B1 /* Chameleon.cpp */,
 				38658FB923BB54EC004EA7B1 /* Chameleon.h */,
+				38658FDB23BC76AF004EA7B1 /* CircleComponent.cpp */,
+				38658FDC23BC76B0004EA7B1 /* CircleComponent.h */,
 				38658FBB23BB54EC004EA7B1 /* Component.cpp */,
 				38658FC123BB54EC004EA7B1 /* Component.h */,
 				38658FD023BB6D8C004EA7B1 /* DrawComponent.cpp */,
@@ -225,6 +230,7 @@
 				38658FD223BB6D8C004EA7B1 /* DrawComponent.cpp in Sources */,
 				38658FC623BB54EC004EA7B1 /* Random.cpp in Sources */,
 				38658FCA23BB54EC004EA7B1 /* Background.cpp in Sources */,
+				38658FDD23BC76B0004EA7B1 /* CircleComponent.cpp in Sources */,
 				38658FCD23BB54EC004EA7B1 /* Game.cpp in Sources */,
 				38658FCB23BB54EC004EA7B1 /* Hud.cpp in Sources */,
 				38658FCC23BB54EC004EA7B1 /* main.cpp in Sources */,
