@@ -24,7 +24,6 @@ private:
 
     Resolution m_resolution;
 	sf::RenderWindow m_window;
-	//sf::Color m_bgColor{ sf::Color(77, 133, 63) };
     sf::Font m_font;
 
 	bool m_isRunning;
@@ -56,7 +55,8 @@ public:
     void RemoveDrawable(class DrawComponent* drawable);
     
     // Getters / setters
-    sf::Color GetTargetColor() const { return m_background.GetTargetColor(); };
+    Color GetTargetColor() const { return m_background.GetTargetColor(); };
+    sf::Font GetFont() const { return m_font; };
 
 private:
 	void Input();

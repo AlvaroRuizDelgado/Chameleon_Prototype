@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Actor.h"
-#include <SFML/Graphics.hpp>
+#include "Color.h"
 
 class RgbLevers : public Actor
 {
@@ -9,12 +9,13 @@ public:
     RgbLevers(class Game* game);
     ~RgbLevers();
     
-    void Initialize(sf::Font& font);
+    void Initialize();
     void UpdateActor(float dtAsSeconds) override;
     
     // Getters / setters
-    sf::Color GetColor();
-    void SetColor(sf::Color newColor);
+    Color GetColor();
+    void SetColor(Color newColor);
+    void SetColor(int r, int g, int b);
     
 private:
     const int INITIAL_COLOR[3] { 76, 200, 91 };

@@ -1,7 +1,6 @@
 #include "RgbLevers.h"
 
 #include <iostream>
-#include <SFML/Graphics.hpp>
 
 #include "Game.h"
 #include "Lever.h"
@@ -27,12 +26,12 @@ RgbLevers::~RgbLevers()
     }
 }
 
-void RgbLevers::Initialize(sf::Font& font)
+void RgbLevers::Initialize()
 {
     // Levers background
     m_background->SetPosition(0.05*Resolution::Width(), 0.7*Resolution::Height());
     m_background->SetSize(0.4*Resolution::Width(), 0.2*Resolution::Height());
-    m_background->SetColor(sf::Color::Red);
+    m_background->SetColor(Color::RED);
     
     // Levers
     float redY = 0.72;
@@ -43,7 +42,7 @@ void RgbLevers::Initialize(sf::Font& font)
                                 0.32*Resolution::Width(), 0.02*Resolution::Height(),
                                 0);
     }
-    this->SetColor(sf::Color(INITIAL_COLOR[0], INITIAL_COLOR[1], INITIAL_COLOR[2]));
+    this->SetColor(INITIAL_COLOR[0], INITIAL_COLOR[1], INITIAL_COLOR[2]);
     
 //    // Text
 //    for (int i = 0; i < 4; ++i)
@@ -76,14 +75,21 @@ void RgbLevers::UpdateActor(float dtAsSeconds)
     Actor::UpdateActor(dtAsSeconds);
 }
 
-sf::Color RgbLevers::GetColor()
+Color RgbLevers::GetColor()
 {
-    return sf::Color(m_levers[0]->GetValue(), m_levers[1]->GetValue(), m_levers[2]->GetValue());
+    return Color(m_levers[0]->GetValue(), m_levers[1]->GetValue(), m_levers[2]->GetValue());
 }
 
-void RgbLevers::SetColor(sf::Color newColor)
+void RgbLevers::SetColor(Color newColor)
 {
-    m_levers[0]->SetValue(newColor.r);
-    m_levers[1]->SetValue(newColor.g);
-    m_levers[2]->SetValue(newColor.b);
+    m_levers[0]->SetValue(newColor.R());
+    m_levers[1]->SetValue(newColor.G());
+    m_levers[2]->SetValue(newColor.B());
+}
+
+void RgbLevers::SetColor(int r, int g, int b)
+{
+    m_levers[0]->SetValue(r);
+    m_levers[1]->SetValue(g);
+    m_levers[2]->SetValue(b);
 }

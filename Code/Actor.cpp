@@ -7,7 +7,7 @@
 
 Actor::Actor(class Game* game) :
 	m_state{ State::Active }
-	, m_position{ sf::Vector2f(0.f, 0.f) }
+	, m_position{ 0.f, 0.f }
 	, m_scale{ 1.f }
 	, m_rotation{ 0.f }
 	, m_game{ game }

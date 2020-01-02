@@ -116,13 +116,13 @@ void Game::Update(float dtAsSeconds)
 	}
 
     // Update color
-    m_chameleon.SetColor(m_rgbLevers.GetColor());
+    m_chameleon.SetColor(Color(m_rgbLevers.GetColor().R(), m_rgbLevers.GetColor().G(), m_rgbLevers.GetColor().B()));
     
 	// Color check
     int colorDiff[3] = { 0, 0, 0 };
-    colorDiff[0] = static_cast<int>(m_background.GetCurrentColor().r - m_chameleon.GetColor().r);
-    colorDiff[1] = static_cast<int>(m_background.GetCurrentColor().g - m_chameleon.GetColor().g);
-    colorDiff[2] = static_cast<int>(m_background.GetCurrentColor().b - m_chameleon.GetColor().b);
+    colorDiff[0] = static_cast<int>(m_background.GetCurrentColor().R() - m_chameleon.GetColor().R());
+    colorDiff[1] = static_cast<int>(m_background.GetCurrentColor().G() - m_chameleon.GetColor().G());
+    colorDiff[2] = static_cast<int>(m_background.GetCurrentColor().B() - m_chameleon.GetColor().B());
     
     // DEBUG
 //    std::cout << "* Bg RGB  : "
@@ -133,10 +133,7 @@ void Game::Update(float dtAsSeconds)
 //        << unsigned(m_chameleon.GetColor().r) << "      "
 //        << unsigned(m_chameleon.GetColor().g) << "      "
 //        << unsigned(m_chameleon.GetColor().b) << std::endl;
-//    std::cout << "* Diff    : "
-//        << (colorDiff[0]) << "      "
-//        << (colorDiff[1]) << "      "
-//        << (colorDiff[2]) << std::endl;
+//    std::cout << "* Diff    : " << (colorDiff[0]) << "      " << (colorDiff[1]) << "      " << (colorDiff[2]) << std::endl;
     
     // Chameleon will be noticed if too different from background
 	int totalColorDiff = abs(colorDiff[0]) + abs(colorDiff[1]) + abs(colorDiff[2]);
@@ -173,7 +170,7 @@ void Game::LoadData()
 	m_background.Initialize();
 	m_hud.Initialize();
 	m_chameleon.Initialize();
-    m_rgbLevers.Initialize(m_font);
+    m_rgbLevers.Initialize();
 }
 
 void Game::UnloadData()
