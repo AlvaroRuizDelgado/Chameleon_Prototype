@@ -58,14 +58,20 @@ void Game::Input()
 
 	while (m_window.pollEvent(event))
 	{
+        if (event.type == sf::Event::Closed)
+        {
+            m_window.close();
+            m_isRunning = false;
+            return;
+        }
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
-			//if (State::EMAIN_MENU == m_state)
+			//if (State::MAIN_MENU == m_state)
 			//{
 			m_isRunning = false;
 			return;
 			//}
-			//m_state = State::EMAIN_MENU;
+			//m_state = State::MAIN_MENU;
 		}
 
 		switch (event.type)
