@@ -64,6 +64,7 @@ void Game::Input()
             m_isRunning = false;
             return;
         }
+        
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			//if (State::MAIN_MENU == m_state)
@@ -74,18 +75,24 @@ void Game::Input()
 			//m_state = State::MAIN_MENU;
 		}
 
-		switch (event.type)
-		{
-		case sf::Event::Closed:
-			m_window.close();
-			break;
-        default:
-            break;
-		}
-		if (State::PLAYING == m_state)
-		{
+        if (event.type == sf::Event::MouseButtonPressed)
+        {
+            mouseX = sf::Mouse::getPosition(m_window).x;
+            mouseY = sf::Mouse::getPosition(m_window).y;
+            printf("Mouse clicked: %f, %f\n", mouseX, mouseY);
+        }
 
-		}
+        if (event.type == sf::Event::MouseButtonPressed)
+        {
+            if (m_rgbLevers.CheckCollision(mouseX, mouseY))
+            {
+                printf("Hit the R lever!");
+            }
+        }
+//		if (State::PLAYING == m_state)
+//		{
+//
+//		}
 	}
 }
 

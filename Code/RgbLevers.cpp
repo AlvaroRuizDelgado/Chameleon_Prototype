@@ -69,13 +69,28 @@ void RgbLevers::Initialize()
 //    fpsText_.setString(ss.str());
 //}
 
+bool RgbLevers::CheckCollision(float x, float y)
+{
+    if (m_background->CheckCollision(x, y))
+    {
+        std::cout << "  - Collision with RGB levers bg\n";
+        for (auto lever : m_levers)
+        {
+            if(lever->CheckCollision(x, y))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 void RgbLevers::UpdateActor(float dtAsSeconds)
 {
     Actor::UpdateActor(dtAsSeconds);
 }
 
-Color RgbLevers::GetColor()
+Color RgbLevers::GetColor() const
 {
     return Color(m_levers[0]->GetValue(), m_levers[1]->GetValue(), m_levers[2]->GetValue());
 }

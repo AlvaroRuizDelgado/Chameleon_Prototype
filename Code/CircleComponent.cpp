@@ -16,6 +16,19 @@ CircleComponent::~CircleComponent()
     m_owner->GetGame()->RemoveDrawable(this);
 }
 
+bool CircleComponent::CheckCollision(float x, float y)
+{
+    float distX = x - m_circle.getPosition().x;
+    float distY = y - m_circle.getPosition().y;
+    float squaredDistance = distX*distX + distY*distY;
+    
+    if (squaredDistance < m_circle.getRadius()*m_circle.getRadius())
+    {
+        return true;
+    }
+    return false;
+}
+
 Color CircleComponent::GetColor() const
 {
     return Color(m_circle.getFillColor().r, m_circle.getFillColor().g, m_circle.getFillColor().b);

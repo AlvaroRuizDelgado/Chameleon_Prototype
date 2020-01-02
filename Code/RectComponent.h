@@ -12,6 +12,8 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     
+    bool CheckCollision(float x, float y);
+    
     // Getters / setter
     void SetSize(float width, float height) { m_rectangle.setSize(sf::Vector2f(width, height)); };
     void SetPosition(float X, float Y) { m_rectangle.setPosition(X, Y); };

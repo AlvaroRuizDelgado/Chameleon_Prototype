@@ -35,6 +35,24 @@ void Lever::Initialize(float x, float y, float width, float height, int initValu
     this->SetValue(initValue);
 }
 
+bool Lever::CheckCollision(float x, float y)
+{
+    if (y > m_rail.getPosition().y
+        && y < (m_rail.getPosition().y + m_rail.getSize().y))
+    {
+        // The distance will give me the value if inside the rail
+        float distance = x - m_rail.getPosition().x;
+        float width = m_rail.getSize().x;
+        if (distance >= 0
+            && distance <= width)
+        {
+            this->SetValue(static_cast<int>(distance/width*255.f));
+            return true;
+        }
+    }
+    return false;
+}
+
 void Lever::SetValue(int newValue)
 {
     m_value = newValue;

@@ -12,8 +12,10 @@ public:
     void Initialize();
     void UpdateActor(float dtAsSeconds) override;
     
+    bool CheckCollision(float X, float Y);
+    
     // Getters / setters
-    Color GetColor();
+    Color GetColor() const;
     void SetColor(Color newColor);
     void SetColor(int r, int g, int b);
     

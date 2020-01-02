@@ -17,6 +17,19 @@ RectComponent::~RectComponent()
     m_owner->GetGame()->RemoveDrawable(this);
 }
 
+bool RectComponent::CheckCollision(float x, float y)
+{
+    // I don't consider the case of negative width or height
+    if (x > m_rectangle.getPosition().x
+        && x < (m_rectangle.getPosition().x + m_rectangle.getSize().x)
+        && y > m_rectangle.getPosition().y
+        && y < (m_rectangle.getPosition().y + m_rectangle.getSize().y))
+    {
+        return true;
+    }
+    return false;
+}
+
 Color RectComponent::GetColor() const
 {
     return Color(m_rectangle.getFillColor().r, m_rectangle.getFillColor().g, m_rectangle.getFillColor().b);

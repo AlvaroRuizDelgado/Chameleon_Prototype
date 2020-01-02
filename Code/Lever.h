@@ -19,6 +19,8 @@ public:
     
     void Initialize(float x, float y, float width, float height, int initValue);
     
+    bool CheckCollision(float x, float y);
+    
     // Getters / setters
     int GetValue() { return m_value; };
     void SetValue(int newValue);
