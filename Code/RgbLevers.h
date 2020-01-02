@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>    // sf::Text, sf::Font
 #include "Actor.h"
 #include "Color.h"
 
@@ -25,6 +26,5 @@ private:
     class Lever* m_levers[3];
     class RectComponent* m_background;
     
-    // 3 text labels for each color and an extra one for the hexadecimal value
-//    sf::Text m_colorsText[4];
+//    class TextComponent* m_hexaText;
 };

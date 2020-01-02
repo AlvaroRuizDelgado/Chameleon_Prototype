@@ -24,12 +24,13 @@ public:
     // Getters / setters
     int GetValue() { return m_value; };
     void SetValue(int newValue);
-//    sf::Box GetBoundaries(); // Boundaries of the circle.
     
 private:
+//    float m_rotation;
     int m_value;
-//    float m_railX;
-//    float m_railY;
     sf::RectangleShape m_rail;
     sf::CircleShape m_lever;
+    sf::Text m_text;
+    
+    void UpdateText();
 };

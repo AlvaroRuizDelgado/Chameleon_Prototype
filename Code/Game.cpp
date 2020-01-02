@@ -86,8 +86,12 @@ void Game::Input()
         {
             if (m_rgbLevers.CheckCollision(mouseX, mouseY))
             {
-                printf("Hit the R lever!");
+                return;
             }
+//            else if (m_hueLevers.CheckCollision(mouseX, mouseY))
+//            {
+//                return;
+//            }
         }
 //		if (State::PLAYING == m_state)
 //		{
