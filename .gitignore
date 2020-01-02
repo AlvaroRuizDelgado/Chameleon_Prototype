@@ -1,8 +1,10 @@
 .DS_Store
-Snake/Snake.xcodeproj/*
-!Snake/Snake.xcodeproj/project.pbxproj
 *.aseprite
 *.xcf
+
+*xcuserdatad*
+*.xccheckout
+*.stackdump
 
 # Prerequisites
 *.d

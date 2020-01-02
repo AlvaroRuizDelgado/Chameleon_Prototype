@@ -6,7 +6,7 @@ CircleComponent::CircleComponent(Actor* owner, int drawPriority) :
     DrawComponent(owner, drawPriority)
 {
     m_circle.setOutlineColor(sf::Color::White);
-    this->EnableOutline();
+    this->SetOutlineThickness(1.f);
     
     m_owner->GetGame()->AddDrawable(this);
 }

@@ -25,6 +25,8 @@
 		38658FD523BB81E1004EA7B1 /* RectComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FD323BB81E1004EA7B1 /* RectComponent.cpp */; };
 		38658FDA23BC6054004EA7B1 /* Resolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FD923BC6054004EA7B1 /* Resolution.cpp */; };
 		38658FDD23BC76B0004EA7B1 /* CircleComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FDB23BC76AF004EA7B1 /* CircleComponent.cpp */; };
+		38658FE023BC7911004EA7B1 /* RgbLevers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FDE23BC7911004EA7B1 /* RgbLevers.cpp */; };
+		38658FE323BC7A29004EA7B1 /* Lever.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FE123BC7A29004EA7B1 /* Lever.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +82,10 @@
 		38658FD923BC6054004EA7B1 /* Resolution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Resolution.cpp; sourceTree = "<group>"; };
 		38658FDB23BC76AF004EA7B1 /* CircleComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CircleComponent.cpp; sourceTree = "<group>"; };
 		38658FDC23BC76B0004EA7B1 /* CircleComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleComponent.h; sourceTree = "<group>"; };
+		38658FDE23BC7911004EA7B1 /* RgbLevers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RgbLevers.cpp; sourceTree = "<group>"; };
+		38658FDF23BC7911004EA7B1 /* RgbLevers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RgbLevers.h; sourceTree = "<group>"; };
+		38658FE123BC7A29004EA7B1 /* Lever.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Lever.cpp; sourceTree = "<group>"; };
+		38658FE223BC7A29004EA7B1 /* Lever.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lever.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,12 +162,16 @@
 				38658FBF23BB54EC004EA7B1 /* Game.h */,
 				38658FC223BB54EC004EA7B1 /* Hud.cpp */,
 				38658FB823BB54EC004EA7B1 /* Hud.h */,
+				38658FE123BC7A29004EA7B1 /* Lever.cpp */,
+				38658FE223BC7A29004EA7B1 /* Lever.h */,
 				38658FBA23BB54EC004EA7B1 /* Random.cpp */,
 				38658FC423BB54EC004EA7B1 /* Random.h */,
 				38658FD323BB81E1004EA7B1 /* RectComponent.cpp */,
 				38658FD423BB81E1004EA7B1 /* RectComponent.h */,
 				38658FD923BC6054004EA7B1 /* Resolution.cpp */,
 				38658FD723BC43A3004EA7B1 /* Resolution.h */,
+				38658FDE23BC7911004EA7B1 /* RgbLevers.cpp */,
+				38658FDF23BC7911004EA7B1 /* RgbLevers.h */,
 			);
 			name = Code;
 			path = ../../../Code;
@@ -231,8 +241,10 @@
 				38658FC623BB54EC004EA7B1 /* Random.cpp in Sources */,
 				38658FCA23BB54EC004EA7B1 /* Background.cpp in Sources */,
 				38658FDD23BC76B0004EA7B1 /* CircleComponent.cpp in Sources */,
+				38658FE323BC7A29004EA7B1 /* Lever.cpp in Sources */,
 				38658FCD23BB54EC004EA7B1 /* Game.cpp in Sources */,
 				38658FCB23BB54EC004EA7B1 /* Hud.cpp in Sources */,
+				38658FE023BC7911004EA7B1 /* RgbLevers.cpp in Sources */,
 				38658FCC23BB54EC004EA7B1 /* main.cpp in Sources */,
 				38658FC923BB54EC004EA7B1 /* Chameleon.cpp in Sources */,
 				38658FDA23BC6054004EA7B1 /* Resolution.cpp in Sources */,

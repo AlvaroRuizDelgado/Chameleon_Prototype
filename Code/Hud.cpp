@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "Game.h"
+#include "RectComponent.h"
 #include "Resolution.h"
 
 Hud::Hud(Game* game) :

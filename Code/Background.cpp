@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Game.h"
 #include "Random.h"
+#include "RectComponent.h"
 #include "Resolution.h"
 
 Background::Background(Game* game) :
@@ -12,8 +13,8 @@ Background::Background(Game* game) :
 	, m_targetColor{ 0.f }
 {
     // Background color draws before anything
-    m_bgColor = new RectComponent(this, 10);
-    m_bgColor->DisableOutline();
+    m_bgColor = new RectComponent(this, 0);
+    m_bgColor->SetOutlineThickness(0.f);
     m_bgColor->SetPosition(0.f, 0.f);
     m_bgColor->SetSize(Resolution::Width(), Resolution::Height());
 }
@@ -68,7 +69,9 @@ void Background::UpdateActor(float dtAsSeconds)
 	}
 	else
 	{
-		std::cout << "Total diff: " << totalDiff << std::endl;
+        // DEBUG
+//		std::cout << "Total diff: " << totalDiff << std::endl;
+        
 		float elementBudget{ 0.f };
 		for (int i = 0; i < 3; ++i)
 		{
@@ -86,18 +89,18 @@ void Background::UpdateActor(float dtAsSeconds)
     m_bgColor->SetColor(m_rgbCurrentColor);
 
 	// DEBUG
-	std::cout << "- Target  : "
-		<< m_targetColor[0] << " "
-		<< m_targetColor[1] << " "
-		<< m_targetColor[2] << std::endl;
-	std::cout << "- Current : "
-		<< m_currentColor[0] << " "
-		<< m_currentColor[1] << " "
-		<< m_currentColor[2] << std::endl;
-	std::cout << "- Bg RGB  : "
-		<< unsigned(m_rgbCurrentColor.r) << "      "
-		<< unsigned(m_rgbCurrentColor.g) << "      "
-		<< unsigned(m_rgbCurrentColor.b) << std::endl;
+//	std::cout << "- Target  : "
+//		<< m_targetColor[0] << " "
+//		<< m_targetColor[1] << " "
+//		<< m_targetColor[2] << std::endl;
+//	std::cout << "- Current : "
+//		<< m_currentColor[0] << " "
+//		<< m_currentColor[1] << " "
+//		<< m_currentColor[2] << std::endl;
+//	std::cout << "- Bg RGB  : "
+//		<< unsigned(m_rgbCurrentColor.r) << "      "
+//		<< unsigned(m_rgbCurrentColor.g) << "      "
+//		<< unsigned(m_rgbCurrentColor.b) << std::endl;
 }
 
 void Background::NewTargetColor()

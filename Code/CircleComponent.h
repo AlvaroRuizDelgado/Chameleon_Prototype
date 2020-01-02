@@ -17,8 +17,7 @@ public:
     void SetColor(sf::Color newColor);
 //    void SetColor(unsigned int newColor[]);
     sf::Color GetColor() const { return m_circle.getFillColor(); };
-    void EnableOutline() { m_circle.setOutlineThickness(1.f); };
-    void DisableOutline() { m_circle.setOutlineThickness(0.f); };
+    void SetOutlineThickness(float thickness) { m_circle.setOutlineThickness(thickness); };
     
 private:
     sf::CircleShape m_circle;

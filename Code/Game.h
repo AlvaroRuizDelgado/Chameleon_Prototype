@@ -6,6 +6,7 @@
 #include "Chameleon.h"
 #include "Hud.h"
 #include "Resolution.h"
+#include "RgbLevers.h"
 
 class Game
 {
@@ -24,6 +25,7 @@ private:
     Resolution m_resolution;
 	sf::RenderWindow m_window;
 	//sf::Color m_bgColor{ sf::Color(77, 133, 63) };
+    sf::Font m_font;
 
 	bool m_isRunning;
 	bool m_updatingActors;
@@ -39,6 +41,7 @@ private:
 	Background m_background;
 	Hud m_hud;
 	Chameleon m_chameleon;
+    RgbLevers m_rgbLevers;
 
 public:
 	Game();

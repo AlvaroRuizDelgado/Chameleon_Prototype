@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Actor.h"
-#include "RectComponent.h"
 
 class Background : public Actor
 {
@@ -16,7 +15,7 @@ private:
 	sf::Color m_rgbTargetColor;
 	float m_changePerSec;
 
-    RectComponent* m_bgColor;
+    class RectComponent* m_bgColor;
 
 private:
 	void NewTargetColor();
