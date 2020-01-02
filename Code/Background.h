@@ -8,7 +8,7 @@ class Background : public Actor
 {
 private:
 	static constexpr float INITIAL_CHANGE_PER_SEC{ 0.4f };
-	const float INITIAL_COLOR[3]{ 77.f / 255.f, 133.f / 255.f, 63.f / 255.f };
+	const int INITIAL_COLOR[3]{ 77, 133, 63 };
 
     Color m_bgColor;
     Color m_targetColor;

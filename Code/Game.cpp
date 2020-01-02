@@ -116,13 +116,13 @@ void Game::Update(float dtAsSeconds)
 	}
 
     // Update color
-    m_chameleon.SetColor(m_rgbLevers.GetColor());
+    m_chameleon.SetColor(Color(m_rgbLevers.GetColor().r, m_rgbLevers.GetColor().g, m_rgbLevers.GetColor().b));
     
 	// Color check
     int colorDiff[3] = { 0, 0, 0 };
-    colorDiff[0] = static_cast<int>(m_background.GetCurrentColor().r - m_chameleon.GetColor().r);
-    colorDiff[1] = static_cast<int>(m_background.GetCurrentColor().g - m_chameleon.GetColor().g);
-    colorDiff[2] = static_cast<int>(m_background.GetCurrentColor().b - m_chameleon.GetColor().b);
+    colorDiff[0] = static_cast<int>(m_background.GetCurrentColor().r - m_chameleon.GetColor().R());
+    colorDiff[1] = static_cast<int>(m_background.GetCurrentColor().g - m_chameleon.GetColor().G());
+    colorDiff[2] = static_cast<int>(m_background.GetCurrentColor().b - m_chameleon.GetColor().B());
     
     // DEBUG
 //    std::cout << "* Bg RGB  : "

@@ -1,9 +1,9 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
+#pragma once
+
 class Color
 {
 public:
-    Color();
+    Color(int r = 0, int g = 0, int b = 0);
     
     bool MorphInto(int targetColor[], float changeBudget);
     
@@ -18,18 +18,13 @@ public:
     float GetBrightness() const { return m_brightness; };
     
     void SetRgb (int r, int g, int b);
+    void SetColor (Color newColor);
     void SetHue (float newHue);
     void SetSaturation (float newSat);
     void SetBrigthness (float newBright);
     
 private:
-    sf::Color FloatToRgb(float color[]) const;
-    int FloatToInt(float channel) const {
-        int result = static_cast<int>(channel*255.f);
-        std::cout << "    From " << channel << " to " << result << std::endl;
-        return result;
-    };
-//        return static_cast<int>(channel*255.f); };
+    int FloatToInt(float channel) const { return static_cast<int>(channel*255.f); };
     float IntToFloat(int channel) const { return static_cast<float>(channel)/255.f; };
     void UpdateHueFromRgb();
     void UpdateRgbFromHue();
@@ -41,7 +36,7 @@ private:
     float m_hue;
     float m_saturation;
     float m_brightness;
-    std::string m_hex;
+//    std::string m_hex;
     
 public:
     static constexpr int WHITE[3] { 0, 0, 0 };

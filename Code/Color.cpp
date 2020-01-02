@@ -3,10 +3,11 @@
 #include <iostream>
 #include <cmath>
 
-Color::Color() :
+Color::Color(int r, int g, int b) :
     m_rgbFloat{ 0.f, 0.f, 0.f }
     , m_rgbInt { 0, 0, 0 }
 {
+    this->SetRgb(r, g, b);
 }
 
 bool Color::MorphInto(int targetColor[], float changeBudget)
@@ -42,7 +43,6 @@ bool Color::MorphInto(int targetColor[], float changeBudget)
             }
             m_rgbFloat[i] += channelBudget;
             m_rgbInt[i] = this->FloatToInt(m_rgbFloat[i]);
-            std::cout << "  * Channel " << i << ": " << m_rgbFloat[i] << " to " << m_rgbInt[i] << std::endl;
         }
     }
     // DEBUG
@@ -50,23 +50,6 @@ bool Color::MorphInto(int targetColor[], float changeBudget)
 //    std::cout << "- Current : " << m_bgColorF[0] << " " << m_bgColorF[1] << " " << m_bgColorF[2] << std::endl;
     return false;
 }
-
-//sf::Color Color::FloatToRgb(float color[]) const
-//{
-//
-//}
-
-
-//sf::Color Color::FloatToRgb(float color[]) const
-//{
-//    sf::Color rgbColor;
-//
-//    rgbColor.r = static_cast<unsigned int>(color[0] * 255.f);
-//    rgbColor.g = static_cast<unsigned int>(color[1] * 255.f);
-//    rgbColor.b = static_cast<unsigned int>(color[2] * 255.f);
-//
-//    return rgbColor;
-//}
 
 //void Color::UpdateHueFromRgb()
 //{
@@ -94,6 +77,11 @@ void Color::SetRgb (int r, int g, int b)
     {
         m_rgbFloat[i] = this->IntToFloat(m_rgbInt[i]);
     }
+}
+
+void Color::SetColor (Color newColor)
+{
+    this->SetRgb(newColor.R(), newColor.G(), newColor.B());
 }
 
 //void Color::SetHue (float newHue)

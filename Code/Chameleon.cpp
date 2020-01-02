@@ -6,6 +6,8 @@
 #include "RectComponent.h"
 #include "Resolution.h"
 
+#include <SFML/Graphics.hpp>
+
 Chameleon::Chameleon(Game* game) :
     Actor(game)
 {
@@ -25,7 +27,7 @@ Chameleon::~Chameleon()
 
 void Chameleon::Initialize()
 {
-    this->SetColor(sf::Color::Green);
+    this->SetColor(Color(INITIAL_COLOR[0], INITIAL_COLOR[1], INITIAL_COLOR[2]));
     
     m_rectLayer[0]->SetPosition(0.35*Resolution::Width(), 0.2*Resolution::Height());
     m_rectLayer[0]->SetSize(0.3*Resolution::Width(), 0.25*Resolution::Height());
@@ -39,9 +41,9 @@ void Chameleon::Initialize()
     m_rectLayer[2]->SetColor(sf::Color::Blue);
 }
 
-void Chameleon::SetColor(sf::Color newColor)
+void Chameleon::SetColor(Color newColor)
 {
-    m_color = newColor;
+    m_color.SetColor(newColor);
 };
 
 void Chameleon::UpdateActor(float dtAsSeconds)
@@ -49,5 +51,5 @@ void Chameleon::UpdateActor(float dtAsSeconds)
     Actor::UpdateActor(dtAsSeconds);
     
     // I NEED A CALL TO A FUNCTION THAT MORPHS THE COLORS LIKE BACKGROUND
-    m_rectLayer[0]->SetColor(m_color);
+    m_rectLayer[0]->SetColor(sf::Color(m_color.R(), m_color.G(), m_color.B()));
 }
