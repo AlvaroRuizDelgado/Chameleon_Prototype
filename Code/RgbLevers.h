@@ -9,7 +9,7 @@ public:
     RgbLevers(class Game* game);
     ~RgbLevers();
     
-    void Initialize(sf::Font& font);
+    void Initialize();
     void UpdateActor(float dtAsSeconds) override;
     
     // Getters / setters

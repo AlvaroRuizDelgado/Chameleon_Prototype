@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Actor.h"
+#include "Color.h"
 
 class Background : public Actor
 {
@@ -10,7 +11,8 @@ private:
 	const float INITIAL_COLOR[3]{ 77.f / 255.f, 133.f / 255.f, 63.f / 255.f };
 
 	float m_currentColor[3];
-	sf::Color m_rgbCurrentColor;
+//	sf::Color m_rgbCurrentColor;
+    sf::Color m_rgbCurrentColor;
 	float m_targetColor[3];
 	sf::Color m_rgbTargetColor;
 	float m_changePerSec;

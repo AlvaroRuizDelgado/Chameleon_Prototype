@@ -27,7 +27,7 @@ RgbLevers::~RgbLevers()
     }
 }
 
-void RgbLevers::Initialize(sf::Font& font)
+void RgbLevers::Initialize()
 {
     // Levers background
     m_background->SetPosition(0.05*Resolution::Width(), 0.7*Resolution::Height());

@@ -173,7 +173,7 @@ void Game::LoadData()
 	m_background.Initialize();
 	m_hud.Initialize();
 	m_chameleon.Initialize();
-    m_rgbLevers.Initialize(m_font);
+    m_rgbLevers.Initialize();
 }
 
 void Game::UnloadData()

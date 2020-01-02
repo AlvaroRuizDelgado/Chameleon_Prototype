@@ -57,6 +57,7 @@ public:
     
     // Getters / setters
     sf::Color GetTargetColor() const { return m_background.GetTargetColor(); };
+    sf::Font GetFont() const { return m_font; };
 
 private:
 	void Input();
