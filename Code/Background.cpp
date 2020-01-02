@@ -9,19 +9,18 @@
 
 Background::Background(Game* game) :
 	Actor(game)
-	, m_currentColor{ 0.f }
-	, m_targetColor{ 0.f }
+	, m_targetColorF{ 0.f }
 {
     // Background color draws before anything
-    m_bgColor = new RectComponent(this, 0);
-    m_bgColor->SetOutlineThickness(0.f);
-    m_bgColor->SetPosition(0.f, 0.f);
-    m_bgColor->SetSize(Resolution::Width(), Resolution::Height());
+    m_colorComp = new RectComponent(this, 0);
+    m_colorComp->SetOutlineThickness(0.f);
+    m_colorComp->SetPosition(0.f, 0.f);
+    m_colorComp->SetSize(Resolution::Width(), Resolution::Height());
 }
 
 Background::~Background()
 {
-    delete m_bgColor;
+    delete m_colorComp;
 }
 
 void Background::Initialize()
@@ -30,18 +29,14 @@ void Background::Initialize()
 	m_changePerSec = INITIAL_CHANGE_PER_SEC;
 
 	// Initial color
-    memcpy(m_currentColor, INITIAL_COLOR, sizeof(INITIAL_COLOR));
+    m_bgColor.SetRgb(77, 133, 63);
+    
+//    std::cout << "New RGB: " << m_bgColor.R() << " " << m_bgColor.G() << " " << m_bgColor.B() << std::endl;
 
-	std::cout << "Fine RGB: "
-		<< m_currentColor[0] << " "
-		<< m_currentColor[1] << " "
-		<< m_currentColor[2] << std::endl;
-
-	NewTargetColor();
+	this->NewTargetColor();
     
     // Background color component
-    m_rgbCurrentColor = FloatToRgb(m_currentColor);
-    m_bgColor->SetColor(m_rgbCurrentColor);
+    m_colorComp->SetColor(sf::Color(m_bgColor.R(), m_bgColor.G(), m_bgColor.B()));
 }
 
 
@@ -51,71 +46,29 @@ void Background::UpdateActor(float dtAsSeconds)
 	// Update color
     // How much the color can change in this particular frame
     float changeBudget = m_changePerSec * dtAsSeconds;
-	float colorDiff[3]{ 0.f };
-	float totalDiff{ 0.f };
-	for (int i = 0; i < 3; ++i)
-	{
-		colorDiff[i] = m_targetColor[i] - m_currentColor[i];
-		if (0.001 > abs(colorDiff[i]))	// 1/255 = 0.0039
-		{
-			colorDiff[i] = 0.f;
-		}
-		totalDiff += abs(colorDiff[i]);
-	}
-	if (0 == totalDiff)
-	{
-		std::cout << "************** Target achieved *****************\n";
-		NewTargetColor();
-	}
-	else
-	{
-        // DEBUG
-//		std::cout << "Total diff: " << totalDiff << std::endl;
-        
-		float elementBudget{ 0.f };
-		for (int i = 0; i < 3; ++i)
-		{
-			elementBudget = (colorDiff[i] / totalDiff) * changeBudget; // How much this element can change this frame
-			if (abs(elementBudget) > abs(colorDiff[i]))		// Prevent overshooting
-			{
-				elementBudget = colorDiff[i];
-			}
-			m_currentColor[i] += elementBudget;
-		}
-	}
-
-	// Update RGB information
-	m_rgbCurrentColor = FloatToRgb(m_currentColor);
-    m_bgColor->SetColor(m_rgbCurrentColor);
-
-	// DEBUG
-//	std::cout << "- Target  : "
-//		<< m_targetColor[0] << " "
-//		<< m_targetColor[1] << " "
-//		<< m_targetColor[2] << std::endl;
-//	std::cout << "- Current : "
-//		<< m_currentColor[0] << " "
-//		<< m_currentColor[1] << " "
-//		<< m_currentColor[2] << std::endl;
-//	std::cout << "- Bg RGB  : "
-//		<< unsigned(m_rgbCurrentColor.r) << "      "
-//		<< unsigned(m_rgbCurrentColor.g) << "      "
-//		<< unsigned(m_rgbCurrentColor.b) << std::endl;
+    
+    int targetColorArray[3] = { m_targetColorInt.r, m_targetColorInt.g, m_targetColorInt.b };
+    if (m_bgColor.MorphInto(targetColorArray, changeBudget))
+    {
+        std::cout << "************** Target achieved *****************\n";
+        this->NewTargetColor();
+    }
+    m_colorComp->SetColor(sf::Color(m_bgColor.R(), m_bgColor.G(), m_bgColor.B()));
 }
 
 void Background::NewTargetColor()
 {
-	m_targetColor[0] = Random::GetFloat();
-	m_targetColor[1] = Random::GetFloat();
-	m_targetColor[2] = Random::GetFloat();
+	m_targetColorF[0] = Random::GetFloat();
+	m_targetColorF[1] = Random::GetFloat();
+	m_targetColorF[2] = Random::GetFloat();
 
-	m_rgbTargetColor = FloatToRgb(m_targetColor);
+	m_targetColorInt = FloatToRgb(m_targetColorF);
     
     // DEBUG
     std::cout << "Target color: "
-        << m_targetColor[0] << " "
-        << m_targetColor[1] << " "
-        << m_targetColor[2] << std::endl;
+        << m_targetColorF[0] << " "
+        << m_targetColorF[1] << " "
+        << m_targetColorF[2] << std::endl;
 }
 
 sf::Color Background::FloatToRgb(float color[]) const
