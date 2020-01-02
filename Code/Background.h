@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include "Actor.h"
 #include "Color.h"
 
@@ -12,15 +11,12 @@ private:
 
     Color m_bgColor;
     Color m_targetColor;
-//	float m_targetColorF[3];
-//	sf::Color m_targetColorInt;
 	float m_changePerSec;
 
     class RectComponent* m_colorComp;
 
 private:
 	void NewTargetColor();
-	sf::Color FloatToRgb(float color[]) const;
 
 public:
 	Background(class Game* game);
@@ -30,6 +26,6 @@ public:
 	void UpdateActor(float dtAsSeconds) override;
     
     // Getters / setters
-	sf::Color GetCurrentColor() const { return sf::Color(m_bgColor.R(), m_bgColor.G(), m_bgColor.B()); };
-	sf::Color GetTargetColor() const { return sf::Color(m_targetColor.R(), m_targetColor.G(), m_targetColor.B()); };
+	Color GetCurrentColor() const { return m_bgColor; };
+	Color GetTargetColor() const { return m_targetColor; };
 };

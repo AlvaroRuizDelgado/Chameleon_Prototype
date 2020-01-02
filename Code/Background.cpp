@@ -35,7 +35,7 @@ void Background::Initialize()
 	this->NewTargetColor();
     
     // Background color component
-    m_colorComp->SetColor(sf::Color(m_bgColor.R(), m_bgColor.G(), m_bgColor.B()));
+    m_colorComp->SetColor(m_bgColor.R(), m_bgColor.G(), m_bgColor.B());
 }
 
 
@@ -51,7 +51,7 @@ void Background::UpdateActor(float dtAsSeconds)
         std::cout << "************** Target achieved *****************\n";
         this->NewTargetColor();
     }
-    m_colorComp->SetColor(sf::Color(m_bgColor.R(), m_bgColor.G(), m_bgColor.B()));
+    m_colorComp->SetColor(m_bgColor.R(), m_bgColor.G(), m_bgColor.B());
 }
 
 void Background::NewTargetColor()
@@ -60,15 +60,4 @@ void Background::NewTargetColor()
     
     // DEBUG
 //    std::cout << "Target color: " << m_targetColor.R() << " " << m_targetColor.G() << " " << m_targetColor.B() << std::endl;
-}
-
-sf::Color Background::FloatToRgb(float color[]) const
-{
-	sf::Color rgbColor;
-
-	rgbColor.r = static_cast<unsigned int>(color[0] * 255.f);
-	rgbColor.g = static_cast<unsigned int>(color[1] * 255.f);
-	rgbColor.b = static_cast<unsigned int>(color[2] * 255.f);
-
-	return rgbColor;
 }

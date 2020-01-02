@@ -1,4 +1,5 @@
 #include "RectComponent.h"
+
 #include "Actor.h"
 #include "Game.h"
 
@@ -16,21 +17,10 @@ RectComponent::~RectComponent()
     m_owner->GetGame()->RemoveDrawable(this);
 }
 
-void RectComponent::SetSize(float width, float height)
+Color RectComponent::GetColor() const
 {
-    m_rectangle.setSize(sf::Vector2f(width, height));
-}
-
-void RectComponent::SetPosition(float newX, float newY)
-{
-    m_rectangle.setPosition(newX, newY);
-}
-
-void RectComponent::SetColor(sf::Color newColor)
-{
-//    sf::Color fillColor(newColor[0], newColor[1], newColor[2]);
-    m_rectangle.setFillColor(newColor);
-}
+    return Color(m_rectangle.getFillColor().r, m_rectangle.getFillColor().g, m_rectangle.getFillColor().b);
+};
 
 void RectComponent::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {

@@ -98,3 +98,10 @@ void Color::SetColor (Color newColor)
 //{
 //
 //}
+
+constexpr int Color::WHITE[3];
+constexpr int Color::BLACK[3];
+constexpr int Color::GREEN[3];
+constexpr int Color::RED[3];
+constexpr int Color::BLUE[3];
+constexpr int Color::YELLOW[3];

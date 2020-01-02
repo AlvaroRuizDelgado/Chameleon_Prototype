@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "DrawComponent.h"
+#include "Color.h"
 
 class CircleComponent : public DrawComponent
 {
@@ -12,11 +13,12 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     
     // Getters / setter
-    void SetSize(float radius);
-    void SetPosition(float newX, float newY);
-    void SetColor(sf::Color newColor);
-//    void SetColor(unsigned int newColor[]);
-    sf::Color GetColor() const { return m_circle.getFillColor(); };
+    void SetSize(float R) { m_circle.setRadius(R); };
+    void SetPosition(float X, float Y) { m_circle.setPosition(X, Y); };
+    void SetColor(Color c) { m_circle.setFillColor(sf::Color(c.R(), c.G(), c.B())); };
+    void SetColor(int r, int g, int b) { m_circle.setFillColor(sf::Color(r, g, b)); };
+    void SetColor(const int c[]) { m_circle.setFillColor(sf::Color(c[0], c[1], c[2])); };
+    Color GetColor() const;
     void SetOutlineThickness(float thickness) { m_circle.setOutlineThickness(thickness); };
     
 private:

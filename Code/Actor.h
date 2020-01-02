@@ -2,8 +2,6 @@
 
 #include <vector>
 
-#include "SFML/Graphics.hpp"
-
 class Actor
 {
 public:
@@ -34,7 +32,7 @@ public:
 
 private:
 	State m_state;
-	sf::Vector2f m_position;
+	float m_position[2];
 	float m_scale;
 	float m_rotation;
 

@@ -6,8 +6,6 @@
 #include "RectComponent.h"
 #include "Resolution.h"
 
-#include <SFML/Graphics.hpp>
-
 Chameleon::Chameleon(Game* game) :
     Actor(game)
 {
@@ -34,11 +32,11 @@ void Chameleon::Initialize()
     
     m_rectLayer[1]->SetPosition(0.40*Resolution::Width(), 0.25*Resolution::Height());
     m_rectLayer[1]->SetSize(0.15*Resolution::Width(), 0.10*Resolution::Height());
-    m_rectLayer[1]->SetColor(sf::Color::Red);
+    m_rectLayer[1]->SetColor(Color::RED);
     
     m_rectLayer[2]->SetPosition(0.43*Resolution::Width(), 0.28*Resolution::Height());
     m_rectLayer[2]->SetSize(0.06*Resolution::Width(), 0.04*Resolution::Height());
-    m_rectLayer[2]->SetColor(sf::Color::Blue);
+    m_rectLayer[2]->SetColor(Color::BLUE);
 }
 
 void Chameleon::SetColor(Color newColor)
@@ -50,6 +48,14 @@ void Chameleon::UpdateActor(float dtAsSeconds)
 {
     Actor::UpdateActor(dtAsSeconds);
     
-    // I NEED A CALL TO A FUNCTION THAT MORPHS THE COLORS LIKE BACKGROUND
-    m_rectLayer[0]->SetColor(sf::Color(m_color.R(), m_color.G(), m_color.B()));
+    // Layer 0 changes color instantly for feedback, other layers morph by time
+    m_rectLayer[0]->SetColor(m_color.GetRgb());
+    float changeBudget = 0.f;
+    for (int i = 1; i < NUM_LAYERS; ++i)
+    {
+        changeBudget = CHANGE_PER_SEC[i] * dtAsSeconds;
+        Color morphedColor(m_rectLayer[i]->GetColor());
+        morphedColor.MorphInto(m_color.GetRgb(), changeBudget);
+        m_rectLayer[i]->SetColor(morphedColor);
+    }
 }

@@ -41,6 +41,10 @@ private:
 public:
     static constexpr int WHITE[3] { 0, 0, 0 };
     static constexpr int BLACK[3] { 255, 255, 255 };
+    static constexpr int GREEN[3] { 50, 200, 50 };
+    static constexpr int RED[3] { 220, 50, 50 };
+    static constexpr int BLUE[3] { 20, 80, 220 };
+    static constexpr int YELLOW[3] { 240, 240, 20 };
     
     static constexpr int NUM_CHANNELS { 3 };
 };

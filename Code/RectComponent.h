@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "DrawComponent.h"
+#include "Color.h"
 
 class RectComponent : public DrawComponent
 {
@@ -12,11 +13,12 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     
     // Getters / setter
-    void SetSize(float width, float height);
-    void SetPosition(float newX, float newY);
-    void SetColor(sf::Color newColor);
-//    void SetColor(unsigned int newColor[]);
-    sf::Color GetColor() const { return m_rectangle.getFillColor(); };
+    void SetSize(float width, float height) { m_rectangle.setSize(sf::Vector2f(width, height)); };
+    void SetPosition(float X, float Y) { m_rectangle.setPosition(X, Y); };
+    void SetColor(Color c) { m_rectangle.setFillColor(sf::Color(c.R(), c.G(), c.B())); };
+    void SetColor(int r, int g, int b) { m_rectangle.setFillColor(sf::Color(r, g, b)); };
+    void SetColor(const int c[]) { m_rectangle.setFillColor(sf::Color(c[0], c[1], c[2])); };
+    Color GetColor() const;
     void SetOutlineThickness(float thickness) { m_rectangle.setOutlineThickness(thickness); };
     float GetX() { return m_rectangle.getPosition().x; };
     float GetY() { return m_rectangle.getPosition().y; };
