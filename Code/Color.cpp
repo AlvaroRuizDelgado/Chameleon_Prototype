@@ -93,7 +93,6 @@ void Color::SetRgb (int r, int g, int b)
     for (int i = 0; i < NUM_CHANNELS; ++i)
     {
         m_rgbFloat[i] = this->IntToFloat(m_rgbInt[i]);
-//        m_rgbFloat[i] = static_cast<float>(m_rgbInt[i]) / 255.f;
     }
 }
 

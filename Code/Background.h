@@ -11,8 +11,9 @@ private:
 	const float INITIAL_COLOR[3]{ 77.f / 255.f, 133.f / 255.f, 63.f / 255.f };
 
     Color m_bgColor;
-	float m_targetColorF[3];
-	sf::Color m_targetColorInt;
+    Color m_targetColor;
+//	float m_targetColorF[3];
+//	sf::Color m_targetColorInt;
 	float m_changePerSec;
 
     class RectComponent* m_colorComp;
@@ -30,5 +31,5 @@ public:
     
     // Getters / setters
 	sf::Color GetCurrentColor() const { return sf::Color(m_bgColor.R(), m_bgColor.G(), m_bgColor.B()); };
-	sf::Color GetTargetColor() const { return m_targetColorInt; };
+	sf::Color GetTargetColor() const { return sf::Color(m_targetColor.R(), m_targetColor.G(), m_targetColor.B()); };
 };

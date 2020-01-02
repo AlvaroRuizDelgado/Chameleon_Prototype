@@ -9,7 +9,7 @@
 
 Background::Background(Game* game) :
 	Actor(game)
-	, m_targetColorF{ 0.f }
+//	, m_targetColorF{ 0.f }
 {
     // Background color draws before anything
     m_colorComp = new RectComponent(this, 0);
@@ -47,7 +47,7 @@ void Background::UpdateActor(float dtAsSeconds)
     // How much the color can change in this particular frame
     float changeBudget = m_changePerSec * dtAsSeconds;
     
-    int targetColorArray[3] = { m_targetColorInt.r, m_targetColorInt.g, m_targetColorInt.b };
+    int targetColorArray[3] = { m_targetColor.R(), m_targetColor.G(), m_targetColor.B() };
     if (m_bgColor.MorphInto(targetColorArray, changeBudget))
     {
         std::cout << "************** Target achieved *****************\n";
@@ -58,17 +58,18 @@ void Background::UpdateActor(float dtAsSeconds)
 
 void Background::NewTargetColor()
 {
-	m_targetColorF[0] = Random::GetFloat();
-	m_targetColorF[1] = Random::GetFloat();
-	m_targetColorF[2] = Random::GetFloat();
-
-	m_targetColorInt = FloatToRgb(m_targetColorF);
+//	m_targetColorF[0] = Random::GetFloat();
+//	m_targetColorF[1] = Random::GetFloat();
+//	m_targetColorF[2] = Random::GetFloat();
+//
+//	m_targetColorInt = FloatToRgb(m_targetColorF);
+    m_targetColor.SetRgb(Random::GetIntRange(0,255), Random::GetIntRange(0,255), Random::GetIntRange(0,255));
     
     // DEBUG
     std::cout << "Target color: "
-        << m_targetColorF[0] << " "
-        << m_targetColorF[1] << " "
-        << m_targetColorF[2] << std::endl;
+        << m_targetColor.R() << " "
+        << m_targetColor.G() << " "
+        << m_targetColor.B() << std::endl;
 }
 
 sf::Color Background::FloatToRgb(float color[]) const
