@@ -12,6 +12,8 @@
 Lever::Lever(Actor* owner, int drawPriority) :
     DrawComponent(owner, drawPriority)
     , m_value{ 0 }
+    , m_beginC{ Color(0, 0, 0) }
+    , m_endC{ Color(255, 255, 255) }
 {
     m_owner->GetGame()->AddDrawable(this);
 }
@@ -36,7 +38,7 @@ void Lever::Initialize(float x, float y, float width, float height, int initValu
     m_box[1].position = sf::Vector2f(m_railX, m_railY + m_height);           // Bottom-right
     m_box[2].position = sf::Vector2f(m_railX + m_width, m_railY + m_height); // Top-right
     m_box[3].position = sf::Vector2f(m_railX + m_width, m_railY);            // Top-left
-    this->SetGradient(Color(255,255,255), Color(255,0,0));
+    this->SetGradient(m_beginC, m_endC);
     
     // Selection pinpointer
     m_lever.setRadius(1.5*height/2);
@@ -90,8 +92,10 @@ void Lever::SetValue(int newValue)
 
 void Lever::SetGradient(Color beginning, Color end)
 {
-    sf::Color sfBeginning(beginning.R(), beginning.G(), beginning.B());
-    sf::Color sfEnd(end.R(), end.G(), end.B());
+    m_beginC = beginning;
+    m_endC = end;
+    sf::Color sfBeginning(m_beginC.R(), m_beginC.G(), m_beginC.B());
+    sf::Color sfEnd(m_endC.R(), m_endC.G(), m_endC.B());
     m_box[0].color = sfBeginning;     // Top-left
     m_box[1].color = sfBeginning;     // Bottom-left
     m_box[2].color = sfEnd;           // Bottom-right

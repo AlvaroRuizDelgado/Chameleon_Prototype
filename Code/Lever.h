@@ -1,6 +1,7 @@
 #pragma once
 
 #include "DrawComponent.h"
+#include "Color.h"
 
 class Lever : public DrawComponent
 {
@@ -25,6 +26,8 @@ public:
     int GetValue() { return m_value; };
     void SetValue(int newValue);
     void SetGradient(class Color beginning, class Color end);
+    Color GetBeginColor() { return m_beginC; };
+    Color GetEndColor() { return m_endC; };
     
 private:
     int m_value;
@@ -33,6 +36,9 @@ private:
     float m_width;
     float m_height;
     //    float m_rotation;
+    
+    Color m_beginC;
+    Color m_endC;
     
     sf::Vertex m_box[4];
     sf::CircleShape m_lever;
