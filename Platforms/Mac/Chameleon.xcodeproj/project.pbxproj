@@ -28,6 +28,7 @@
 		38658FE023BC7911004EA7B1 /* RgbLevers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FDE23BC7911004EA7B1 /* RgbLevers.cpp */; };
 		38658FE323BC7A29004EA7B1 /* Lever.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FE123BC7A29004EA7B1 /* Lever.cpp */; };
 		38658FE623BD6D28004EA7B1 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FE423BD6D28004EA7B1 /* Color.cpp */; };
+		38658FE923BED708004EA7B1 /* TextComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FE723BED708004EA7B1 /* TextComponent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,6 +90,8 @@
 		38658FE223BC7A29004EA7B1 /* Lever.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lever.h; sourceTree = "<group>"; };
 		38658FE423BD6D28004EA7B1 /* Color.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		38658FE523BD6D28004EA7B1 /* Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		38658FE723BED708004EA7B1 /* TextComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextComponent.cpp; sourceTree = "<group>"; };
+		38658FE823BED708004EA7B1 /* TextComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextComponent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +180,8 @@
 				38658FD723BC43A3004EA7B1 /* Resolution.h */,
 				38658FDE23BC7911004EA7B1 /* RgbLevers.cpp */,
 				38658FDF23BC7911004EA7B1 /* RgbLevers.h */,
+				38658FE723BED708004EA7B1 /* TextComponent.cpp */,
+				38658FE823BED708004EA7B1 /* TextComponent.h */,
 			);
 			name = Code;
 			path = ../../../Code;
@@ -250,6 +255,7 @@
 				38658FE623BD6D28004EA7B1 /* Color.cpp in Sources */,
 				38658FCD23BB54EC004EA7B1 /* Game.cpp in Sources */,
 				38658FCB23BB54EC004EA7B1 /* Hud.cpp in Sources */,
+				38658FE923BED708004EA7B1 /* TextComponent.cpp in Sources */,
 				38658FE023BC7911004EA7B1 /* RgbLevers.cpp in Sources */,
 				38658FCC23BB54EC004EA7B1 /* main.cpp in Sources */,
 				38658FC923BB54EC004EA7B1 /* Chameleon.cpp in Sources */,

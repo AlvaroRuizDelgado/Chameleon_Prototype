@@ -102,7 +102,7 @@ void Lever::UpdateText()
 
 void Lever::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    //    states.transform *= getTransform();
+//    states.transform *= getTransform();
     target.draw(m_rail, states);
     target.draw(m_lever, states);
     target.draw(m_text, states);

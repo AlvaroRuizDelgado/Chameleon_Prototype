@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 class Color
 {
 public:
@@ -12,10 +14,12 @@ public:
     int R() const { return m_rgbInt[0]; }
     int G() const { return m_rgbInt[1]; }
     int B() const { return m_rgbInt[2]; }
-//    std::string GetHex() const;
+    
     float GetHue() const { return m_hue; };
     float GetSaturation() const { return m_saturation; };
     float GetBrightness() const { return m_brightness; };
+    
+    std::wstring GetHexa() const;
     
     void SetRgb (int r, int g, int b);
     void SetColor (Color newColor);
@@ -28,7 +32,7 @@ private:
     float IntToFloat(int channel) const { return static_cast<float>(channel)/255.f; };
     void UpdateHueFromRgb();
     void UpdateRgbFromHue();
-    void UpdateHex();
+//    void UpdateHex();
     
 private:
     float m_rgbFloat[3];

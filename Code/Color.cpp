@@ -1,7 +1,9 @@
 #include "Color.h"
 
-#include <iostream>
 #include <cmath>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
 
 Color::Color(int r, int g, int b) :
     m_rgbFloat{ 0.f, 0.f, 0.f }
@@ -65,8 +67,16 @@ bool Color::MorphInto(int targetColor[], float changeBudget)
 //{
 //
 //}
-//
-////    std::string GetHex() const;
+
+std::wstring Color::GetHexa() const
+{
+    std::wstringstream wstream;
+    for (int channel : m_rgbInt)
+    {
+        wstream << std::uppercase << std::setfill(L'0') << std::setw(2) << std::hex << channel;
+    }
+    return wstream.str();
+}
 
 void Color::SetRgb (int r, int g, int b)
 {

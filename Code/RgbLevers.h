@@ -19,12 +19,12 @@ public:
     Color GetColor() const;
     void SetColor(Color newColor);
     void SetColor(int r, int g, int b);
+    void SetHexaTag(Color color);
     
 private:
     const int INITIAL_COLOR[3] { 76, 200, 91 };
     
-    class Lever* m_levers[3];
     class RectComponent* m_background;
-    
-//    class TextComponent* m_hexaText;
+    class Lever* m_levers[3];
+    class TextComponent* m_hexaTag;
 };
