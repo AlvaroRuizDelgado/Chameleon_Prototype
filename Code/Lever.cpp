@@ -23,13 +23,21 @@ Lever::~Lever()
 
 void Lever::Initialize(float x, float y, float width, float height, int initValue)
 {
-    // Rail
+    // Rail needs to leave space for the text box in the left side
     float textSpace = Resolution::Width() * 0.06f;
-    m_rail.setPosition(x + textSpace, y);
-    m_rail.setSize(sf::Vector2f(width - textSpace, height));
-    m_rail.setFillColor(sf::Color(200,200,200));   // Gray
-    m_rail.setOutlineThickness(1.f);
+    
+    m_railX = x + textSpace;
+    m_railY = y;
+    m_width = width - textSpace;    // Width considers both the text and the rail
+    m_height = height;
 
+    // Box, counter-clockwise from top-left
+    m_box[0].position = sf::Vector2f(m_railX, m_railY);                      // Bottom-left
+    m_box[1].position = sf::Vector2f(m_railX, m_railY + m_height);           // Bottom-right
+    m_box[2].position = sf::Vector2f(m_railX + m_width, m_railY + m_height); // Top-right
+    m_box[3].position = sf::Vector2f(m_railX + m_width, m_railY);            // Top-left
+    this->SetGradient(Color(255,255,255), Color(255,0,0));
+    
     // Selection pinpointer
     m_lever.setRadius(1.5*height/2);
     m_lever.setFillColor(sf::Color::Black);
@@ -48,12 +56,12 @@ void Lever::Initialize(float x, float y, float width, float height, int initValu
 
 bool Lever::CheckCollision(float x, float y)
 {
-    if (y > m_rail.getPosition().y
-        && y < (m_rail.getPosition().y + m_rail.getSize().y))
+    if (y > m_railY
+        && y < (m_railY + m_height))
     {
         // The distance will give me the value if inside the rail
-        float distance = x - m_rail.getPosition().x;
-        float width = m_rail.getSize().x;
+        float distance = x - m_railX;
+        float width = m_width;
         if (distance >= 0
             && distance <= width)
         {
@@ -69,15 +77,25 @@ void Lever::SetValue(int newValue)
     m_value = newValue;
     
     // Value 0 should lead to the center of the ball being on the rail origin.
-    float x = m_rail.getPosition().x                                    // m_rail origin
-            - m_lever.getRadius()                                       // radius offset
-            + static_cast<float>(m_value)/255.f * m_rail.getSize().x;   // value offset
+    float x = m_railX                                       // m_rail origin
+            - m_lever.getRadius()                           // radius offset
+            + static_cast<float>(m_value)/255.f * m_width;  // value offset
     
     // Radius is 1.5 the height of the rail, so it overflows 0.25 in each side.
-    float y = m_rail.getPosition().y - 0.25 * m_rail.getSize().y;
+    float y = m_railY - 0.25 * m_height;
     
     m_lever.setPosition(x, y);
     this->UpdateText();
+}
+
+void Lever::SetGradient(Color beginning, Color end)
+{
+    sf::Color sfBeginning(beginning.R(), beginning.G(), beginning.B());
+    sf::Color sfEnd(end.R(), end.G(), end.B());
+    m_box[0].color = sfBeginning;     // Top-left
+    m_box[1].color = sfBeginning;     // Bottom-left
+    m_box[2].color = sfEnd;           // Bottom-right
+    m_box[3].color = sfEnd;           // Top-right
 }
 
 void Lever::UpdateText()
@@ -103,7 +121,7 @@ void Lever::UpdateText()
 void Lever::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 //    states.transform *= getTransform();
-    target.draw(m_rail, states);
+    target.draw(m_box, 4, sf::Quads);
     target.draw(m_lever, states);
     target.draw(m_text, states);
 }

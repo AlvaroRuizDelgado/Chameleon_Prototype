@@ -24,11 +24,17 @@ public:
     // Getters / setters
     int GetValue() { return m_value; };
     void SetValue(int newValue);
+    void SetGradient(class Color beginning, class Color end);
     
 private:
-//    float m_rotation;
     int m_value;
-    sf::RectangleShape m_rail;
+    float m_railX;
+    float m_railY;
+    float m_width;
+    float m_height;
+    //    float m_rotation;
+    
+    sf::Vertex m_box[4];
     sf::CircleShape m_lever;
     sf::Text m_text;
     

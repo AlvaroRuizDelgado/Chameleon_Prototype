@@ -41,10 +41,13 @@ void RgbLevers::Initialize()
     float yOffset = 0.04;
     for (int i = 0; i < 3; ++i)
     {
-        // Initialize( Position  /  Size  /  Initial value of the lever
+        // Initialize( Position  /  Size  /  Initial value of the lever )
         m_levers[i]->Initialize(0.06*Resolution::Width(), (0.72+i*yOffset)*Resolution::Height(),
                                 0.38*Resolution::Width(), 0.02*Resolution::Height(),
                                 0);
+        int leverC[3]{ 0 };
+        leverC[i] = 255;
+        m_levers[i]->SetGradient(Color(0,0,0), Color(leverC[0], leverC[1], leverC[2]));
     }
     
     // Initialize hexadecimal tag
