@@ -11,6 +11,7 @@
 
 RgbLevers::RgbLevers(Game* game) :
     Actor(game)
+    , m_levers{ nullptr }
 {
     m_background = new RectComponent(this, 20);
     for (int i = 0; i < 3; ++i)
@@ -32,28 +33,31 @@ RgbLevers::~RgbLevers()
 
 void RgbLevers::Initialize()
 {
-    // Initialize levers background
-    m_background->SetPosition(0.05*Resolution::Width(), 0.7*Resolution::Height());
-    m_background->SetSize(0.44*Resolution::Width(), 0.17*Resolution::Height());
+    // BACKGROUND
+    m_background->SetPosition(0.05f*Resolution::Width(), 0.7f*Resolution::Height());
+    m_background->SetSize(0.44f*Resolution::Width(), 0.17f*Resolution::Height());
     m_background->SetColor(170, 170, 190);
     
-    // Initialize levers
-    float yOffset = 0.04;
+    // RGB LEVERS
+    float yOffset = 0.04f;
     for (int i = 0; i < 3; ++i)
     {
-        // Initialize( Position  /  Size  /  Initial value of the lever )
-        m_levers[i]->Initialize(0.06*Resolution::Width(), (0.72+i*yOffset)*Resolution::Height(),
-                                0.41*Resolution::Width(), 0.02*Resolution::Height(),
-                                0);
+        m_levers[i]->EnableText();
+        m_levers[i]->SetPosition(0.06f * Resolution::Width(), (0.72f + i * yOffset) * Resolution::Height());
+        m_levers[i]->SetSize(0.41f * Resolution::Width(), 0.02f * Resolution::Height());
+        m_levers[i]->SetValue(0);
+        m_levers[i]->Initialize();
+
+        // Set the initial gradients to show pure RGB
         int leverC[3]{ 0 };
         leverC[i] = 255;
-        m_levers[i]->SetGradient(Color(0,0,0), Color(leverC[0], leverC[1], leverC[2]));
+        m_levers[i]->SetE2EGradient(Color(0,0,0), Color(leverC[0], leverC[1], leverC[2]));
     }
     
-    // Initialize hexadecimal tag
-    m_hexaTag->Initialize(0.06*Resolution::Width(), (0.72+3*yOffset)*Resolution::Height(),L"Testing");
+    // HEXADECIMAL TAG
+    m_hexaTag->Initialize(0.06f*Resolution::Width(), (0.72f+3.f*yOffset)*Resolution::Height(),L"Testing");
     
-    // Set the initial color value in all components
+    // INITIAL COLOR
     this->SetColor(INITIAL_COLOR[0], INITIAL_COLOR[1], INITIAL_COLOR[2]);
 }
 
@@ -114,7 +118,7 @@ void RgbLevers::AdjustGradients(int changedLever)
             endC[changedLever] = m_levers[changedLever]->GetValue();
             int* beginC = m_levers[i]->GetBeginColor().GetRgb();
             beginC[changedLever] = m_levers[changedLever]->GetValue();
-            m_levers[i]->SetGradient(Color(beginC[0], beginC[1], beginC[2]),
+            m_levers[i]->SetE2EGradient(Color(beginC[0], beginC[1], beginC[2]),
                                      Color(endC[0], endC[1], endC[2]));
         }
     }

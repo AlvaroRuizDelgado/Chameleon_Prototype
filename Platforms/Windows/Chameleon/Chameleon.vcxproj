@@ -22,20 +22,38 @@
     <ClCompile Include="..\..\..\Code\Actor.cpp" />
     <ClCompile Include="..\..\..\Code\Background.cpp" />
     <ClCompile Include="..\..\..\Code\Chameleon.cpp" />
+    <ClCompile Include="..\..\..\Code\CircleComponent.cpp" />
+    <ClCompile Include="..\..\..\Code\Color.cpp" />
     <ClCompile Include="..\..\..\Code\Component.cpp" />
+    <ClCompile Include="..\..\..\Code\DrawComponent.cpp" />
     <ClCompile Include="..\..\..\Code\Game.cpp" />
+    <ClCompile Include="..\..\..\Code\HsvLevers.cpp" />
     <ClCompile Include="..\..\..\Code\Hud.cpp" />
+    <ClCompile Include="..\..\..\Code\Lever.cpp" />
     <ClCompile Include="..\..\..\Code\main.cpp" />
     <ClCompile Include="..\..\..\Code\Random.cpp" />
+    <ClCompile Include="..\..\..\Code\RectComponent.cpp" />
+    <ClCompile Include="..\..\..\Code\Resolution.cpp" />
+    <ClCompile Include="..\..\..\Code\RgbLevers.cpp" />
+    <ClCompile Include="..\..\..\Code\TextComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\Actor.h" />
     <ClInclude Include="..\..\..\Code\Background.h" />
     <ClInclude Include="..\..\..\Code\Chameleon.h" />
+    <ClInclude Include="..\..\..\Code\CircleComponent.h" />
+    <ClInclude Include="..\..\..\Code\Color.h" />
     <ClInclude Include="..\..\..\Code\Component.h" />
+    <ClInclude Include="..\..\..\Code\DrawComponent.h" />
     <ClInclude Include="..\..\..\Code\Game.h" />
+    <ClInclude Include="..\..\..\Code\HsvLevers.h" />
     <ClInclude Include="..\..\..\Code\Hud.h" />
+    <ClInclude Include="..\..\..\Code\Lever.h" />
     <ClInclude Include="..\..\..\Code\Random.h" />
+    <ClInclude Include="..\..\..\Code\RectComponent.h" />
+    <ClInclude Include="..\..\..\Code\Resolution.h" />
+    <ClInclude Include="..\..\..\Code\RgbLevers.h" />
+    <ClInclude Include="..\..\..\Code\TextComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

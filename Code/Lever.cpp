@@ -12,8 +12,16 @@
 Lever::Lever(Actor* owner, int drawPriority) :
     DrawComponent(owner, drawPriority)
     , m_value{ 0 }
+    , m_percX{ 0.f }
+    , m_percY{ 0.f }
     , m_beginC{ Color(0, 0, 0) }
     , m_endC{ Color(255, 255, 255) }
+    , m_railX{ 0 }
+    , m_railY{ 0 }
+    , m_width{ 100 }
+    , m_height{ 50 }
+    , m_textEnabled{ false }
+    , m_textSpace{ 0.f }
 {
     m_owner->GetGame()->AddDrawable(this);
 }
@@ -23,38 +31,31 @@ Lever::~Lever()
     m_owner->GetGame()->RemoveDrawable(this);
 }
 
-void Lever::Initialize(float x, float y, float width, float height, int initValue)
+void Lever::Initialize()
 {
-    // Rail needs to leave space for the text box in the left side
-    float textSpace = Resolution::Width() * 0.06f;
-    
-    m_railX = x + textSpace;
-    m_railY = y;
-    m_width = width - textSpace;    // Width considers both the text and the rail
-    m_height = height;
-
     // Box, counter-clockwise from top-left
-    m_box[0].position = sf::Vector2f(m_railX, m_railY);                      // Bottom-left
-    m_box[1].position = sf::Vector2f(m_railX, m_railY + m_height);           // Bottom-right
-    m_box[2].position = sf::Vector2f(m_railX + m_width, m_railY + m_height); // Top-right
-    m_box[3].position = sf::Vector2f(m_railX + m_width, m_railY);            // Top-left
-    this->SetGradient(m_beginC, m_endC);
+    m_box[0].position = sf::Vector2f(m_railX, m_railY);                         // Top-left
+    m_box[1].position = sf::Vector2f(m_railX, m_railY + m_height);              // Bottom-left
+    m_box[2].position = sf::Vector2f(m_railX + m_width, m_railY + m_height);    // Bottom-right
+    m_box[3].position = sf::Vector2f(m_railX + m_width, m_railY);               // Top-right
+    this->SetE2EGradient(m_beginC, m_endC);
     
     // Selection pinpointer
-    m_lever.setRadius(1.5*height/2);
+    m_lever.setRadius(0.01f*Resolution::Height());//1.5f*height/2);
     m_lever.setFillColor(sf::Color::Transparent);
     m_lever.setOutlineThickness(1.f);
     m_lever.setOutlineColor(sf::Color::Black);
     
     // Text
-    m_text.setFont(*(m_owner->GetGame()->GetFont()));
-    m_text.setCharacterSize(Resolution::Height()/60);
-    m_text.setFillColor(sf::Color::Black);
-    m_text.setOutlineColor(sf::Color::White);
-    m_text.setOutlineThickness(1);
-    m_text.setPosition(x, y);
-    
-    this->SetValue(initValue);
+    if (m_textEnabled)
+    {
+        m_text.setFont(*(m_owner->GetGame()->GetFont()));
+        m_text.setCharacterSize(Resolution::Height() / 60);
+        m_text.setFillColor(sf::Color::Black);
+        m_text.setOutlineColor(sf::Color::White);
+        m_text.setOutlineThickness(1);
+        m_text.setPosition(m_railX - m_textSpace, m_railY);
+    }
 }
 
 bool Lever::CheckCollision(float x, float y)
@@ -75,6 +76,18 @@ bool Lever::CheckCollision(float x, float y)
     return false;
 }
 
+void Lever::SetPosition(float x, float y)
+{
+    m_railX = x + m_textSpace;
+    m_railY = y;
+}
+
+void Lever::SetSize(float width, float height)
+{
+    m_width = width - m_textSpace;    // Width considers both the text and the rail
+    m_height = height;
+}
+
 void Lever::SetValue(int newValue)
 {
     m_value = newValue;
@@ -84,14 +97,28 @@ void Lever::SetValue(int newValue)
             - m_lever.getRadius()                           // radius offset
             + static_cast<float>(m_value)/255.f * m_width;  // value offset
     
-    // Radius is 1.5 the height of the rail, so it overflows 0.25 in each side.
-    float y = m_railY - 0.25 * m_height;
+    // Radius may be > height of the rail, so it should overflow in each side.
+    float y = m_railY - (m_lever.getRadius() - m_height/2);
     
     m_lever.setPosition(x, y);
-    this->UpdateText();
+    if (m_textEnabled)
+    {
+        this->UpdateText();
+    }
 }
 
-void Lever::SetGradient(Color beginning, Color end)
+void Lever::SetPercentages(float percX, float percY)
+{
+    m_percX = percX;
+    m_percY = percY;
+
+    float x = m_railX + percX * m_width - m_lever.getRadius();
+    float y = m_railY + percY * m_height - m_lever.getRadius();
+
+    m_lever.setPosition(x, y);
+}
+
+void Lever::SetE2EGradient(Color beginning, Color end)
 {
     m_beginC = beginning;
     m_endC = end;
@@ -101,6 +128,31 @@ void Lever::SetGradient(Color beginning, Color end)
     m_box[1].color = sfBeginning;     // Bottom-left
     m_box[2].color = sfEnd;           // Bottom-right
     m_box[3].color = sfEnd;           // Top-right
+}
+
+void Lever::SetBoxGradient(Color topL, Color botL, Color botR, Color topR)
+{
+    //m_beginC = beginning;
+    //m_endC = end;
+    sf::Color sfTopL(topL.R(), topL.G(), topL.B());
+    sf::Color sfBotL(botL.R(), botL.G(), botL.B());
+    sf::Color sfBotR(botR.R(), botR.G(), botR.B());
+    sf::Color sfTopR(topR.R(), topR.G(), topR.B());
+    m_box[0].color = sfTopL;     // Top-left
+    m_box[1].color = sfBotL;     // Bottom-left
+    m_box[2].color = sfBotR;     // Bottom-right
+    m_box[3].color = sfTopR;     // Top-right
+}
+
+void Lever::SetHueGradient()
+{
+
+}
+
+void Lever::EnableText()
+{
+    m_textEnabled = true;
+    m_textSpace = Resolution::Width() * 0.06f;
 }
 
 void Lever::UpdateText()
@@ -128,5 +180,8 @@ void Lever::draw(sf::RenderTarget& target, sf::RenderStates states) const
 //    states.transform *= getTransform();
     target.draw(m_box, 4, sf::Quads);
     target.draw(m_lever, states);
-    target.draw(m_text, states);
+    if (m_textEnabled)
+    {
+        target.draw(m_text, states);
+    }
 }

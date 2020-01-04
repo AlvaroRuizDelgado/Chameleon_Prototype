@@ -22,8 +22,12 @@ public:
     
 private:
     const int INITIAL_COLOR[3] { 76, 200, 91 };
+
+    float m_hue;
+    float m_brightness;
+    float m_saturation;
     
     class RectComponent* m_background;
-    class Lever* m_hue;
-    class Lever* m_brightSat;
+    class Lever* m_hueLever;
+    class Lever* m_brightSatBox;
 };

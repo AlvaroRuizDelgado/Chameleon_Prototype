@@ -183,7 +183,10 @@ void Game::Shutdown()
 
 void Game::LoadData()
 {
-    assert(m_font.loadFromFile("Resources/fonts/KosugiMaru-Regular.ttf"));
+
+	if (!m_font.loadFromFile("Resources/fonts/KosugiMaru-Regular.ttf")) {
+		std::cout << "Couldn't load font\n";
+	}
 	Random::Init();
 	m_background.Initialize();
 	m_hud.Initialize();
