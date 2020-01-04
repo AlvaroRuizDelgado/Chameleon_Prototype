@@ -1,14 +1,13 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>    // sf::Text, sf::Font
 #include "Actor.h"
 #include "Color.h"
 
-class RgbLevers : public Actor
+class HsvLevers : public Actor
 {
 public:
-    RgbLevers(class Game* game);
-    ~RgbLevers();
+    HsvLevers(class Game* game);
+    ~HsvLevers();
     
     void Initialize();
     void UpdateActor(float dtAsSeconds) override;
@@ -20,12 +19,11 @@ public:
     Color GetColor() const;
     void SetColor(Color newColor);
     void SetColor(int r, int g, int b);
-    void SetHexaTag(Color color);
     
 private:
     const int INITIAL_COLOR[3] { 76, 200, 91 };
     
     class RectComponent* m_background;
-    class Lever* m_levers[3];
-    class TextComponent* m_hexaTag;
+    class Lever* m_hue;
+    class Lever* m_brightSat;
 };

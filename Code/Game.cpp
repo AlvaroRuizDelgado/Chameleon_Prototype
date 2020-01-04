@@ -18,6 +18,7 @@ Game::Game() :
 	, m_background(this)
 	, m_hud(this)
     , m_rgbLevers(this)
+    , m_hsvLevers(this)
 {
     std::cout << "Resolution: "
         << Resolution::Width() << " x " << Resolution::Height() << std::endl;
@@ -88,10 +89,10 @@ void Game::Input()
             {
                 return;
             }
-//            else if (m_hueLevers.CheckCollision(mouseX, mouseY))
-//            {
-//                return;
-//            }
+            else if (m_hsvLevers.CheckCollision(mouseX, mouseY))
+            {
+                return;
+            }
         }
 //		if (State::PLAYING == m_state)
 //		{
@@ -188,6 +189,7 @@ void Game::LoadData()
 	m_hud.Initialize();
 	m_chameleon.Initialize();
     m_rgbLevers.Initialize();
+    m_hsvLevers.Initialize();
 }
 
 void Game::UnloadData()

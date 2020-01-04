@@ -42,8 +42,9 @@ void Lever::Initialize(float x, float y, float width, float height, int initValu
     
     // Selection pinpointer
     m_lever.setRadius(1.5*height/2);
-    m_lever.setFillColor(sf::Color::Black);
+    m_lever.setFillColor(sf::Color::Transparent);
     m_lever.setOutlineThickness(1.f);
+    m_lever.setOutlineColor(sf::Color::Black);
     
     // Text
     m_text.setFont(*(m_owner->GetGame()->GetFont()));

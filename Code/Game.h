@@ -7,6 +7,7 @@
 #include "Hud.h"
 #include "Resolution.h"
 #include "RgbLevers.h"
+#include "HsvLevers.h"
 
 class Game
 {
@@ -41,6 +42,7 @@ private:
 	Hud m_hud;
 	Chameleon m_chameleon;
     RgbLevers m_rgbLevers;
+    HsvLevers m_hsvLevers;
 
 public:
 	Game();

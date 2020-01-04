@@ -34,7 +34,7 @@ void RgbLevers::Initialize()
 {
     // Initialize levers background
     m_background->SetPosition(0.05*Resolution::Width(), 0.7*Resolution::Height());
-    m_background->SetSize(0.4*Resolution::Width(), 0.17*Resolution::Height());
+    m_background->SetSize(0.44*Resolution::Width(), 0.17*Resolution::Height());
     m_background->SetColor(170, 170, 190);
     
     // Initialize levers
@@ -43,7 +43,7 @@ void RgbLevers::Initialize()
     {
         // Initialize( Position  /  Size  /  Initial value of the lever )
         m_levers[i]->Initialize(0.06*Resolution::Width(), (0.72+i*yOffset)*Resolution::Height(),
-                                0.38*Resolution::Width(), 0.02*Resolution::Height(),
+                                0.41*Resolution::Width(), 0.02*Resolution::Height(),
                                 0);
         int leverC[3]{ 0 };
         leverC[i] = 255;
@@ -69,18 +69,7 @@ bool RgbLevers::CheckCollision(float x, float y)
                 // Set hexadecimal tag to new color
                 this->SetHexaTag(this->GetColor());
                 // Modify the gradient of the levers to show the options
-                for (int j = 0; j < 3; ++j)
-                {
-                    if (i != j)
-                    {
-                        int* endC = m_levers[j]->GetEndColor().GetRgb();
-                        endC[i] = m_levers[i]->GetValue();
-                        int* beginC = m_levers[j]->GetBeginColor().GetRgb();
-                        beginC[i] = m_levers[i]->GetValue();
-                        m_levers[j]->SetGradient(Color(beginC[0], beginC[1], beginC[2]),
-                                                 Color(endC[0], endC[1], endC[2]));
-                    }
-                }
+                this->AdjustGradients(i);
                 return true;
             }
         }
@@ -100,16 +89,35 @@ Color RgbLevers::GetColor() const
 
 void RgbLevers::SetColor(Color newColor)
 {
-    m_levers[0]->SetValue(newColor.R());
-    m_levers[1]->SetValue(newColor.G());
-    m_levers[2]->SetValue(newColor.B());
-    
+    int* color = newColor.GetRgb();
+    for (int i = 0; i < 3; ++i)
+    {
+        m_levers[i]->SetValue(color[i]);
+        this->AdjustGradients(i);
+    }
     this->SetHexaTag(newColor);
 }
 
 void RgbLevers::SetColor(int r, int g, int b)
 {
     this->SetColor(Color(r, g, b));
+}
+
+void RgbLevers::AdjustGradients(int changedLever)
+{
+    // Modify the gradient of the levers to show the options
+    for (int i = 0; i < 3; ++i)
+    {
+        if (changedLever != i)
+        {
+            int* endC = m_levers[i]->GetEndColor().GetRgb();
+            endC[changedLever] = m_levers[changedLever]->GetValue();
+            int* beginC = m_levers[i]->GetBeginColor().GetRgb();
+            beginC[changedLever] = m_levers[changedLever]->GetValue();
+            m_levers[i]->SetGradient(Color(beginC[0], beginC[1], beginC[2]),
+                                     Color(endC[0], endC[1], endC[2]));
+        }
+    }
 }
 
 void RgbLevers::SetHexaTag(Color color)
