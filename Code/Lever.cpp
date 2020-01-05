@@ -34,10 +34,10 @@ Lever::~Lever()
 void Lever::Initialize()
 {
     // Box, counter-clockwise from top-left
-    m_box[0].position = sf::Vector2f(m_railX, m_railY);                         // Top-left
-    m_box[1].position = sf::Vector2f(m_railX, m_railY + m_height);              // Bottom-left
-    m_box[2].position = sf::Vector2f(m_railX + m_width, m_railY + m_height);    // Bottom-right
-    m_box[3].position = sf::Vector2f(m_railX + m_width, m_railY);               // Top-right
+    m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY)));                         // Top-left
+    m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height)));              // Bottom-left
+    m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY)));               // Top-right
+    m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height)));    // Bottom-right
     this->SetE2EGradient(m_beginC, m_endC);
     
     // Selection pinpointer
@@ -126,8 +126,8 @@ void Lever::SetE2EGradient(Color beginning, Color end)
     sf::Color sfEnd(m_endC.R(), m_endC.G(), m_endC.B());
     m_box[0].color = sfBeginning;     // Top-left
     m_box[1].color = sfBeginning;     // Bottom-left
-    m_box[2].color = sfEnd;           // Bottom-right
-    m_box[3].color = sfEnd;           // Top-right
+    m_box[2].color = sfEnd;           // Top-right
+    m_box[3].color = sfEnd;           // Bottom-right
 }
 
 void Lever::SetBoxGradient(Color topL, Color botL, Color botR, Color topR)
@@ -140,13 +140,55 @@ void Lever::SetBoxGradient(Color topL, Color botL, Color botR, Color topR)
     sf::Color sfTopR(topR.R(), topR.G(), topR.B());
     m_box[0].color = sfTopL;     // Top-left
     m_box[1].color = sfBotL;     // Bottom-left
-    m_box[2].color = sfBotR;     // Bottom-right
-    m_box[3].color = sfTopR;     // Top-right
+    m_box[2].color = sfTopR;     // Top-right
+    m_box[3].color = sfBotR;     // Bottom-right
 }
 
 void Lever::SetHueGradient()
 {
+    // Make sure there are enough vertices
+    if (m_box.size() != 14)
+    {
+        printf("Reducing vector of size %i\n", m_box.size());
+        m_box.clear();
+        printf("Now size %i\n", m_box.size());
 
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height)));              // Bottom-left
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height)));    // Bottom-right
+
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * 5 / 6)));
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * 5 / 6)));
+
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * 4 / 6)));
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * 4 / 6)));
+
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * 3 / 6)));
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * 3 / 6)));
+
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * 2 / 6)));
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * 2 / 6)));
+
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * 1 / 6)));
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * 1 / 6)));
+
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY)));                         // Top-left
+        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY)));               // Top-right
+
+        printf("Final size: %i\n", m_box.size());
+    }
+
+    int rgbMap[3][7] = { { 255, 255,   0,   0,   0, 255, 255 },
+                         {   0, 255, 255, 255,   0,   0,   0 },
+                         {   0,   0,   0, 255, 255, 255,   0 } };
+    for (int i = 0; i < 7; ++i)
+    {
+        int R = rgbMap[0][i];
+        int G = rgbMap[1][i];
+        int B = rgbMap[2][i];
+        printf("Color for %i: %i, %i ,%i\n", i, R, G, B);
+        m_box[2*i].color = sf::Color(rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
+        m_box[2*i+1].color = sf::Color(rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
+    }
 }
 
 void Lever::EnableText()
@@ -178,7 +220,7 @@ void Lever::UpdateText()
 void Lever::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 //    states.transform *= getTransform();
-    target.draw(m_box, 4, sf::Quads);
+    target.draw(&m_box[0], m_box.size(), sf::TriangleStrip);
     target.draw(m_lever, states);
     if (m_textEnabled)
     {

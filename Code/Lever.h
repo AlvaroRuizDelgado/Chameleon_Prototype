@@ -56,8 +56,8 @@ private:
     
     Color m_beginC;
     Color m_endC;
-    
-    sf::Vertex m_box[4];
+
+    std::vector<sf::Vertex> m_box;
     sf::CircleShape m_lever;
     sf::Text m_text;
     
