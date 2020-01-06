@@ -12,8 +12,8 @@
 Lever::Lever(Actor* owner, int drawPriority) :
     DrawComponent(owner, drawPriority)
     , m_value{ 0 }
-    , m_percX{ 0.f }
-    , m_percY{ 0.f }
+    , m_percX{ 0.5f }
+    , m_percY{ 0.5f }
     , m_beginC{ Color(0, 0, 0) }
     , m_endC{ Color(255, 255, 255) }
     , m_railX{ 0 }
@@ -38,10 +38,11 @@ void Lever::Initialize()
     m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height)));              // Bottom-left
     m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY)));               // Top-right
     m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height)));    // Bottom-right
+    //this->InitBox(2);   // Initialize with 2 pairs
     this->SetE2EGradient(m_beginC, m_endC);
     
     // Selection pinpointer
-    m_lever.setRadius(0.01f*Resolution::Height());//1.5f*height/2);
+    m_lever.setRadius(0.01f*Resolution::Height());
     m_lever.setFillColor(sf::Color::Transparent);
     m_lever.setOutlineThickness(1.f);
     m_lever.setOutlineColor(sf::Color::Black);
@@ -60,18 +61,31 @@ void Lever::Initialize()
 
 bool Lever::CheckCollision(float x, float y)
 {
-    if (y > m_railY
+    if (x > m_railX
+        && x < (m_railX + m_width)
+        && y > m_railY
         && y < (m_railY + m_height))
     {
         // The distance will give me the value if inside the rail
-        float distance = x - m_railX;
-        float width = m_width;
-        if (distance >= 0
-            && distance <= width)
+        float distX = x - m_railX;
+        float distY = y - m_railY;
+        // Update the percentage values of the selector position
+        m_percX = distX / m_width;
+        m_percY = distY / m_height;
+
+        // Balance the position of the selector if one dimensional
+        if (m_width > 3 * m_height)
         {
-            this->SetValue(static_cast<int>(distance/width*255.f));
-            return true;
+            m_percY = 0.5f;
+            this->UpdateValue(static_cast<int>(m_percX * 255.f));
         }
+        else if (m_height > 3 * m_width)
+        {
+            m_percX = 0.5f;
+            this->UpdateValue(static_cast<int>(m_percY * 255.f));
+        }
+        this->UpdateLeverPosition();
+        return true;
     }
     return false;
 }
@@ -88,32 +102,55 @@ void Lever::SetSize(float width, float height)
     m_height = height;
 }
 
-void Lever::SetValue(int newValue)
+void Lever::UpdateValue(int newValue)
 {
     m_value = newValue;
-    
-    // Value 0 should lead to the center of the ball being on the rail origin.
-    float x = m_railX                                       // m_rail origin
-            - m_lever.getRadius()                           // radius offset
-            + static_cast<float>(m_value)/255.f * m_width;  // value offset
-    
-    // Radius may be > height of the rail, so it should overflow in each side.
-    float y = m_railY - (m_lever.getRadius() - m_height/2);
-    
-    m_lever.setPosition(x, y);
     if (m_textEnabled)
     {
         this->UpdateText();
     }
 }
 
+void Lever::SetValue(int newValue)
+{
+    // Balance the position of the selector if one dimensional
+    if (m_width > 3 * m_height)
+    {
+        m_percY = 0.5f;
+        m_percX = static_cast<float>(newValue)/255.f;
+    }
+    else if (m_height > 3 * m_width)
+    {
+        m_percX = 0.5f;
+        m_percY = static_cast<float>(newValue) / 255.f;
+    }
+    this->UpdateLeverPosition();
+    this->UpdateValue(newValue);
+    //m_value = newValue;
+    //if (m_textEnabled)
+    //{
+    //    this->UpdateText();
+    //}
+}
+
 void Lever::SetPercentages(float percX, float percY)
 {
     m_percX = percX;
     m_percY = percY;
+    this->UpdateLeverPosition();
+}
 
-    float x = m_railX + percX * m_width - m_lever.getRadius();
-    float y = m_railY + percY * m_height - m_lever.getRadius();
+void Lever::UpdateLeverPosition()
+{
+    // The rail ranges [0, 255]
+    float x =   m_railX                   // m_rail horizontal origin
+                + m_percX * m_width       // value offset (0.5f for vertical levers)
+                - m_lever.getRadius();    // radius offset
+
+    // Radius may be > height of the rail, so it should overflow in each side.
+    float y =   m_railY                 // m_rail vertical origin
+                + m_percY * m_height    // value offset (0.5f for horizontal levers)
+                - m_lever.getRadius();  // radius offset
 
     m_lever.setPosition(x, y);
 }
@@ -149,6 +186,7 @@ void Lever::SetHueGradient()
     // Make sure there are enough vertices
     if (m_box.size() != 14)
     {
+        //this->InitBox(7);
         printf("Reducing vector of size %i\n", m_box.size());
         m_box.clear();
         printf("Now size %i\n", m_box.size());
@@ -189,6 +227,21 @@ void Lever::SetHueGradient()
         m_box[2*i].color = sf::Color(rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
         m_box[2*i+1].color = sf::Color(rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
     }
+}
+
+void Lever::InitBox(int numVertPairs)
+{
+    //printf("Clearing vector of size %i\n", m_box.size());
+    //m_box.clear();
+    //printf("Now size %i\n", m_box.size());
+
+    //// Starting from the top, initialize vertices in the same height
+    //for (int i = 0; i < numVertPairs; ++numVertPairs)
+    //{
+    //    m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * i / numVertPairs)));
+    //    m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * i / numVertPairs)));
+    //}
+    //printf("Final size: %i\n", m_box.size());
 }
 
 void Lever::EnableText()

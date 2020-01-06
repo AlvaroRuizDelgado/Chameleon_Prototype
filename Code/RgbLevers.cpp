@@ -65,11 +65,11 @@ bool RgbLevers::CheckCollision(float x, float y)
 {
     if (m_background->CheckCollision(x, y))
     {
-        std::cout << "  - Collision with RGB levers bg\n";
         for (int i = 0; i < 3; ++i)
         {
             if(m_levers[i]->CheckCollision(x, y))
             {
+                printf("  - Collision with RGB lever %i\n", i);
                 // Set hexadecimal tag to new color
                 this->SetHexaTag(this->GetColor());
                 // Modify the gradient of the levers to show the options

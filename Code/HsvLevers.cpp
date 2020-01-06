@@ -54,20 +54,20 @@ bool HsvLevers::CheckCollision(float x, float y)
 {
     if (m_background->CheckCollision(x, y))
     {
-        std::cout << "  - Collision with HSV levers bg\n";
-        return true;
-        //if(m_brightSatBox->CheckCollision(x, y))
-        //{
-        //    // Modify the gradient of the levers to show the options
-        //    this->AdjustGradients(i);
-        //    return true;
-        //}
-        //if (m_hueLever->CheckCollision(x, y))
-        //{
-        //    // Modify the gradient of the levers to show the options
-        //    this->AdjustGradients(i);
-        //    return true;
-        //}
+        if(m_brightSatBox->CheckCollision(x, y))
+        {
+            std::cout << "  - Collision with bright/sat box\n";
+            // Modify the gradient of the levers to show the options
+            //this->AdjustGradients(i);
+            return true;
+        }
+        if (m_hueLever->CheckCollision(x, y))
+        {
+            std::cout << "  - Collision with hue lever\n";
+            // Modify the gradient of the levers to show the options
+            //this->AdjustGradients(i);
+            return true;
+        }
     }
     return false;
 }

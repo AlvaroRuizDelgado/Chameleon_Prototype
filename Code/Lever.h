@@ -18,15 +18,19 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     
-    void Initialize();// float x, float y, float width, float height, int initValue);
+    void Initialize();
+    void InitBox(int numVertPairs);
     
     bool CheckCollision(float x, float y);
+    void UpdateValue(int newValue);
+
+    void UpdateLeverPosition();     // Updates the position of the selector based on m_percX and m_percY.
     
     // Getters / setters
     int GetValue() { return m_value; };
-    void SetValue(int newValue);
     void SetPosition(float x, float y);
     void SetSize(float width, float height);
+    void SetValue(int newValue);
     void SetPercentages(float percX, float percY);
     void SetPercX(float x) { this->SetPercentages(x, 0.f); };
     void SetPercY(float y) { this->SetPercentages(0.5f, y); };
@@ -34,7 +38,7 @@ public:
     float GetPercY() { return m_percY; };
     void SetE2EGradient(class Color beginning, class Color end);
     void SetBoxGradient(class Color topL, class Color botL, class Color botR, class Color topR);
-    void SetHueGradient();// class Color c0, class Color c1, class Color c2, class Color c3, class Color c4, class Color c5);
+    void SetHueGradient();
     //void setFineGradient(class Color c0, class Color c1, class Color c2, class Color c3, class Color c4, class Color c5);
     Color GetBeginColor() { return m_beginC; };
     Color GetEndColor() { return m_endC; };
