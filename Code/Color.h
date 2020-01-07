@@ -25,14 +25,15 @@ public:
     void SetColor (Color newColor);
     void SetHue (float newHue);
     void SetSaturation (float newSat);
-    void SetBrigthness (float newBright);
+    void SetBrightness (float newBright);
     
 private:
     int FloatToInt(float channel) const { return static_cast<int>(channel*255.f); };
     float IntToFloat(int channel) const { return static_cast<float>(channel)/255.f; };
-    void UpdateHueFromRgb();
-    void UpdateRgbFromHue();
-//    void UpdateHex();
+    void UpdateHsvFromRgb();
+    void UpdateRgbFromHsv();
+    //void RgbToHsv();
+    int HsvToRgb(float n);
     
 private:
     float m_rgbFloat[3];

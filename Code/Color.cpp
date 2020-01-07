@@ -1,5 +1,6 @@
 #include "Color.h"
 
+#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <iomanip>
@@ -57,16 +58,41 @@ bool Color::MorphInto(int targetColor[], float changeBudget)
 //{
 //
 //}
-//
-//void Color::UpdateRgbFromHue()
-//{
-//
-//}
-//
-//void Color::UpdateHex()
-//{
-//
-//}
+
+void Color::UpdateRgbFromHsv()
+{
+    m_rgbInt[0] = this->HsvToRgb(5.f);
+    m_rgbInt[1] = this->HsvToRgb(3.f);
+    m_rgbInt[2] = this->HsvToRgb(1.f);
+}
+
+// https://en.wikipedia.org/wiki/HSL_and_HSV
+int Color::HsvToRgb(float n)
+{
+    float k = std::fmod(n + m_hue * 6.f, 6);
+    float result = m_brightness - m_brightness * m_saturation * std::max(std::min({ k, 4 - k, 1.f }), 0.f);
+    printf("Index %.1f, k = %.1f from (H,S,V)=(%.2f,%.2f,%.2f), result = %i\n",
+        n, k, m_hue, m_saturation, m_brightness, static_cast<int>(result));
+    return static_cast<int>(result*255.f);
+}
+
+void Color::SetHue(float newHue)
+{
+    m_hue = newHue;
+    this->UpdateRgbFromHsv();
+}
+
+void Color::SetSaturation(float newSat)
+{
+    m_saturation = newSat;
+    this->UpdateRgbFromHsv();
+}
+
+void Color::SetBrightness(float newBright)
+{
+    m_brightness = newBright;
+    this->UpdateRgbFromHsv();
+}
 
 std::wstring Color::GetHexa() const
 {

@@ -19,7 +19,7 @@ public:
     // Getters / setters
     Color GetColor() const;
     void SetColor(Color newColor);
-    void SetColor(int r, int g, int b);
+    void SetColor(int r, int g, int b) { this->SetColor(Color(r, g, b)); };
     void SetHexaTag(Color color);
     
 private:

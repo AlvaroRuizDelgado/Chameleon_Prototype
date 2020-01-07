@@ -70,6 +70,8 @@ bool RgbLevers::CheckCollision(float x, float y)
             if(m_levers[i]->CheckCollision(x, y))
             {
                 printf("  - Collision with RGB lever %i\n", i);
+                // Set Chameleon's new color
+                this->GetGame()->SetChameleonColor(this->GetColor());
                 // Set hexadecimal tag to new color
                 this->SetHexaTag(this->GetColor());
                 // Modify the gradient of the levers to show the options
@@ -100,11 +102,6 @@ void RgbLevers::SetColor(Color newColor)
         this->AdjustGradients(i);
     }
     this->SetHexaTag(newColor);
-}
-
-void RgbLevers::SetColor(int r, int g, int b)
-{
-    this->SetColor(Color(r, g, b));
 }
 
 void RgbLevers::AdjustGradients(int changedLever)

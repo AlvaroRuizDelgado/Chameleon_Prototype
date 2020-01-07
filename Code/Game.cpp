@@ -133,9 +133,6 @@ void Game::Update(float dtAsSeconds)
 		delete actor;
 	}
 
-    // Update color
-    m_chameleon.SetColor(Color(m_rgbLevers.GetColor().R(), m_rgbLevers.GetColor().G(), m_rgbLevers.GetColor().B()));
-    
 	// Color check
     int colorDiff[3] = { 0, 0, 0 };
     colorDiff[0] = static_cast<int>(m_background.GetCurrentColor().R() - m_chameleon.GetColor().R());
@@ -161,6 +158,13 @@ void Game::Update(float dtAsSeconds)
 	{
 //		std::cout << "Very very different!!\n";
 	}
+}
+
+void Game::SetChameleonColor(Color newColor)
+{
+	m_chameleon.SetColor(newColor);
+	m_rgbLevers.SetColor(newColor);
+	m_hsvLevers.SetColor(newColor);
 }
 
 void Game::Draw()

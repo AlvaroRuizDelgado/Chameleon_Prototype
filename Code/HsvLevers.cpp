@@ -9,9 +9,9 @@
 
 HsvLevers::HsvLevers(Game* game) :
     Actor(game)
-    , m_hue{ 0.f }
-    , m_brightness{ 0.f }
-    , m_saturation{ 0.f }
+    , m_hue{ 0.5f }
+    , m_brightness{ 0.5f }
+    , m_saturation{ 0.5f }
 {
     m_background = new RectComponent(this, 20);
     m_hueLever = new Lever(this, 100);
@@ -57,14 +57,18 @@ bool HsvLevers::CheckCollision(float x, float y)
         if(m_brightSatBox->CheckCollision(x, y))
         {
             std::cout << "  - Collision with bright/sat box\n";
-            // Modify the gradient of the levers to show the options
-            //this->AdjustGradients(i);
+            m_saturation = m_brightSatBox->GetPercX();
+            m_brightness = m_brightSatBox->GetPercX();
+            this->GetGame()->SetChameleonColor(this->GetColor());
             return true;
         }
         if (m_hueLever->CheckCollision(x, y))
         {
             std::cout << "  - Collision with hue lever\n";
-            // Modify the gradient of the levers to show the options
+            m_hue = 1.f - m_hueLever->GetPercY();
+            this->AdjustBrightSatBox();
+            this->GetGame()->SetChameleonColor(this->GetColor());
+            // Modify the background color of the brigthness / saturation box
             //this->AdjustGradients(i);
             return true;
         }
@@ -77,25 +81,36 @@ void HsvLevers::UpdateActor(float dtAsSeconds)
     Actor::UpdateActor(dtAsSeconds);
 }
 
-//Color HsvLevers::GetColor() const
-//{
-//    return Color(m_levers[0]->GetValue(), m_levers[1]->GetValue(), m_levers[2]->GetValue());
-//}
+Color HsvLevers::GetColor() const
+{
+    Color hsvColor(0, 0, 0);
+    hsvColor.SetHue(m_hue);
+    hsvColor.SetSaturation(m_saturation);
+    hsvColor.SetBrightness(m_brightness);
+    return hsvColor;
+}
 
-//void HsvLevers::SetColor(Color newColor)
-//{
-//    int* color = newColor.GetRgb();
-//    for (int i = 0; i < 3; ++i)
-//    {
-//        m_levers[i]->SetValue(color[i]);
-//        this->AdjustGradients(i);
-//    }
-//}
+void HsvLevers::SetColor(Color newColor)
+{
+    int* color = newColor.GetRgb();
+    //for (int i = 0; i < 3; ++i)
+    //{
+    //    m_levers[i]->SetValue(color[i]);
+    //    this->AdjustGradients(i);
+    //}
+}
 
-//void HsvLevers::SetColor(int r, int g, int b)
-//{
-//    this->SetColor(Color(r, g, b));
-//}
+void HsvLevers::AdjustBrightSatBox()
+{
+    Color hueColor(0, 0, 0);
+    hueColor.SetHue(m_hue);
+    hueColor.SetSaturation(1.f);
+    hueColor.SetBrightness(1.f);
+    m_brightSatBox->SetBoxGradient( Color(255, 255, 255),   // Top left
+                                    Color(0, 0, 0),         // Bottom left
+                                    Color(0, 0, 0),         // Bottom right
+                                    hueColor);      // Top right
+}
 
 //void HsvLevers::AdjustGradients(int changedLever)
 //{
