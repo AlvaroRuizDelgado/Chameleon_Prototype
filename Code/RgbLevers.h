@@ -7,7 +7,7 @@
 class RgbLevers : public Actor
 {
 public:
-    RgbLevers(class Game* game);
+    RgbLevers(class Game* game, Color& color);
     ~RgbLevers();
     
     void Initialize();
@@ -17,7 +17,7 @@ public:
     void AdjustGradients(int changedLever);
     
     // Getters / setters
-    Color GetColor() const;
+    Color GetColor() const { return m_color; };
     void SetColor(Color newColor);
     void SetColor(int r, int g, int b) { this->SetColor(Color(r, g, b)); };
     void SetHexaTag(Color color);
@@ -28,4 +28,5 @@ private:
     class RectComponent* m_background;
     class Lever* m_levers[3];
     class TextComponent* m_hexaTag;
+    Color& m_color;
 };

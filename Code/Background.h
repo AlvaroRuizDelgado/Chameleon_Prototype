@@ -13,7 +13,7 @@ private:
     Color m_targetColor;
 	float m_changePerSec;
 
-    class RectComponent* m_colorComp;
+    class RectComponent* m_rectComp;
 
 private:
 	void NewTargetColor();

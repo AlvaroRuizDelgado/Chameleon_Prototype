@@ -38,7 +38,6 @@ void Lever::Initialize()
     m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height)));              // Bottom-left
     m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY)));               // Top-right
     m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height)));    // Bottom-right
-    //this->InitBox(2);   // Initialize with 2 pairs
     this->SetE2EGradient(m_beginC, m_endC);
     
     // Selection pinpointer
@@ -167,14 +166,14 @@ void Lever::SetE2EGradient(Color beginning, Color end)
     m_box[3].color = sfEnd;           // Bottom-right
 }
 
-void Lever::SetBoxGradient(Color topL, Color botL, Color botR, Color topR)
+void Lever::SetBoxGradient(Color topL, Color botL, Color topR, Color botR)
 {
     //m_beginC = beginning;
     //m_endC = end;
     sf::Color sfTopL(topL.R(), topL.G(), topL.B());
     sf::Color sfBotL(botL.R(), botL.G(), botL.B());
-    sf::Color sfBotR(botR.R(), botR.G(), botR.B());
     sf::Color sfTopR(topR.R(), topR.G(), topR.B());
+    sf::Color sfBotR(botR.R(), botR.G(), botR.B());
     m_box[0].color = sfTopL;     // Top-left
     m_box[1].color = sfBotL;     // Bottom-left
     m_box[2].color = sfTopR;     // Top-right

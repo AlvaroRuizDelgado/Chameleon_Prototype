@@ -9,8 +9,9 @@
 #include "Resolution.h"
 #include "TextComponent.h"
 
-RgbLevers::RgbLevers(Game* game) :
+RgbLevers::RgbLevers(Game* game, Color& color) :
     Actor(game)
+    , m_color{ color }
     , m_levers{ nullptr }
 {
     m_background = new RectComponent(this, 20);
@@ -71,7 +72,7 @@ bool RgbLevers::CheckCollision(float x, float y)
             {
                 printf("  - Collision with RGB lever %i\n", i);
                 // Set Chameleon's new color
-                this->GetGame()->SetChameleonColor(this->GetColor());
+                m_color.SetRgb(m_levers[0]->GetValue(), m_levers[1]->GetValue(), m_levers[2]->GetValue());
                 // Set hexadecimal tag to new color
                 this->SetHexaTag(this->GetColor());
                 // Modify the gradient of the levers to show the options
@@ -86,16 +87,12 @@ bool RgbLevers::CheckCollision(float x, float y)
 void RgbLevers::UpdateActor(float dtAsSeconds)
 {
     Actor::UpdateActor(dtAsSeconds);
-}
-
-Color RgbLevers::GetColor() const
-{
-    return Color(m_levers[0]->GetValue(), m_levers[1]->GetValue(), m_levers[2]->GetValue());
+    this->SetColor(m_color);
 }
 
 void RgbLevers::SetColor(Color newColor)
 {
-    int* color = newColor.GetRgb();
+    const int* color = newColor.GetRgb();
     for (int i = 0; i < 3; ++i)
     {
         m_levers[i]->SetValue(color[i]);

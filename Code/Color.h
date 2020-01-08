@@ -22,6 +22,7 @@ public:
     std::wstring GetHexa() const;
     
     void SetRgb (int r, int g, int b);
+    void SetRgb (float r, float g, float b);
     void SetColor (Color newColor);
     void SetHue (float newHue);
     void SetSaturation (float newSat);
@@ -32,8 +33,7 @@ private:
     float IntToFloat(int channel) const { return static_cast<float>(channel)/255.f; };
     void UpdateHsvFromRgb();
     void UpdateRgbFromHsv();
-    //void RgbToHsv();
-    int HsvToRgb(float n);
+    float HsvToRgb(float n);
     
 private:
     float m_rgbFloat[3];
@@ -41,7 +41,6 @@ private:
     float m_hue;
     float m_saturation;
     float m_brightness;
-//    std::string m_hex;
     
 public:
     static constexpr int WHITE[3] { 0, 0, 0 };

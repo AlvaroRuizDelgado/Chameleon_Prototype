@@ -11,15 +11,15 @@ Background::Background(Game* game) :
 	Actor(game)
 {
     // Background color has full draw priority (first drawn element)
-    m_colorComp = new RectComponent(this, 0);
-    m_colorComp->SetOutlineThickness(0.f);
-    m_colorComp->SetPosition(0.f, 0.f);
-    m_colorComp->SetSize(Resolution::Width(), Resolution::Height());
+    m_rectComp = new RectComponent(this, 0);
+    m_rectComp->SetOutlineThickness(0.f);
+    m_rectComp->SetPosition(0.f, 0.f);
+    m_rectComp->SetSize(Resolution::Width(), Resolution::Height());
 }
 
 Background::~Background()
 {
-    delete m_colorComp;
+    delete m_rectComp;
 }
 
 void Background::Initialize()
@@ -35,7 +35,7 @@ void Background::Initialize()
 	this->NewTargetColor();
     
     // Background color component
-    m_colorComp->SetColor(m_bgColor.R(), m_bgColor.G(), m_bgColor.B());
+    m_rectComp->SetColor(m_bgColor.R(), m_bgColor.G(), m_bgColor.B());
 }
 
 
@@ -48,10 +48,10 @@ void Background::UpdateActor(float dtAsSeconds)
     
     if (m_bgColor.MorphInto(m_targetColor.GetRgb(), changeBudget))
     {
-        std::cout << "************** Target achieved *****************\n";
+        //std::cout << "************** Target achieved *****************\n";
         this->NewTargetColor();
     }
-    m_colorComp->SetColor(m_bgColor.R(), m_bgColor.G(), m_bgColor.B());
+    m_rectComp->SetColor(m_bgColor.R(), m_bgColor.G(), m_bgColor.B());
 }
 
 void Background::NewTargetColor()

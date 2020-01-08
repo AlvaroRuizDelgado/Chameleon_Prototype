@@ -14,11 +14,11 @@ Game::Game() :
     , m_resolution(1080, 1920)
 	, m_updatingActors{ false }
 	, m_state{ State::PLAYING }
-	, m_chameleon(this)
 	, m_background(this)
 	, m_hud(this)
-    , m_rgbLevers(this)
-    , m_hsvLevers(this)
+	, m_chameleon(this, m_chameleonColor)
+    , m_rgbLevers(this, m_chameleonColor)
+    , m_hsvLevers(this, m_chameleonColor)
 {
     std::cout << "Resolution: "
         << Resolution::Width() << " x " << Resolution::Height() << std::endl;
@@ -158,13 +158,6 @@ void Game::Update(float dtAsSeconds)
 	{
 //		std::cout << "Very very different!!\n";
 	}
-}
-
-void Game::SetChameleonColor(Color newColor)
-{
-	m_chameleon.SetColor(newColor);
-	m_rgbLevers.SetColor(newColor);
-	m_hsvLevers.SetColor(newColor);
 }
 
 void Game::Draw()

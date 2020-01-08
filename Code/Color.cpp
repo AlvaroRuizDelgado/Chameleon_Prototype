@@ -47,6 +47,7 @@ bool Color::MorphInto(int targetColor[], float changeBudget)
             m_rgbFloat[i] += channelBudget;
             m_rgbInt[i] = this->FloatToInt(m_rgbFloat[i]);
         }
+        //this->SetRgb(m_rgbFloat[0], m_rgbFloat[1], m_rgbFloat[2]);
     }
     // DEBUG
 //    std::cout << "- Target  : " << m_targetColorF[0] << " " << m_targetColorF[1] << " " << m_targetColorF[2] << std::endl;
@@ -54,26 +55,58 @@ bool Color::MorphInto(int targetColor[], float changeBudget)
     return false;
 }
 
-//void Color::UpdateHueFromRgb()
-//{
-//
-//}
+// https://en.wikipedia.org/wiki/HSL_and_HSV
+void Color::UpdateHsvFromRgb()
+{
+    const float MAX = std::max({ m_rgbFloat[0], m_rgbFloat[1], m_rgbFloat[2] });
+    const float MIN = std::min({ m_rgbFloat[0], m_rgbFloat[1], m_rgbFloat[2] });
+
+    // ** HUE **
+    if (MAX == MIN)
+    {
+        m_hue = 0;
+    }
+    else if (MAX == m_rgbFloat[0])
+    {
+        m_hue = 60.f/360.f * (0 + (m_rgbFloat[1] - m_rgbFloat[2]) / (MAX - MIN));
+    }
+    else if (MAX == m_rgbFloat[1])
+    {
+        m_hue = 60.f/360.f * (2 + (m_rgbFloat[2] - m_rgbFloat[0]) / (MAX - MIN));
+    }
+    else if (MAX == m_rgbFloat[2])
+    {
+        m_hue = 60.f/360.f * (4 + (m_rgbFloat[0] - m_rgbFloat[1]) / (MAX - MIN));
+    }
+
+    // ** SATURATION **
+    if (0 == MAX)
+    {
+        m_saturation = 0;
+    }
+    else
+    {
+        m_saturation = (MAX - MIN) / MAX;
+    }
+
+    // ** BRIGHTNESS **
+    m_brightness = MAX;
+
+    // ** LUMINOSITY **
+    //m_luminosity = (MAX + MIN) / 2.f;
+}
 
 void Color::UpdateRgbFromHsv()
 {
-    m_rgbInt[0] = this->HsvToRgb(5.f);
-    m_rgbInt[1] = this->HsvToRgb(3.f);
-    m_rgbInt[2] = this->HsvToRgb(1.f);
+    this->SetRgb(this->HsvToRgb(5.f), this->HsvToRgb(3.f), this->HsvToRgb(1.f));
 }
 
 // https://en.wikipedia.org/wiki/HSL_and_HSV
-int Color::HsvToRgb(float n)
+float Color::HsvToRgb(float n)
 {
     float k = std::fmod(n + m_hue * 6.f, 6);
     float result = m_brightness - m_brightness * m_saturation * std::max(std::min({ k, 4 - k, 1.f }), 0.f);
-    printf("Index %.1f, k = %.1f from (H,S,V)=(%.2f,%.2f,%.2f), result = %i\n",
-        n, k, m_hue, m_saturation, m_brightness, static_cast<int>(result));
-    return static_cast<int>(result*255.f);
+    return result;
 }
 
 void Color::SetHue(float newHue)
@@ -113,27 +146,25 @@ void Color::SetRgb (int r, int g, int b)
     {
         m_rgbFloat[i] = this->IntToFloat(m_rgbInt[i]);
     }
+    this->UpdateHsvFromRgb();
+}
+
+void Color::SetRgb (float r, float g, float b)
+{
+    m_rgbFloat[0] = r;
+    m_rgbFloat[1] = g;
+    m_rgbFloat[2] = b;
+    for (int i = 0; i < NUM_CHANNELS; ++i)
+    {
+        m_rgbInt[i] = this->FloatToInt(m_rgbFloat[i]);
+    }
+    //this->UpdateHsvFromRgb();
 }
 
 void Color::SetColor (Color newColor)
 {
     this->SetRgb(newColor.R(), newColor.G(), newColor.B());
 }
-
-//void Color::SetHue (float newHue)
-//{
-//
-//}
-//
-//void Color::SetSaturation (float newSat)
-//{
-//
-//}
-//
-//void Color::SetBrigthness (float newBright)
-//{
-//
-//}
 
 constexpr int Color::WHITE[3];
 constexpr int Color::BLACK[3];

@@ -5,14 +5,7 @@
 
 class Lever : public DrawComponent
 {
-public:
-//    static enum class EOrientation
-//    {
-//        HORIZONTAL,
-//        VERTICAL
-//    }
-//    SetOrientation(EOrientation orientation);
-    
+public:    
     Lever(class Actor* owner, int drawPriority = 100);
     ~Lever();
     
@@ -24,7 +17,8 @@ public:
     bool CheckCollision(float x, float y);
     void UpdateValue(int newValue);
 
-    void UpdateLeverPosition();     // Updates the position of the selector based on m_percX and m_percY.
+    // Update the position of the selector based on m_percX and m_percY.
+    void UpdateLeverPosition();
     
     // Getters / setters
     int GetValue() { return m_value; };
@@ -39,7 +33,6 @@ public:
     void SetE2EGradient(class Color beginning, class Color end);
     void SetBoxGradient(class Color topL, class Color botL, class Color botR, class Color topR);
     void SetHueGradient();
-    //void setFineGradient(class Color c0, class Color c1, class Color c2, class Color c3, class Color c4, class Color c5);
     Color GetBeginColor() { return m_beginC; };
     Color GetEndColor() { return m_endC; };
     void EnableText();
@@ -54,7 +47,6 @@ private:
     float m_railY;
     float m_width;
     float m_height;
-    //    float m_rotation;
     bool m_textEnabled;
     float m_textSpace;    // Space for the text in case it is enabled
     

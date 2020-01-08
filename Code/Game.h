@@ -4,6 +4,7 @@
 
 #include "Background.h"
 #include "Chameleon.h"
+#include "Color.h"
 #include "Hud.h"
 #include "Resolution.h"
 #include "RgbLevers.h"
@@ -40,6 +41,7 @@ private:
 	// Game objects
 	Background m_background;
 	Hud m_hud;
+	Color m_chameleonColor;
 	Chameleon m_chameleon;
     RgbLevers m_rgbLevers;
     HsvLevers m_hsvLevers;
@@ -59,7 +61,6 @@ public:
     // Getters / setters
     Color GetTargetColor() const { return m_background.GetTargetColor(); };
     sf::Font* GetFont() { return &m_font; };
-	void SetChameleonColor(Color newColor);
 
 private:
 	void Input();

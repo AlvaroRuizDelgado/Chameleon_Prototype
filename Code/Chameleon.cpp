@@ -6,8 +6,9 @@
 #include "RectComponent.h"
 #include "Resolution.h"
 
-Chameleon::Chameleon(Game* game) :
+Chameleon::Chameleon(Game* game, Color& color) :
     Actor(game)
+    , m_color{ color }
 {
     for (int i = 0; i < NUM_LAYERS; ++i)
     {
