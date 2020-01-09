@@ -23,9 +23,6 @@ public:
 private:
     const int INITIAL_COLOR[3] { 76, 200, 91 };
 
-    float m_hue;
-    float m_saturation;
-    float m_brightness;
     Color& m_color;
     
     class RectComponent* m_background;

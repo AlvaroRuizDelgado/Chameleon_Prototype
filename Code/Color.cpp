@@ -78,6 +78,10 @@ void Color::UpdateHsvFromRgb()
     {
         m_hue = 60.f/360.f * (4 + (m_rgbFloat[0] - m_rgbFloat[1]) / (MAX - MIN));
     }
+    if (m_hue < 0)
+    {
+        m_hue += 360.f / 360.f;
+    }
 
     // ** SATURATION **
     if (0 == MAX)

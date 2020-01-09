@@ -10,9 +10,6 @@
 HsvLevers::HsvLevers(Game* game, Color& color) :
     Actor(game)
     , m_color{ color }
-    , m_hue{ 0.5f }
-    , m_brightness{ 0.5f }
-    , m_saturation{ 0.5f }
 {
     m_background = new RectComponent(this, 20);
     m_hueLever = new Lever(this, 100);
@@ -58,19 +55,17 @@ bool HsvLevers::CheckCollision(float x, float y)
         if (m_hueLever->CheckCollision(x, y))
         {
             std::cout << "  - Collision with hue lever\n";
-            m_hue = 1.f - m_hueLever->GetPercY();
-            m_color.SetHue(m_hue);
+            //m_hue = 1.f - m_hueLever->GetPercY();
+            m_color.SetHue(1.f - m_hueLever->GetPercY());
             this->AdjustBrightSatBox();
             return true;
         }
         if(m_brightSatBox->CheckCollision(x, y))
         {
             std::cout << "  - Collision with bright/sat box\n";
-            m_saturation = m_brightSatBox->GetPercX();
-            m_brightness = 1.f - m_brightSatBox->GetPercY();
-            printf("SV=(%.2f,%.2f)\n", m_saturation, m_brightness);
-            m_color.SetSaturation(m_saturation);
-            m_color.SetBrightness(m_brightness);
+            m_color.SetSaturation(m_brightSatBox->GetPercX());
+            m_color.SetBrightness(1.f - m_brightSatBox->GetPercY());
+            printf("SV=(%.2f,%.2f)\n", m_color.GetSaturation(), m_color.GetBrightness());
             return true;
         }
     }
@@ -85,13 +80,13 @@ void HsvLevers::UpdateActor(float dtAsSeconds)
 
 void HsvLevers::SetColor(Color newColor)
 {
-    m_hue = newColor.GetHue();
-    m_hueLever->SetPercY(1.f - m_hue);
+    m_color.SetHue(newColor.GetHue());
+    m_hueLever->SetPercY(1.f - m_color.GetHue());
     this->AdjustBrightSatBox();
 
-    m_saturation = newColor.GetSaturation();
-    m_brightness = newColor.GetBrightness();
-    m_brightSatBox->SetPercentages(m_saturation, 1.f - m_brightness);
+    m_color.SetSaturation(newColor.GetSaturation());
+    m_color.SetBrightness(newColor.GetBrightness());
+    m_brightSatBox->SetPercentages(m_color.GetSaturation(), 1.f - m_color.GetBrightness());
 }
 
 void HsvLevers::AdjustBrightSatBox()
