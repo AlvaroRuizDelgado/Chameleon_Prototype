@@ -69,4 +69,6 @@ private:
 
 	void LoadData();
 	void UnloadData();
+
+	bool m_mouseDrag;
 };

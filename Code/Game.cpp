@@ -10,15 +10,16 @@
 
 Game::Game() :
 	m_isRunning{ true }
-//    , m_resolution(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
-    , m_resolution(1080, 1920)
+	//    , m_resolution(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
+	, m_resolution(1080, 1920)
 	, m_updatingActors{ false }
 	, m_state{ State::PLAYING }
 	, m_background(this)
 	, m_hud(this)
 	, m_chameleon(this, m_chameleonColor)
-    , m_rgbLevers(this, m_chameleonColor)
-    , m_hsvLevers(this, m_chameleonColor)
+	, m_rgbLevers(this, m_chameleonColor)
+	, m_hsvLevers(this, m_chameleonColor)
+	, m_mouseDrag{ false }
 {
     std::cout << "Resolution: "
         << Resolution::Width() << " x " << Resolution::Height() << std::endl;
@@ -80,11 +81,22 @@ void Game::Input()
         {
             mouseX = sf::Mouse::getPosition(m_window).x;
             mouseY = sf::Mouse::getPosition(m_window).y;
-            printf("Mouse clicked: %f, %f\n", mouseX, mouseY);
+            printf("Mouse clicked\n");
+			m_mouseDrag = true;
         }
 
-        if (event.type == sf::Event::MouseButtonPressed)
+		if (event.type == sf::Event::MouseButtonReleased)
+		{
+			printf(" - Mouse released\n");
+			m_mouseDrag = false;
+		}
+
+        //if (event.type == sf::Event::MouseButtonPressed)
+		if (m_mouseDrag)
         {
+			mouseX = sf::Mouse::getPosition(m_window).x;
+			mouseY = sf::Mouse::getPosition(m_window).y;
+			printf(" - Position: %f, %f\n", mouseX, mouseY);
             if (m_rgbLevers.CheckCollision(mouseX, mouseY))
             {
                 return;
