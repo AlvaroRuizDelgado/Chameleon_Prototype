@@ -9,6 +9,7 @@
 #include "Resolution.h"
 #include "RgbLevers.h"
 #include "HsvLevers.h"
+#include "SpectrumLevers.h"
 
 class Game
 {
@@ -45,6 +46,7 @@ private:
 	Chameleon m_chameleon;
     RgbLevers m_rgbLevers;
     HsvLevers m_hsvLevers;
+	SpectrumLevers m_spectrumLevers;
 
 public:
 	Game();

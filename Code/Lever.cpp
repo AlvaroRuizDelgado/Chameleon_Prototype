@@ -21,7 +21,10 @@ Lever::Lever(Actor* owner, int drawPriority) :
     , m_width{ 100 }
     , m_height{ 50 }
     , m_textEnabled{ false }
+    , m_leverEnabled{ true }
     , m_textSpace{ 0.f }
+    , m_orientation{ EOrientation::Vertical }
+    , m_oneDimension{ false }
 {
     m_owner->GetGame()->AddDrawable(this);
 }
@@ -33,7 +36,6 @@ Lever::~Lever()
 
 void Lever::Initialize()
 {
-    // Box, counter-clockwise from top-left
     m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY)));                         // Top-left
     m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height)));              // Bottom-left
     m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY)));               // Top-right
@@ -73,15 +75,18 @@ bool Lever::CheckCollision(float x, float y)
         m_percY = distY / m_height;
 
         // Balance the position of the selector if one dimensional
-        if (m_width > 3 * m_height)
+        if (m_oneDimension)
         {
-            m_percY = 0.5f;
-            this->UpdateValue(static_cast<int>(m_percX * 255.f));
-        }
-        else if (m_height > 3 * m_width)
-        {
-            m_percX = 0.5f;
-            this->UpdateValue(static_cast<int>(m_percY * 255.f));
+            if (EOrientation::Horizontal == m_orientation)
+            {
+                m_percY = 0.5f;
+                this->UpdateValue(static_cast<int>(m_percX * 255.f));
+            }
+            else if (EOrientation::Vertical == m_orientation)
+            {
+                m_percX = 0.5f;
+                this->UpdateValue(static_cast<int>(m_percY * 255.f));
+            }
         }
         this->UpdateLeverPosition();
         return true;
@@ -125,11 +130,6 @@ void Lever::SetValue(int newValue)
     }
     this->UpdateLeverPosition();
     this->UpdateValue(newValue);
-    //m_value = newValue;
-    //if (m_textEnabled)
-    //{
-    //    this->UpdateText();
-    //}
 }
 
 void Lever::SetPercentages(float percX, float percY)
@@ -168,8 +168,6 @@ void Lever::SetE2EGradient(Color beginning, Color end)
 
 void Lever::SetBoxGradient(Color topL, Color botL, Color topR, Color botR)
 {
-    //m_beginC = beginning;
-    //m_endC = end;
     sf::Color sfTopL(topL.R(), topL.G(), topL.B());
     sf::Color sfBotL(botL.R(), botL.G(), botL.B());
     sf::Color sfTopR(topR.R(), topR.G(), topR.B());
@@ -180,67 +178,65 @@ void Lever::SetBoxGradient(Color topL, Color botL, Color topR, Color botR)
     m_box[3].color = sfBotR;     // Bottom-right
 }
 
-void Lever::SetHueGradient()
+void Lever::SetHueGradient(float topSat, float botSat, float topBright, float botBright)
 {
     // Make sure there are enough vertices
     if (m_box.size() != 14)
     {
-        //this->InitBox(7);
-        printf("Reducing vector of size %i\n", m_box.size());
-        m_box.clear();
-        printf("Now size %i\n", m_box.size());
-
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height)));              // Bottom-left
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height)));    // Bottom-right
-
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * 5 / 6)));
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * 5 / 6)));
-
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * 4 / 6)));
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * 4 / 6)));
-
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * 3 / 6)));
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * 3 / 6)));
-
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * 2 / 6)));
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * 2 / 6)));
-
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * 1 / 6)));
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * 1 / 6)));
-
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY)));                         // Top-left
-        m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY)));               // Top-right
-
-        printf("Final size: %i\n", m_box.size());
+        this->InitBox(7);
     }
 
     int rgbMap[3][7] = { { 255, 255,   0,   0,   0, 255, 255 },
                          {   0, 255, 255, 255,   0,   0,   0 },
                          {   0,   0,   0, 255, 255, 255,   0 } };
+    printf("Pre color size %i\n", m_box.size());
     for (int i = 0; i < 7; ++i)
     {
-        int R = rgbMap[0][i];
-        int G = rgbMap[1][i];
-        int B = rgbMap[2][i];
-        printf("Color for %i: %i, %i ,%i\n", i, R, G, B);
-        m_box[2*i].color = sf::Color(rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
-        m_box[2*i+1].color = sf::Color(rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
+        printf("Color for %i: %i, %i ,%i\n", i, rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
+        Color hueColor(rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
+
+        hueColor.SetSaturation(topSat);
+        hueColor.SetBrightness(topBright);
+        m_box[2*i].color = sf::Color(hueColor.R(), hueColor.G(), hueColor.B());
+
+        hueColor.SetSaturation(botSat);
+        hueColor.SetBrightness(botBright);
+        m_box[2*i+1].color = sf::Color(hueColor.R(), hueColor.G(), hueColor.B());
+
+        //m_box[2*i].color = sf::Color(rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
+        //m_box[2*i+1].color = sf::Color(rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
     }
 }
 
 void Lever::InitBox(int numVertPairs)
 {
-    //printf("Clearing vector of size %i\n", m_box.size());
-    //m_box.clear();
-    //printf("Now size %i\n", m_box.size());
+    printf("Clearing vector of size %i\n", m_box.size());
+    m_box.clear();
+    printf("Now size %i\n", m_box.size());
 
-    //// Starting from the top, initialize vertices in the same height
-    //for (int i = 0; i < numVertPairs; ++numVertPairs)
-    //{
-    //    m_box.push_back(sf::Vertex(sf::Vector2f(m_railX, m_railY + m_height * i / numVertPairs)));
-    //    m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width, m_railY + m_height * i / numVertPairs)));
-    //}
-    //printf("Final size: %i\n", m_box.size());
+    // If vertical -> starting from the bottom, initialize vertices in the same height
+    if (EOrientation::Vertical == m_orientation)
+    {
+        for (int i = numVertPairs - 1; i >= 0; --i)
+        {
+            float deltaY = m_height * static_cast<float>(i) / static_cast<float>(numVertPairs - 1);
+            m_box.push_back(sf::Vertex(sf::Vector2f(m_railX,            m_railY + deltaY)));
+            m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + m_width,  m_railY + deltaY )));
+        }
+    }
+    // If horizontal -> starting from the left, initialize vertices in the same X position
+    else // if (EOrientation::Horizontal == m_orientation)
+    {
+        //for (int i = 0; i < numVertPairs; i)
+        for (int i = 0; i < numVertPairs; ++i)
+        //for (int i = numVertPairs - 1; i >= 0; --i)
+        {
+            float deltaX = m_width * static_cast<float>(i) / static_cast<float>(numVertPairs - 1);
+            m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + deltaX, m_railY)));
+            m_box.push_back(sf::Vertex(sf::Vector2f(m_railX + deltaX, m_railY + m_height)));
+        }
+    }
+    printf("Final size: %i\n", m_box.size());
 }
 
 void Lever::EnableText()
@@ -273,7 +269,10 @@ void Lever::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 //    states.transform *= getTransform();
     target.draw(&m_box[0], m_box.size(), sf::TriangleStrip);
-    target.draw(m_lever, states);
+    if (m_leverEnabled)
+    {
+        target.draw(m_lever, states);
+    }
     if (m_textEnabled)
     {
         target.draw(m_text, states);

@@ -47,6 +47,8 @@ void RgbLevers::Initialize()
         m_levers[i]->SetPosition(0.06f * Resolution::Width(), (0.72f + i * yOffset) * Resolution::Height());
         m_levers[i]->SetSize(0.41f * Resolution::Width(), 0.02f * Resolution::Height());
         m_levers[i]->SetValue(0);
+        m_levers[i]->SetOrientation(Lever::EOrientation::Horizontal);
+        m_levers[i]->SetOneDimention();
         m_levers[i]->Initialize();
 
         // Set the initial gradients to show pure RGB
@@ -57,9 +59,6 @@ void RgbLevers::Initialize()
     
     // HEXADECIMAL TAG
     m_hexaTag->Initialize(0.06f*Resolution::Width(), (0.72f+3.f*yOffset)*Resolution::Height(),L"Testing");
-    
-    // INITIAL COLOR
-    this->SetColor(INITIAL_COLOR[0], INITIAL_COLOR[1], INITIAL_COLOR[2]);
 }
 
 bool RgbLevers::CheckCollision(float x, float y)
@@ -87,18 +86,18 @@ bool RgbLevers::CheckCollision(float x, float y)
 void RgbLevers::UpdateActor(float dtAsSeconds)
 {
     Actor::UpdateActor(dtAsSeconds);
-    this->SetColor(m_color);
+    this->UpdateColor();
 }
 
-void RgbLevers::SetColor(Color newColor)
+void RgbLevers::UpdateColor()
 {
-    const int* color = newColor.GetRgb();
+    const int* color = m_color.GetRgb();
     for (int i = 0; i < 3; ++i)
     {
         m_levers[i]->SetValue(color[i]);
         this->AdjustGradients(i);
     }
-    this->SetHexaTag(newColor);
+    this->SetHexaTag(m_color);
 }
 
 void RgbLevers::AdjustGradients(int changedLever)

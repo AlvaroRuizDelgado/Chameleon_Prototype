@@ -44,7 +44,9 @@ void HsvLevers::Initialize()
     m_hueLever->SetPosition(0.88f * Resolution::Width(), 0.71f * Resolution::Height());
     m_hueLever->SetSize(0.05f * Resolution::Width(), 0.15f * Resolution::Height());
     m_hueLever->Initialize();
-    m_hueLever->SetHueGradient();
+    m_hueLever->SetOrientation(Lever::EOrientation::Vertical);
+    m_hueLever->SetOneDimention();
+    m_hueLever->SetHueGradient(); // Saturation and brightness set to 1.f: 1.f, 1.f, 1.f, 1.f);
     m_hueLever->SetPercY(0.5f);
 }
 
@@ -75,17 +77,13 @@ bool HsvLevers::CheckCollision(float x, float y)
 void HsvLevers::UpdateActor(float dtAsSeconds)
 {
     Actor::UpdateActor(dtAsSeconds);
-    this->SetColor(m_color);
+    this->UpdateColor();
 }
 
-void HsvLevers::SetColor(Color newColor)
+void HsvLevers::UpdateColor()
 {
-    m_color.SetHue(newColor.GetHue());
     m_hueLever->SetPercY(1.f - m_color.GetHue());
     this->AdjustBrightSatBox();
-
-    m_color.SetSaturation(newColor.GetSaturation());
-    m_color.SetBrightness(newColor.GetBrightness());
     m_brightSatBox->SetPercentages(m_color.GetSaturation(), 1.f - m_color.GetBrightness());
 }
 

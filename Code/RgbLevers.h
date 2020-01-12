@@ -15,11 +15,10 @@ public:
     
     bool CheckCollision(float X, float Y);
     void AdjustGradients(int changedLever);
+    void UpdateColor();
     
     // Getters / setters
     Color GetColor() const { return m_color; };
-    void SetColor(Color newColor);
-    void SetColor(int r, int g, int b) { this->SetColor(Color(r, g, b)); };
     void SetHexaTag(Color color);
     
 private:

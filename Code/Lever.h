@@ -5,10 +5,17 @@
 
 class Lever : public DrawComponent
 {
-public:    
+public:
+    enum class EOrientation
+    {
+        Vertical,
+        Horizontal
+    };
+
+public:
     Lever(class Actor* owner, int drawPriority = 100);
     ~Lever();
-    
+
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     
     void Initialize();
@@ -32,10 +39,15 @@ public:
     float GetPercY() { return m_percY; };
     void SetE2EGradient(class Color beginning, class Color end);
     void SetBoxGradient(class Color topL, class Color botL, class Color botR, class Color topR);
-    void SetHueGradient();
+    void SetHueGradient(float topSat = 1.f, float botSat = 1.f, float topBright = 1.f, float botBright = 1.f);
     Color GetBeginColor() { return m_beginC; };
     Color GetEndColor() { return m_endC; };
+    void SetOrientation(EOrientation orientation) { m_orientation = orientation; };
+    void SetOneDimention() { m_oneDimension = true; };
+
     void EnableText();
+    void EnableLever() { m_leverEnabled = true; };
+    void DisableLever() { m_leverEnabled = false; };
     
 private:
     const int HUE_COLORS{ 6 };
@@ -48,7 +60,10 @@ private:
     float m_width;
     float m_height;
     bool m_textEnabled;
+    bool m_leverEnabled;
     float m_textSpace;    // Space for the text in case it is enabled
+    EOrientation m_orientation;
+    bool m_oneDimension;
     
     Color m_beginC;
     Color m_endC;

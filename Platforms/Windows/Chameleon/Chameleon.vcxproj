@@ -35,6 +35,7 @@
     <ClCompile Include="..\..\..\Code\RectComponent.cpp" />
     <ClCompile Include="..\..\..\Code\Resolution.cpp" />
     <ClCompile Include="..\..\..\Code\RgbLevers.cpp" />
+    <ClCompile Include="..\..\..\Code\SpectrumLevers.cpp" />
     <ClCompile Include="..\..\..\Code\TextComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +54,7 @@
     <ClInclude Include="..\..\..\Code\RectComponent.h" />
     <ClInclude Include="..\..\..\Code\Resolution.h" />
     <ClInclude Include="..\..\..\Code\RgbLevers.h" />
+    <ClInclude Include="..\..\..\Code\SpectrumLevers.h" />
     <ClInclude Include="..\..\..\Code\TextComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -19,6 +19,7 @@ Game::Game() :
 	, m_chameleon(this, m_chameleonColor)
 	, m_rgbLevers(this, m_chameleonColor)
 	, m_hsvLevers(this, m_chameleonColor)
+	, m_spectrumLevers(this, m_chameleonColor)
 	, m_mouseDrag{ false }
 {
     std::cout << "Resolution: "
@@ -105,6 +106,10 @@ void Game::Input()
             {
                 return;
             }
+			else if (m_spectrumLevers.CheckCollision(mouseX, mouseY))
+			{
+				return;
+			}
         }
 //		if (State::PLAYING == m_state)
 //		{
@@ -202,6 +207,7 @@ void Game::LoadData()
 	m_chameleon.Initialize();
     m_rgbLevers.Initialize();
     m_hsvLevers.Initialize();
+	m_spectrumLevers.Initialize();
 }
 
 void Game::UnloadData()
