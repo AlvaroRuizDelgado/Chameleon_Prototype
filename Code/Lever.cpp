@@ -189,10 +189,10 @@ void Lever::SetHueGradient(float topSat, float botSat, float topBright, float bo
     int rgbMap[3][7] = { { 255, 255,   0,   0,   0, 255, 255 },
                          {   0, 255, 255, 255,   0,   0,   0 },
                          {   0,   0,   0, 255, 255, 255,   0 } };
-    printf("Pre color size %i\n", m_box.size());
+    //printf("Pre color size %i\n", m_box.size());
     for (int i = 0; i < 7; ++i)
     {
-        printf("Color for %i: %i, %i ,%i\n", i, rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
+        //printf("Color for %i: %i, %i ,%i\n", i, rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
         Color hueColor(rgbMap[0][i], rgbMap[1][i], rgbMap[2][i]);
 
         hueColor.SetSaturation(topSat);
@@ -212,7 +212,7 @@ void Lever::InitBox(int numVertPairs)
 {
     printf("Clearing vector of size %i\n", m_box.size());
     m_box.clear();
-    printf("Now size %i\n", m_box.size());
+    //printf("Now size %i\n", m_box.size());
 
     // If vertical -> starting from the bottom, initialize vertices in the same height
     if (EOrientation::Vertical == m_orientation)

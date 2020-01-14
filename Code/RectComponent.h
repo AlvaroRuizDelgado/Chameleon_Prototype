@@ -28,9 +28,5 @@ public:
     
 private:
     sf::RectangleShape m_rectangle;
-//    float m_xPos;
-//    float m_yPos;
-//    float m_width;
-//    float m_height;
 };
 

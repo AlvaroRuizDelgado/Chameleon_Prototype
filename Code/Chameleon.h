@@ -18,10 +18,11 @@ public:
     
 private:
     static constexpr int NUM_LAYERS{ 3 };
-    const float CHANGE_PER_SEC[NUM_LAYERS]{ 3.f, 0.8f, 0.5f };
+    const float CHANGE_PER_SEC[NUM_LAYERS]{ 3.f, 0.5f, 0.8f };
     const int INITIAL_COLOR[3]{ 77, 133, 63 };
 
     Color& m_color;
     
-    class RectComponent* m_rectLayer[NUM_LAYERS];
+    class SpriteComponent* m_spriteEyes;
+    class SpriteComponent* m_spriteLayer[NUM_LAYERS];
 };

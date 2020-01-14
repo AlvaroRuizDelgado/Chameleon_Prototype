@@ -19,7 +19,7 @@ RectComponent::~RectComponent()
 
 bool RectComponent::CheckCollision(float x, float y)
 {
-    // I don't consider the case of negative width or height
+    // Not considering the case of negative width or height
     if (x > m_rectangle.getPosition().x
         && x < (m_rectangle.getPosition().x + m_rectangle.getSize().x)
         && y > m_rectangle.getPosition().y
@@ -37,6 +37,6 @@ Color RectComponent::GetColor() const
 
 void RectComponent::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    //    states.transform *= getTransform();
+//    states.transform *= getTransform();
     target.draw(m_rectangle, states);
 }

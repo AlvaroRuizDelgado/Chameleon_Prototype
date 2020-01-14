@@ -27,7 +27,12 @@ sf::Texture& TextureHolder::GetTexture(std::string const& filename)
     {
         // Filename not found, add the texture
         auto& texture = m[filename];
-        texture.loadFromFile("Resources/" + filename);
+        printf("Loading file %s\n", filename);
+        if (!texture.loadFromFile(filename))
+        {
+            printf(" - Couldn't load %s\n", filename);
+        }
+        texture.loadFromFile(filename);
         return texture;
     }
 }
