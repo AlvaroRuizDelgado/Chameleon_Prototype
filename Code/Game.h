@@ -10,6 +10,7 @@
 #include "RgbLevers.h"
 #include "HsvLevers.h"
 #include "SpectrumLevers.h"
+#include "TextureHolder.h"
 
 class Game
 {
@@ -47,6 +48,7 @@ private:
     RgbLevers m_rgbLevers;
     HsvLevers m_hsvLevers;
 	SpectrumLevers m_spectrumLevers;
+	TextureHolder m_textureHolder;
 
 public:
 	Game();

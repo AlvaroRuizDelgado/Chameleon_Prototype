@@ -37,6 +37,7 @@
     <ClCompile Include="..\..\..\Code\RgbLevers.cpp" />
     <ClCompile Include="..\..\..\Code\SpectrumLevers.cpp" />
     <ClCompile Include="..\..\..\Code\TextComponent.cpp" />
+    <ClCompile Include="..\..\..\Code\TextureHolder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\Actor.h" />
@@ -56,6 +57,7 @@
     <ClInclude Include="..\..\..\Code\RgbLevers.h" />
     <ClInclude Include="..\..\..\Code\SpectrumLevers.h" />
     <ClInclude Include="..\..\..\Code\TextComponent.h" />
+    <ClInclude Include="..\..\..\Code\TextureHolder.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

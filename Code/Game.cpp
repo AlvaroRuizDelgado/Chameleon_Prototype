@@ -31,6 +31,14 @@ bool Game::Initialize()
     m_window.create(sf::VideoMode(Resolution::Width(), Resolution::Height()),
                     "Chameleon");
 	m_window.setFramerateLimit(FPS);
+
+	sf::Image icon;
+	if (!icon.loadFromFile("Resources/graphics/Logo0.png"))
+	{
+		printf("Problems loading the logo\n");
+	}
+	m_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
 	return true;
 }
 
