@@ -2,7 +2,6 @@
 
 #include "Actor.h"
 #include "Game.h"
-#include "TextureHolder.h"
 
 SpriteComponent::SpriteComponent(class Actor* owner, int drawPriority) :
     DrawComponent{ owner }
@@ -24,9 +23,9 @@ void SpriteComponent::draw(sf::RenderTarget& target, sf::RenderStates states) co
     target.draw(m_sprite, states);
 }
 
-void SpriteComponent::SetTexture(std::string texFilename)
+void SpriteComponent::SetTexture(sf::Texture& texture)
 {
-    m_texture = TextureHolder::GetTexture(texFilename);
+    m_texture = texture;
     m_texWidth = m_texture.getSize().x;
     m_texHeight = m_texture.getSize().y;
     m_sprite = sf::Sprite(m_texture);

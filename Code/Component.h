@@ -6,7 +6,7 @@ public:
 	Component(class Actor* actor, int updateOrder = 100);
 	virtual ~Component();
 
-	void Update(float dtAsSeconds);
+	virtual void Update(float dtAsSeconds);
 
     // Getters / setters
 	int GetUpdateOrder() const { return m_updateOrder; };

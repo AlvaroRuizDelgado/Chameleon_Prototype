@@ -19,7 +19,7 @@ public:
     int GetTexHeight() const { return m_texHeight; };
     int GetTexWidth() const { return m_texWidth; };
 
-    virtual void SetTexture(std::string texFilename);
+    virtual void SetTexture(sf::Texture& texture);
     virtual void SetPosition(float x, float y) { m_sprite.setPosition(x, y); };
     virtual void SetScale(float scale) { m_sprite.setScale(scale, scale); };
     virtual void SetColor(int r, int g, int b) { m_sprite.setColor(sf::Color(r, g, b)); };

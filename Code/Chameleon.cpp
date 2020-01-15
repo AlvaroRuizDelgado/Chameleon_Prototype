@@ -36,19 +36,20 @@ void Chameleon::Initialize()
     float y = 0.30f * Resolution::Height();
     float scale{ 0.45 };
 
-    m_spriteEyes->SetTexture("Resources/graphics/CammySpriteEyes.png");
+    m_spriteEyes->SetTexture(TextureHolder::GetTexture("Resources/graphics/CammySpriteEyes.png"));
     m_spriteEyes->SetPosition(x, y);
     m_spriteEyes->SetScale(scale);
 
-    m_spriteLayer[0]->SetTexture("Resources/graphics/CammySprite0.png");
+    // Could do a loop with sstream, but in this case I prefer to have flexibility
+    m_spriteLayer[0]->SetTexture(TextureHolder::GetTexture("Resources/graphics/CammySprite0.png"));
     m_spriteLayer[0]->SetPosition(x, y);
     m_spriteLayer[0]->SetScale(scale);
 
-    m_spriteLayer[1]->SetTexture("Resources/graphics/CammySprite1.png");
+    m_spriteLayer[1]->SetTexture(TextureHolder::GetTexture("Resources/graphics/CammySprite1.png"));
     m_spriteLayer[1]->SetPosition(x, y);
     m_spriteLayer[1]->SetScale(scale);
 
-    m_spriteLayer[2]->SetTexture("Resources/graphics/CammySprite2.png");
+    m_spriteLayer[2]->SetTexture(TextureHolder::GetTexture("Resources/graphics/CammySprite2.png"));
     m_spriteLayer[2]->SetPosition(x, y);
     m_spriteLayer[2]->SetScale(scale);
 }

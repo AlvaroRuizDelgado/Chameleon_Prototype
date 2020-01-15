@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Code\Actor.cpp" />
+    <ClCompile Include="..\..\..\Code\AnimSpriteComponent.cpp" />
     <ClCompile Include="..\..\..\Code\Background.cpp" />
     <ClCompile Include="..\..\..\Code\Chameleon.cpp" />
     <ClCompile Include="..\..\..\Code\CircleComponent.cpp" />
@@ -42,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\Actor.h" />
+    <ClInclude Include="..\..\..\Code\AnimSpriteComponent.h" />
     <ClInclude Include="..\..\..\Code\Background.h" />
     <ClInclude Include="..\..\..\Code\Chameleon.h" />
     <ClInclude Include="..\..\..\Code\CircleComponent.h" />
