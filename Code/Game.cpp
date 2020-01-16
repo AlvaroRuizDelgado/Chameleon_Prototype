@@ -21,6 +21,7 @@ Game::Game() :
 	, m_hsvLevers(this, m_chameleonColor)
 	, m_spectrumLevers(this, m_chameleonColor)
 	, m_mouseDrag{ false }
+	, m_foodPawn{ this }
 {
     std::cout << "Resolution: "
         << Resolution::Width() << " x " << Resolution::Height() << std::endl;
@@ -216,6 +217,7 @@ void Game::LoadData()
     m_rgbLevers.Initialize();
     m_hsvLevers.Initialize();
 	m_spectrumLevers.Initialize();
+	m_foodPawn.Initialize();
 }
 
 void Game::UnloadData()

@@ -5,6 +5,7 @@
 #include "Background.h"
 #include "Chameleon.h"
 #include "Color.h"
+#include "FoodPawn.h"
 #include "Hud.h"
 #include "Resolution.h"
 #include "RgbLevers.h"
@@ -49,6 +50,8 @@ private:
     HsvLevers m_hsvLevers;
 	SpectrumLevers m_spectrumLevers;
 	TextureHolder m_textureHolder;
+
+	FoodPawn m_foodPawn;
 
 public:
 	Game();

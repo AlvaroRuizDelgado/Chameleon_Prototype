@@ -27,6 +27,7 @@
     <ClCompile Include="..\..\..\Code\Color.cpp" />
     <ClCompile Include="..\..\..\Code\Component.cpp" />
     <ClCompile Include="..\..\..\Code\DrawComponent.cpp" />
+    <ClCompile Include="..\..\..\Code\FoodPawn.cpp" />
     <ClCompile Include="..\..\..\Code\Game.cpp" />
     <ClCompile Include="..\..\..\Code\HsvLevers.cpp" />
     <ClCompile Include="..\..\..\Code\Hud.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="..\..\..\Code\Color.h" />
     <ClInclude Include="..\..\..\Code\Component.h" />
     <ClInclude Include="..\..\..\Code\DrawComponent.h" />
+    <ClInclude Include="..\..\..\Code\FoodPawn.h" />
     <ClInclude Include="..\..\..\Code\Game.h" />
     <ClInclude Include="..\..\..\Code\HsvLevers.h" />
     <ClInclude Include="..\..\..\Code\Hud.h" />
