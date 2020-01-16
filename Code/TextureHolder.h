@@ -10,8 +10,8 @@ public:
     static sf::Texture& GetTexture(std::string const& filename);
     
 private:
-    std::map<std::string, sf::Texture> textures_;
+    std::map<std::string, sf::Texture> m_textures;
 
     // A static pointer of the same type as the class itself.
-    static TextureHolder* s_Instance_;
+    static TextureHolder* s_Instance;
 };

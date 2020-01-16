@@ -93,6 +93,11 @@ void Game::Input()
             mouseY = sf::Mouse::getPosition(m_window).y;
             printf("Mouse clicked\n");
 			m_mouseDrag = true;
+    
+            if (m_foodPawn.CheckCollision(mouseX, mouseY))
+            {
+                std::cout << "Got one!!\n";
+            }
         }
 
 		if (event.type == sf::Event::MouseButtonReleased)
@@ -217,7 +222,7 @@ void Game::LoadData()
     m_rgbLevers.Initialize();
     m_hsvLevers.Initialize();
 	m_spectrumLevers.Initialize();
-	m_foodPawn.Initialize();
+	m_foodPawn.Spawn(0.7f);
 }
 
 void Game::UnloadData()
