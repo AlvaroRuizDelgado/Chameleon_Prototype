@@ -1,7 +1,8 @@
 #include <cmath>
 
-#include "Game.h"
+#include "AnimSpriteComponent.h"
 #include "CircleComponent.h"
+#include "Game.h"
 #include "Random.h"
 #include "Resolution.h"
 
@@ -11,13 +12,18 @@ FoodPawn::FoodPawn(Game* game) :
 	Actor(game)
 	, m_velocity{ 10.f }
 	, m_bodyCircle{ nullptr }
+    , m_animSprite{ nullptr }
+    , m_horizontalLimit{ 1.f }
+    , m_verticalLimit{ 0.7f }
 {
 	m_bodyCircle = new CircleComponent(this, 80);
+    m_animSprite = new AnimSpriteComponent(this, 90);
 }
 
 FoodPawn::~FoodPawn()
 {
 	delete m_bodyCircle;
+    delete m_animSprite;
 }
 
 void FoodPawn::Initialize()
@@ -25,6 +31,16 @@ void FoodPawn::Initialize()
 	m_bodyCircle->SetSize(0.01f * Resolution::Width());
 	m_bodyCircle->SetColor(0, 0, 0);
     m_velocity = 10.f;
+    
+    m_animSprite->SetTexture(TextureHolder::GetTexture("Resources/graphics/Bee.png"));
+    std::vector<sf::IntRect> animPositions;
+    for (int i = 0; i < 3; ++i)
+    {
+        animPositions.push_back(sf::IntRect(128 * i, 0, 128, 128));
+    }
+    m_animSprite->SetAnimPositions(animPositions);
+    m_animSprite->SetPosition(m_position[0], m_position[1]);
+    m_animSprite->SetScale(1.f);
 }
 
 
@@ -45,6 +61,7 @@ void FoodPawn::UpdateActor(float dtAsSeconds)
     else
     {
         m_bodyCircle->SetPosition(m_position[0], m_position[1]);
+        m_animSprite->SetPosition(m_position[0], m_position[1]);
     }
 }
 

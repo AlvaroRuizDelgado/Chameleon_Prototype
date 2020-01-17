@@ -20,4 +20,5 @@ private:
     float m_verticalLimit;
     float m_horizontalLimit;
 	class CircleComponent* m_bodyCircle;
+	class AnimSpriteComponent* m_animSprite;
 };
