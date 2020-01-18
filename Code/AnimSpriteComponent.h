@@ -11,6 +11,7 @@ public:
 	~AnimSpriteComponent();
 
 	void Update(float dtAsSeconds) override;
+	bool CheckCollision(float x, float y) override;
 		
 	void SetAnimPositions(const std::vector<sf::IntRect>& animPositions);
 	float GetAnimFps() const { return m_animFps; };

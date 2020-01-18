@@ -35,6 +35,7 @@ protected:
 	float m_position[2];
 	float m_scale;
 	float m_rotation;
+	float m_velocity;
 
 private:
 	std::vector<class Component*> m_components;

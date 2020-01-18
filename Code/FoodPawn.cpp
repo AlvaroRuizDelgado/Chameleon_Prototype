@@ -10,35 +10,32 @@
 
 FoodPawn::FoodPawn(Game* game) :
 	Actor(game)
-	, m_velocity{ 10.f }
-	, m_bodyCircle{ nullptr }
     , m_animSprite{ nullptr }
     , m_horizontalLimit{ 1.f }
     , m_verticalLimit{ 0.7f }
 {
-	m_bodyCircle = new CircleComponent(this, 80);
     m_animSprite = new AnimSpriteComponent(this, 90);
 }
 
 FoodPawn::~FoodPawn()
 {
-	delete m_bodyCircle;
     delete m_animSprite;
 }
 
 void FoodPawn::Initialize()
 {
-	m_bodyCircle->SetSize(0.01f * Resolution::Width());
-	m_bodyCircle->SetColor(0, 0, 0);
-    m_velocity = 10.f;
-    
+    Actor::m_velocity = 10; 
+    // Set the animation: texture sheet, coordinates and FPS
     m_animSprite->SetTexture(TextureHolder::GetTexture("Resources/graphics/Bee.png"));
     std::vector<sf::IntRect> animPositions;
-    for (int i = 0; i < 3; ++i)
+    for (int i = 0; i < 4; ++i)
     {
         animPositions.push_back(sf::IntRect(128 * i, 0, 128, 128));
     }
     m_animSprite->SetAnimPositions(animPositions);
+    m_animSprite->SetAnimFps(40.f);
+
+    // Position and scale
     m_animSprite->SetPosition(m_position[0], m_position[1]);
     m_animSprite->SetScale(1.f);
 }
@@ -48,20 +45,19 @@ void FoodPawn::UpdateActor(float dtAsSeconds)
 {
 	Actor::UpdateActor(dtAsSeconds);
 
-    m_position[0] += m_velocity * std::cos(m_rotation);
-    m_position[1] += m_velocity * std::sin(m_rotation);
-    if (m_position[0] < 0.f
-        || m_position[0] > m_horizontalLimit * Resolution::Width()
-        || m_position[1] < 0.f
-        || m_position[1] > m_verticalLimit * Resolution::Height())
+    Actor::m_position[0] += Actor::m_velocity * std::cos(Actor::m_rotation);
+    Actor::m_position[1] += Actor::m_velocity * std::sin(Actor::m_rotation);
+    if (Actor::m_position[0] < 0.f
+        || Actor::m_position[0] > m_horizontalLimit * Resolution::Width()
+        || Actor::m_position[1] < 0.f
+        || Actor::m_position[1] > m_verticalLimit * Resolution::Height())
     {
         this->Spawn(m_verticalLimit);
-        printf("Out of boundaries at %f, %f\n", m_position[0], m_position[1]);
+        printf("Out of boundaries at %f, %f\n", Actor::m_position[0], Actor::m_position[1]);
     }
     else
     {
-        m_bodyCircle->SetPosition(m_position[0], m_position[1]);
-        m_animSprite->SetPosition(m_position[0], m_position[1]);
+        m_animSprite->SetPosition(Actor::m_position[0], Actor::m_position[1]);
     }
 }
 
@@ -93,13 +89,13 @@ void FoodPawn::Spawn(float verticalLimit, float horizontalLimit)
     
     m_position[0] = x;
     m_position[1] = y;
-    m_bodyCircle->SetPosition(m_position[0], m_position[1]);
+    m_animSprite->SetPosition(m_position[0], m_position[1]);
     this->Initialize();
 }
 
 bool FoodPawn::CheckCollision(float x, float y)
 {
-    if (m_bodyCircle->CheckCollision(x, y))
+    if (m_animSprite->CheckCollision(x, y))
     {
         this->Spawn(m_verticalLimit);
         return true;

@@ -5,7 +5,7 @@
 
 AnimSpriteComponent::AnimSpriteComponent(Actor* owner, int drawPriority) :
 	SpriteComponent(owner, drawPriority)
-	, m_animFps{ 0.2f }
+	, m_animFps{ 10.f }
 	, m_currentFrame{ 0.f }
 {
 }
@@ -38,4 +38,9 @@ void AnimSpriteComponent::SetAnimPositions(const std::vector<sf::IntRect>& animP
 {
 	m_animPositions = animPositions;
 	m_currentFrame = 0.f;
+}
+
+bool AnimSpriteComponent::CheckCollision(float x, float y)
+{
+	return SpriteComponent::CheckCollision(x, y);
 }
