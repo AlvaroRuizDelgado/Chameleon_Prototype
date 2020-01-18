@@ -30,6 +30,11 @@
 		38658FE323BC7A29004EA7B1 /* Lever.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FE123BC7A29004EA7B1 /* Lever.cpp */; };
 		38658FE623BD6D28004EA7B1 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FE423BD6D28004EA7B1 /* Color.cpp */; };
 		38658FE923BED708004EA7B1 /* TextComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38658FE723BED708004EA7B1 /* TextComponent.cpp */; };
+		386A6E6023CB554000449D25 /* SpectrumLevers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 386A6E5E23CB553E00449D25 /* SpectrumLevers.cpp */; };
+		38F3CEE823D09BA5007A2952 /* FoodPawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38F3CEE023D09BA0007A2952 /* FoodPawn.cpp */; };
+		38F3CEE923D09BA5007A2952 /* SpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38F3CEE223D09BA1007A2952 /* SpriteComponent.cpp */; };
+		38F3CEEA23D09BA5007A2952 /* AnimSpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38F3CEE523D09BA3007A2952 /* AnimSpriteComponent.cpp */; };
+		38F3CEEB23D09BA5007A2952 /* TextureHolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38F3CEE723D09BA4007A2952 /* TextureHolder.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,6 +100,16 @@
 		38658FE523BD6D28004EA7B1 /* Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		38658FE723BED708004EA7B1 /* TextComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextComponent.cpp; sourceTree = "<group>"; };
 		38658FE823BED708004EA7B1 /* TextComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextComponent.h; sourceTree = "<group>"; };
+		386A6E5E23CB553E00449D25 /* SpectrumLevers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpectrumLevers.cpp; sourceTree = "<group>"; };
+		386A6E5F23CB553F00449D25 /* SpectrumLevers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpectrumLevers.h; sourceTree = "<group>"; };
+		38F3CEE023D09BA0007A2952 /* FoodPawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FoodPawn.cpp; sourceTree = "<group>"; };
+		38F3CEE123D09BA1007A2952 /* FoodPawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodPawn.h; sourceTree = "<group>"; };
+		38F3CEE223D09BA1007A2952 /* SpriteComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteComponent.cpp; sourceTree = "<group>"; };
+		38F3CEE323D09BA2007A2952 /* AnimSpriteComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimSpriteComponent.h; sourceTree = "<group>"; };
+		38F3CEE423D09BA3007A2952 /* TextureHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureHolder.h; sourceTree = "<group>"; };
+		38F3CEE523D09BA3007A2952 /* AnimSpriteComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimSpriteComponent.cpp; sourceTree = "<group>"; };
+		38F3CEE623D09BA4007A2952 /* SpriteComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteComponent.h; sourceTree = "<group>"; };
+		38F3CEE723D09BA4007A2952 /* TextureHolder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureHolder.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,9 +169,10 @@
 		38658FB623BB54EC004EA7B1 /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				38658FC323BB54EC004EA7B1 /* main.cpp */,
 				38658FBC23BB54EC004EA7B1 /* Actor.cpp */,
 				38658FBE23BB54EC004EA7B1 /* Actor.h */,
+				38F3CEE523D09BA3007A2952 /* AnimSpriteComponent.cpp */,
+				38F3CEE323D09BA2007A2952 /* AnimSpriteComponent.h */,
 				38658FC023BB54EC004EA7B1 /* Background.cpp */,
 				38658FB723BB54EC004EA7B1 /* Background.h */,
 				38658FBD23BB54EC004EA7B1 /* Chameleon.cpp */,
@@ -169,12 +185,17 @@
 				38658FC123BB54EC004EA7B1 /* Component.h */,
 				38658FD023BB6D8C004EA7B1 /* DrawComponent.cpp */,
 				38658FD123BB6D8C004EA7B1 /* DrawComponent.h */,
+				38F3CEE023D09BA0007A2952 /* FoodPawn.cpp */,
+				38F3CEE123D09BA1007A2952 /* FoodPawn.h */,
 				38658FC523BB54EC004EA7B1 /* Game.cpp */,
 				38658FBF23BB54EC004EA7B1 /* Game.h */,
+				3833B74023BF1BCA005DE507 /* HsvLevers.cpp */,
+				3833B73E23BF17EC005DE507 /* HsvLevers.h */,
 				38658FC223BB54EC004EA7B1 /* Hud.cpp */,
 				38658FB823BB54EC004EA7B1 /* Hud.h */,
 				38658FE123BC7A29004EA7B1 /* Lever.cpp */,
 				38658FE223BC7A29004EA7B1 /* Lever.h */,
+				38658FC323BB54EC004EA7B1 /* main.cpp */,
 				38658FBA23BB54EC004EA7B1 /* Random.cpp */,
 				38658FC423BB54EC004EA7B1 /* Random.h */,
 				38658FD323BB81E1004EA7B1 /* RectComponent.cpp */,
@@ -183,10 +204,14 @@
 				38658FD723BC43A3004EA7B1 /* Resolution.h */,
 				38658FDE23BC7911004EA7B1 /* RgbLevers.cpp */,
 				38658FDF23BC7911004EA7B1 /* RgbLevers.h */,
+				386A6E5E23CB553E00449D25 /* SpectrumLevers.cpp */,
+				386A6E5F23CB553F00449D25 /* SpectrumLevers.h */,
+				38F3CEE223D09BA1007A2952 /* SpriteComponent.cpp */,
+				38F3CEE623D09BA4007A2952 /* SpriteComponent.h */,
 				38658FE723BED708004EA7B1 /* TextComponent.cpp */,
 				38658FE823BED708004EA7B1 /* TextComponent.h */,
-				3833B74023BF1BCA005DE507 /* HsvLevers.cpp */,
-				3833B73E23BF17EC005DE507 /* HsvLevers.h */,
+				38F3CEE723D09BA4007A2952 /* TextureHolder.cpp */,
+				38F3CEE423D09BA3007A2952 /* TextureHolder.h */,
 			);
 			name = Code;
 			path = ../../../Code;
@@ -252,12 +277,15 @@
 			files = (
 				38658FC823BB54EC004EA7B1 /* Actor.cpp in Sources */,
 				38658FD523BB81E1004EA7B1 /* RectComponent.cpp in Sources */,
+				38F3CEE923D09BA5007A2952 /* SpriteComponent.cpp in Sources */,
+				38F3CEEB23D09BA5007A2952 /* TextureHolder.cpp in Sources */,
 				38658FD223BB6D8C004EA7B1 /* DrawComponent.cpp in Sources */,
 				38658FC623BB54EC004EA7B1 /* Random.cpp in Sources */,
 				38658FCA23BB54EC004EA7B1 /* Background.cpp in Sources */,
 				38658FDD23BC76B0004EA7B1 /* CircleComponent.cpp in Sources */,
 				38658FE323BC7A29004EA7B1 /* Lever.cpp in Sources */,
 				38658FE623BD6D28004EA7B1 /* Color.cpp in Sources */,
+				38F3CEEA23D09BA5007A2952 /* AnimSpriteComponent.cpp in Sources */,
 				3833B74123BF1BCA005DE507 /* HsvLevers.cpp in Sources */,
 				38658FCD23BB54EC004EA7B1 /* Game.cpp in Sources */,
 				38658FCB23BB54EC004EA7B1 /* Hud.cpp in Sources */,
@@ -267,6 +295,8 @@
 				38658FC923BB54EC004EA7B1 /* Chameleon.cpp in Sources */,
 				38658FDA23BC6054004EA7B1 /* Resolution.cpp in Sources */,
 				38658FC723BB54EC004EA7B1 /* Component.cpp in Sources */,
+				386A6E6023CB554000449D25 /* SpectrumLevers.cpp in Sources */,
+				38F3CEE823D09BA5007A2952 /* FoodPawn.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

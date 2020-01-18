@@ -32,8 +32,30 @@ void SpriteComponent::SetTexture(sf::Texture& texture)
     m_sprite.setOrigin(m_texWidth / 2, m_texHeight / 2);
 }
 
+void SpriteComponent::SetTextureRect(const sf::IntRect& texRect)
+{
+    m_sprite.setTextureRect(texRect);
+    m_sprite.setOrigin(texRect.width / 2, texRect.height / 2);
+}
+
 Color SpriteComponent::GetColor()
 {
     sf::Color spriteColor = m_sprite.getColor();
     return Color(spriteColor.r, spriteColor.g, spriteColor.b);
 }
+
+bool SpriteComponent::CheckCollision(float x, float y)
+{
+    const sf::IntRect& box = m_sprite.getTextureRect();
+    const sf::Vector2f& position = m_sprite.getPosition();
+    // Sprite origin is in the center of the texture
+    if (x > (position.x - box.width/2)
+        && x < (position.x + box.width/2)
+        && y > (position.y - box.height/2)
+        && y < (position.y + box.height/2))
+    {
+        return true;
+    }
+    return false;
+}
+

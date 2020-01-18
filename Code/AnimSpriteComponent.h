@@ -11,13 +11,14 @@ public:
 	~AnimSpriteComponent();
 
 	void Update(float dtAsSeconds) override;
-
-	void SetAnimTextures(const std::vector<sf::Texture*>& textures);
+	bool CheckCollision(float x, float y) override;
+		
+	void SetAnimPositions(const std::vector<sf::IntRect>& animPositions);
 	float GetAnimFps() const { return m_animFps; };
 	void SetAnimFps(float fps) { m_animFps = fps; };
 
 private:
-	std::vector<sf::Texture*> m_animTextures;
+	std::vector<sf::IntRect> m_animPositions;
 	float m_currentFrame;
 	float m_animFps;
 };

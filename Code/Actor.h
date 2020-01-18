@@ -30,12 +30,14 @@ public:
 	void SetState(State state) { m_state = state; }
 	class Game* GetGame() { return m_game; }
 
-private:
+protected:
 	State m_state;
 	float m_position[2];
 	float m_scale;
 	float m_rotation;
+	float m_velocity;
 
+private:
 	std::vector<class Component*> m_components;
 	class Game* m_game;
 };
