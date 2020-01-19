@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "EyeComponent.h"
 #include "Game.h"
 #include "RectComponent.h"
 #include "Resolution.h"
@@ -14,9 +15,13 @@ Chameleon::Chameleon(Game* game, Color& color) :
 {
     for (int i = 0; i < NUM_LAYERS; ++i)
     {
-        m_spriteLayer[i] = new SpriteComponent(this, 40 - 10*i);
+        m_spriteLayer[i] = new SpriteComponent(this, 40 - 5*i);
     }
-    m_spriteEyes = new SpriteComponent(this, 15);
+    m_spriteEyesWhite = new SpriteComponent(this, 15);
+    for (int i = 0; i < NUM_EYES; ++i)
+    {
+        m_eyeComponent[i] = new EyeComponent(this, 100);
+    }
 }
 
 Chameleon::~Chameleon()
@@ -25,7 +30,11 @@ Chameleon::~Chameleon()
     {
         delete layer;
     }
-    delete m_spriteEyes;
+    for (auto eye : m_eyeComponent)
+    {
+        delete eye;
+    }
+    delete m_spriteEyesWhite;
 }
 
 void Chameleon::Initialize()
@@ -34,11 +43,19 @@ void Chameleon::Initialize()
     
     float x = 0.53f * Resolution::Width();
     float y = 0.30f * Resolution::Height();
-    float scale{ 0.45 };
+    float scale{ 0.35 };
 
-    m_spriteEyes->SetTexture(TextureHolder::GetTexture("Resources/graphics/CammySpriteEyes.png"));
-    m_spriteEyes->SetPosition(x, y);
-    m_spriteEyes->SetScale(scale);
+    // White in the eyes
+    m_spriteEyesWhite->SetTexture(TextureHolder::GetTexture("Resources/graphics/CammySpriteEyes.png"));
+    m_spriteEyesWhite->SetPosition(x, y);
+    m_spriteEyesWhite->SetScale(scale);
+
+    // Black in the eyes
+    m_eyeComponent[0]->SetSize(25.f *scale);
+    m_eyeComponent[0]->SetPosition(x - 340 * scale, y - 187 * scale);
+
+    m_eyeComponent[1]->SetSize(25.f * scale);
+    m_eyeComponent[1]->SetPosition(x - 230 * scale, y - 183 * scale);
 
     // Could do a loop with sstream, but in this case I prefer to have flexibility
     m_spriteLayer[0]->SetTexture(TextureHolder::GetTexture("Resources/graphics/CammySprite0.png"));
