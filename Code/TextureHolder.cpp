@@ -32,6 +32,7 @@ sf::Texture& TextureHolder::GetTexture(std::string const& filename)
         if (!texture.loadFromFile(filename))
         {
             std::cout << " - Couldn't load " << filename << std::endl;
+            texture.loadFromFile("Resources/graphics/NoTex.png");
         }
         texture.loadFromFile(filename);
         return texture;
