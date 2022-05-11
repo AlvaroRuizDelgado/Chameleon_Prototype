@@ -18,7 +18,7 @@ Basic SFML game prototype made to teach about color expressions. The game is in 
 
 The "Resources" folder needs to be present in the "Debug" and "Release" folders to be accessible from the created executable. In addition, it also needs to be present in the project directory to be accessible from the debugger.
 
-The script "winResources.sh" is there to alleviate the constant copying to different locations. Simply run it every time a resource is added or modified.
+The script "winResources.sh" is there to alleviate the constant copying to different locations (for x86 compilation). Simply run it every time a resource is added or modified.
 
 ```
 $ . winResources.sh
