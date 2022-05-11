@@ -1,6 +1,6 @@
 # Chameleon
 
-Basic SFML game made to learn how to export to android.
+Basic SFML game prototype made to teach about color expressions. The game is in an early state, patiently waiting for me to get back into it and finish it :(.
 
 ## File structure
 
