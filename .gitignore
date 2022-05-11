@@ -23,6 +23,8 @@
 *.so
 *.dylib
 *.dll
+# Don't ignore SFML .dll files
+!External\ Libraries/Windows/SFML-2.5.1/bin/*
 
 # Fortran module files
 *.mod
